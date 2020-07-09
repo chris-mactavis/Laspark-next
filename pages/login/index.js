@@ -8,6 +8,7 @@ import Error from "../../Components/Error";
 import {loginAsync} from "../../store/actions/auth";
 import {showNotifier} from "../../store/actions/notifier";
 import Router from "next/router";
+import {withoutAuth} from "../../Components/hoc/auth";
 
 const Login = () => {
 
@@ -61,4 +62,4 @@ const Login = () => {
     </Layout>
 }
 
-export default Login;
+export default withoutAuth(Login);
