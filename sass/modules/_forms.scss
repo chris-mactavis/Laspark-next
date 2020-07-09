@@ -1,9 +1,8 @@
 form {
-  
   &.account-create {
     padding: 0 20px;
 
-    input {
+    input, textarea {
       width: 100%;
       background: transparent;
       border-top: 0;
@@ -13,8 +12,11 @@ form {
       margin-bottom: 2rem;
       outline: none;
       padding: 0 0 .5rem 0;
-      color: $dim-grey ;
-
+      color: $dim-grey;
+      resize: none;
+      &:focus{
+        border-color: $mid-green;
+      }
     }
 
     .forgot-pwd {
