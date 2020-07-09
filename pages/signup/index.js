@@ -44,7 +44,7 @@ const Signup = () => {
     return <Layout mainClass="login">
 
         <Head>
-            <title>Laspark | Signup</title>
+            <title>Signup | Laspark</title>
         </Head>
 
         <section className="login" id="myLogin">
@@ -63,9 +63,8 @@ const Signup = () => {
                                        id="name" placeholder="Full name*"/>
                                 {errors.full_name && <Error>{errors.full_name.message}</Error>}
 
-                                <input type="text" ref={register({required: 'This field is required'})}
-                                       name="company_name" id="cname" placeholder="Company name*"/>
-                                {errors.company_name && <Error>{errors.company_name.message}</Error>}
+                                <input type="text" ref={register}
+                                       name="company_name" id="cname" placeholder="Company name"/>
 
                                 <input type="email" ref={register({
                                     required: 'This field is required',

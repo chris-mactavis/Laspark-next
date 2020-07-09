@@ -9,6 +9,7 @@ import {loginAsync} from "../../store/actions/auth";
 import {showNotifier} from "../../store/actions/notifier";
 import Router from "next/router";
 import {withoutAuth} from "../../Components/hoc/auth";
+import Cookies from 'js-cookie';
 
 const Login = () => {
 
@@ -22,7 +23,9 @@ const Login = () => {
         try {
             await dispatch(loginAsync(data));
             dispatch(showNotifier('Logged In'));
-            Router.push('/');
+            Router.push(Cookies.get('redirectIntended') || '/');
+            Cookies.remove('redirectIntended');
+            // Router.push('/');
         } catch (e) {
             console.log(e);
         }
@@ -30,7 +33,7 @@ const Login = () => {
 
     return <Layout mainClass="login">
         <Head>
-            <title>Laspark | Login</title>
+            <title>Login | Laspark</title>
         </Head>
 
         <section className="login" id="myLogin">
