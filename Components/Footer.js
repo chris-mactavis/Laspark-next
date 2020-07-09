@@ -16,16 +16,28 @@ const Footer = () => {
                         </ul>
                     </div>
                     <div className="col-md-4">
-                        <h5>Phone</h5>
+                        <h5>Contact</h5>
                         <ul>
-                            <li><a href="tel:0800LASPARK">0800-LASPARK</a></li>
-                            <li><a href="tel:08005277275">0800 527 7275</a></li>
+                            <li><a href="tel:07005277275">0700LASPARK</a></li>
+                            <li><a href="mailto:info@laspark.lg.gov.ng">info@laspark.lg.gov.ng</a></li>
                         </ul>
                     </div>
                     <div className="col-md-4">
-                        <h5>Email</h5>
+                        <h5>Online</h5>
                         <ul>
-                            <li><a href="mailto:info@laspark.lg.gov.ng">info@laspark.lg.gov.ng</a></li>
+                            <li>
+                                <a target="_blank" href="https://facebook.com/lasparklagos"><img
+                                    src="/images/icon/facebook.svg"/></a>
+                                <a target="_blank" href="https://twitter.com/lasparklagos"><img
+                                    src="/images/icon/twitter.svg"/></a>
+                                <a target="_blank" href="https://instagram.com/lasparklagos"><img
+                                    src="/images/icon/instagram.svg"/></a>
+                            </li>
+
+                            <li>
+                                <a target="_blank"
+                                   href="https://www.laspark.lagosstate.gov.ng">www.laspark.lagosstate.gov.ng</a>
+                            </li>
                         </ul>
                     </div>
                 </div>

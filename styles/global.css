@@ -287,7 +287,7 @@ h6 {
 form.account-create {
   padding: 0 20px;
 }
-form.account-create input {
+form.account-create input, form.account-create textarea {
   width: 100%;
   background: transparent;
   border-top: 0;
@@ -298,6 +298,10 @@ form.account-create input {
   outline: none;
   padding: 0 0 0.5rem 0;
   color: #686868;
+  resize: none;
+}
+form.account-create input:focus, form.account-create textarea:focus {
+  border-color: #0bb503;
 }
 form.account-create .forgot-pwd {
   text-align: center;
@@ -1045,6 +1049,7 @@ footer {
 }
 footer h5 {
   color: white;
+  margin-bottom: 20px;
 }
 footer p {
   font-weight: bold;
@@ -1061,6 +1066,11 @@ footer ul li {
 footer.footer-bottom {
   padding: 1rem 0;
   background: #2D2D2D;
+}
+footer img {
+  height: 20px;
+  padding: 0 10px;
+  margin-bottom: 5px;
 }
 
 div.footer-bottom {
