@@ -7,11 +7,13 @@ import {composeWithDevTools} from "redux-devtools-extension";
 import '../styles/global.css';
 import toggleLoading from "../store/reducers/loader";
 import notifier from "../store/reducers/notifier";
+import auth from "../store/reducers/auth";
 
 
 const reducers = combineReducers({
     loader: toggleLoading,
-    notifier: notifier
+    notifier: notifier,
+    auth: auth
 });
 
 const store = process.env.environment === 'dev' ? createStore(reducers, composeWithDevTools(applyMiddleware(thunkMiddleware))) : createStore(reducers, applyMiddleware(thunkMiddleware));

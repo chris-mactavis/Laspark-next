@@ -41,13 +41,23 @@ const TopBar = ({isLoggedIn, page, headerContent}) => {
                             <Link href="/contact-us"><a className="nav-link">Contact Us</a></Link>
                         </li>
 
-                        <li className="nav-item">
-                            <Link href="/login"><a className="nav-link">login</a></Link>
-                        </li>
+                        {
+                            isLoggedIn && <li className="nav-item">
+                                <Link href="/my-account"><a className="nav-link">my account</a></Link>
+                            </li>
+                        }
 
-                        <li className="nav-item btn extra-thin mr-0">
-                            <Link href="/signup"><a className="nav-link">Sign Up</a></Link>
-                        </li>
+                        {
+                            !isLoggedIn && <li className="nav-item">
+                                <Link href="/login"><a className="nav-link">login</a></Link>
+                            </li>
+                        }
+
+                        {
+                            !isLoggedIn && <li className="nav-item btn extra-thin mr-0">
+                                <Link href="/signup"><a className="nav-link">Sign Up</a></Link>
+                            </li>
+                        }
                     </ul>
                 </div>
             </nav>
