@@ -7,7 +7,6 @@ const initialState = {
 const toggleLoading = (state = initialState, action) => {
     switch (action.type) {
         case TOGGLE_LOADER:
-            console.log('here')
             return {loading: !state.loading};
         default:
             return state;

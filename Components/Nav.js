@@ -30,7 +30,7 @@ const Nav = ({isLoggedIn}) => {
 
             {
                 isLoggedIn && <li className="nav-item">
-                    <Link href="/login"><a className="nav-link">profile</a></Link>
+                    <Link href="/profile"><a className="nav-link">profile</a></Link>
                 </li>
             }
         </ul>
