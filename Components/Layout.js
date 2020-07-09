@@ -6,8 +6,11 @@ import Loader from "./UI/Loader";
 import Notifier from "./UI/Notifier";
 import Nav from "./Nav";
 import Link from "next/link";
+import {useSelector} from "react-redux";
 
 const Layout = ({children, headerContent, page = null, mainClass = null, headerClass = null, hasHeader = true}) => {
+    const isLoggedIn = useSelector(state => state.auth.loggedIn);
+
     return (
         <>
             <Head>
@@ -56,7 +59,7 @@ const Layout = ({children, headerContent, page = null, mainClass = null, headerC
             <main className={mainClass}>
                 {
                     hasHeader && <header className={headerClass}>
-                        <TopBar isLoggedIn={false} page={page} headerContent={headerContent}/>
+                        <TopBar isLoggedIn={isLoggedIn} page={page} headerContent={headerContent}/>
                     </header>
                 }
 
@@ -76,7 +79,7 @@ const Layout = ({children, headerContent, page = null, mainClass = null, headerC
                                 <img className="navbar-toggler-icon" src="/images/icon/button.svg" alt=""/>
                             </button>
 
-                            <Nav/>
+                            <Nav isLoggedIn={isLoggedIn} />
                         </div>
                     </nav>
                 }
