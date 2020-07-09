@@ -388,6 +388,13 @@ form.contact-form textarea {
   background: transparent;
   color: #0bb503;
   border: 1px solid #0bb503;
+  box-shadow: none;
+}
+.btn.green-transparent {
+  color: #0bb503;
+  background: white;
+  border: 1px solid #0bb503;
+  box-shadow: none;
 }
 .btn.large {
   font-size: 2rem;
@@ -527,6 +534,25 @@ section.our-parks .slick-dotted.slick-slider {
 section.our-services {
   background: #EFFFEE;
   padding: 75px 0;
+}
+section.our-services .service {
+  display: block;
+  margin-bottom: 30px;
+}
+section.our-services .service .content {
+  background: white;
+  padding: 15px;
+  text-align: center;
+}
+section.our-services .service .content .request {
+  font-size: 14px;
+  position: relative;
+}
+section.our-services .service .content .request img {
+  display: inline;
+}
+section.our-services .slick-dotted.slick-slider {
+  margin-bottom: 60px;
 }
 section.login {
   position: absolute;
@@ -1000,21 +1026,17 @@ nav.navbar #account-button {
   width: 50px;
   height: 50px;
 }
-nav.navbar.nav-bg-white {
-  background: #fff;
-  box-shadow: 0px 4px 17px -5px rgba(0, 0, 0, 0.75);
-  padding: 10px 65px;
+nav.navbar.white-nav {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.07);
 }
-nav.navbar.nav-bg-white .navbar-brand img {
-  max-width: 80px;
+nav.navbar.white-nav .navbar-brand {
+  padding-left: 0;
 }
-@media only screen and (max-width: 992px) {
-  nav.navbar.nav-bg-white .navbar-brand img {
-    max-height: 60px;
-  }
-}
-nav.navbar.nav-bg-white ul.navbar-nav li.nav-item .nav-link {
+nav.navbar.white-nav ul.navbar-nav li.nav-item .nav-link {
   color: #0f6b2d;
+}
+nav.navbar.white-nav ul.navbar-nav li.nav-item.btn {
+  border-color: #0f6b2d;
 }
 
 footer {

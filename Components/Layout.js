@@ -4,11 +4,10 @@ import TopBar from "./TopBar";
 import Footer from "./Footer";
 import Loader from "./UI/Loader";
 import Notifier from "./UI/Notifier";
-import {useSelector} from "react-redux";
+import Nav from "./Nav";
+import Link from "next/link";
 
-const Layout = ({children, headerContent, page = null, mainClass = null, headerClass = null}) => {
-    const isLoggedIn = useSelector(state => state.auth.loggedIn);
-
+const Layout = ({children, headerContent, page = null, mainClass = null, headerClass = null, hasHeader = true}) => {
     return (
         <>
             <Head>
@@ -50,19 +49,42 @@ const Layout = ({children, headerContent, page = null, mainClass = null, headerC
                 <script src="/js/main.js"/>
             </Head>
 
-            <Loader />
+            <Loader/>
 
-            <Notifier />
+            <Notifier/>
 
             <main className={mainClass}>
-                <header className={headerClass}>
-                    <TopBar isLoggedIn={isLoggedIn} page={page} headerContent={headerContent} />
-                </header>
+                {
+                    hasHeader && <header className={headerClass}>
+                        <TopBar isLoggedIn={false} page={page} headerContent={headerContent}/>
+                    </header>
+                }
+
+                {
+                    !hasHeader && <nav className="navbar navbar-expand-lg white-nav">
+                        <div className="container">
+                            <Link href="/">
+                                <a className="navbar-brand logo-container">
+                                    <img src="/images/laspark-logo.png" alt=""/>
+                                </a>
+                            </Link>
+
+                            <button className="navbar-toggler" id="show-nav" type="button" data-toggle="collapse"
+                                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                                    aria-expanded="false"
+                                    aria-label="Toggle navigation">
+                                <img className="navbar-toggler-icon" src="/images/icon/button.svg" alt=""/>
+                            </button>
+
+                            <Nav/>
+                        </div>
+                    </nav>
+                }
 
                 {children}
             </main>
 
-            <Footer />
+            <Footer/>
         </>
     )
 }
