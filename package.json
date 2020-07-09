@@ -3,15 +3,17 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "node server.js",
     "build": "next build",
     "start": "next start"
   },
   "dependencies": {
     "axios": "^0.19.2",
+    "express": "^4.17.1",
     "js-cookie": "^2.2.1",
     "next": "9.4.4",
     "node-sass": "^4.14.1",
+    "nookies": "^2.3.2",
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-hook-form": "^5.7.2",
@@ -19,5 +21,8 @@
     "redux": "^4.0.5",
     "redux-devtools-extension": "^2.13.8",
     "redux-thunk": "^2.3.0"
+  },
+  "devDependencies": {
+    "cookie-parser": "^1.4.5"
   }
 }
