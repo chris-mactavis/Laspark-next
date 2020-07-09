@@ -56,7 +56,7 @@ header {
 
   &.explore-banner {
     background-position: center center;
-    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(../img/explore-banner.png);
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(/images/explore-banner.png);
     background-repeat: no-repeat;
     background-size: cover;
     position: relative;
@@ -70,11 +70,11 @@ header {
   }
 
   &.request-banner {
-    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(../img/service-banner.png);
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(/images/service-banner.png);
   }
 
   &.contact-us-banner {
-    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(../img/contact-us.jpg);
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(/images/contact-us.jpg);
   }
 
   .sidebar {
@@ -154,7 +154,7 @@ header {
   }
 
   .green-banner {
-    background: url(../img/green-bg.png);
+    background: url(/images/green-bg.png);
     background-size: cover;
     height: 50vh;
     position: relative;
@@ -209,7 +209,7 @@ header {
         height: 8px;
         border-top: 2px solid white;
         border-right: 2px solid white;
-        behavior: url(-ms-transform.htc);
+        //behavior: url(-ms-transform.htc);
         -moz-transform: rotate(135deg);
         -webkit-transform: rotate(135deg);
         -o-transform: rotate(135deg);

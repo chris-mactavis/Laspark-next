@@ -1,7 +1,7 @@
 main{
   &.login {
     background-position: center center;
-    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(../img/explore-banner.png);
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(/images/explore-banner.png);
     background-repeat: no-repeat;
     background-size: cover;
     position: relative;
@@ -329,7 +329,7 @@ section {
   }
 
   &.home-request {
-    background:linear-gradient( rgba(15, 107, 45, .7) 100%, rgba(15, 107, 45, .7) 100%), url(../img/plant-bg.png);
+    background:linear-gradient( rgba(15, 107, 45, .7) 100%, rgba(15, 107, 45, .7) 100%), url(/images/plant-bg.png);
     background-size: cover;
     background-position: right;
     padding: 5rem 0;

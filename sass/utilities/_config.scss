@@ -22,8 +22,8 @@
   }
 }
 
-@include do-font-face('DDIN', 'D-DIN', '../fonts/', 'otf', normal, normal);
-@include do-font-face('DDIN', 'D-DIN-Bold', '../fonts/', 'otf', bold, normal);
+@include do-font-face('DDIN', 'D-DIN', '/fonts/', 'otf', normal, normal);
+@include do-font-face('DDIN', 'D-DIN-Bold', '/fonts/', 'otf', bold, normal);
 
 $ddin           : 'DDIN', sans-serif;
 $quicksand      : 'Quicksand', sans-serif;
