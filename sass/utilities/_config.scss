@@ -1,0 +1,52 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@600;700&family=Quicksand:wght@500;600;700&display=swap');
+
+@mixin do-font-face($name, $file-name, $url, $type, $weight, $style){
+  @font-face {
+    font-family: $name;
+    //src: url(#{$url + $file-name}.eot);
+    //src: url(#{$url + $file-name}.eot?#iefix) format('embedded-opentype');
+    @if $type == "otf"{
+      src: url(#{$url + $file-name}.otf) format('opentype');
+    }
+    @if $type == "ttf"{
+      src: url(#{$url + $file-name}.ttf) format('truetype');
+    }
+    @if $type == "woff"{
+      src: url(#{$url + $file-name}.woff);
+    }
+    @if $type == "woff2"{
+      src: url(#{$url + $file-name}.woff2);
+    }
+    font-weight: $weight;
+    font-style: $style;
+  }
+}
+
+@include do-font-face('DDIN', 'D-DIN', '../fonts/', 'otf', normal, normal);
+@include do-font-face('DDIN', 'D-DIN-Bold', '../fonts/', 'otf', bold, normal);
+
+$ddin           : 'DDIN', sans-serif;
+$quicksand      : 'Quicksand', sans-serif;
+$nunito         : 'Nunito', san-serif;
+
+$ffh            : $quicksand;
+$ffb            : $ddin;
+$ffn            : $nunito;
+
+$normal         : normal;
+$bold           : bold;
+$extra-bold     : bolder;
+$light          : 100;
+
+// Colors
+$dark-green  : #0f6b2d;
+$mid-green   : #0bb503;
+$light-green : #EFFFEE;
+$dark-grey   : #909090;
+$mid-grey    : #C4C4C4;
+$light-grey  : #E7E7E7;
+$white-smoke : #F6F6F6 ;
+$dim-grey    : #686868;
+$black-backgorund : #232323;
+$border-color : #DDDDDD;
+$footer-bg    : #2D2D2D;

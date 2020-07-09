@@ -1,0 +1,83 @@
+form {
+  
+  &.account-create {
+    padding: 0 20px;
+
+    input {
+      width: 100%;
+      background: transparent;
+      border-top: 0;
+      border-right: 0;
+      border-left: 0;
+      border-color: $mid-grey ;
+      margin-bottom: 2rem;
+      outline: none;
+      padding: 0 0 .5rem 0;
+      color: $dim-grey ;
+
+    }
+
+    .forgot-pwd {
+      text-align: center;
+      margin-top: 1.5rem;
+
+      a {
+        color: inherit;
+        font-size: 1.8rem;
+      }
+    }
+  }
+
+  &.booking-form {
+    display: none;
+
+    h5 {
+      margin-bottom: 30px;
+    }
+
+    label {
+      color: $dim-grey;
+    }
+
+    input {
+      width: 70%;
+    }
+  }
+
+  &.request-form {
+    display: block;
+  }
+
+  &.contact-form {
+
+    .f-large {
+      margin-bottom: 30px;
+      font-size: 20px;
+    }
+
+    label {
+      color: $dim-grey;
+      margin-bottom: 10px;
+      width: 100%;
+    }
+
+    input {
+      width: 100%;
+      border-top: none;
+      border-left: none;
+      margin-bottom: 30px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid;
+    }
+
+    textarea {
+      width: 100%;
+      margin-top: 10px;
+      color: $dim-grey;
+      padding: 8px;
+    }
+  }
+  
+
+
+}
