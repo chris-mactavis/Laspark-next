@@ -4,8 +4,11 @@ import TopBar from "./TopBar";
 import Footer from "./Footer";
 import Loader from "./UI/Loader";
 import Notifier from "./UI/Notifier";
+import {useSelector} from "react-redux";
 
 const Layout = ({children, headerContent, page = null, mainClass = null, headerClass = null}) => {
+    const isLoggedIn = useSelector(state => state.auth.loggedIn);
+
     return (
         <>
             <Head>
@@ -53,7 +56,7 @@ const Layout = ({children, headerContent, page = null, mainClass = null, headerC
 
             <main className={mainClass}>
                 <header className={headerClass}>
-                    <TopBar isLoggedIn={false} page={page} headerContent={headerContent}/>
+                    <TopBar isLoggedIn={isLoggedIn} page={page} headerContent={headerContent} />
                 </header>
 
                 {children}

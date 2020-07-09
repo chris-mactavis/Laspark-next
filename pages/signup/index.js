@@ -9,6 +9,7 @@ import {useDispatch} from "react-redux";
 import {loader} from "../../store/actions/loader";
 import axiosInstance from "../../config/axios";
 import {showNotifier} from "../../store/actions/notifier";
+import {withoutAuth} from "../../Components/hoc/auth";
 
 const Signup = () => {
     const {register, errors, handleSubmit, watch} = useForm();
@@ -104,4 +105,4 @@ const Signup = () => {
     </Layout>
 }
 
-export default Signup;
+export default withoutAuth(Signup);
