@@ -28,7 +28,7 @@ const TopBar = ({isLoggedIn, page, headerContent}) => {
                     <img className="navbar-toggler-icon" src="/images/icon/button.svg" alt=""/>
                 </button>
 
-                <Nav />
+                <Nav isLoggedIn={isLoggedIn} />
             </nav>
         </div>
 
