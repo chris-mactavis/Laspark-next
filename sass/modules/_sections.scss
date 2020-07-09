@@ -1,0 +1,551 @@
+main{
+  &.login {
+    background-position: center center;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(/images/explore-banner.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    height: 100vh;
+
+    h1 {
+      @include abs-center;
+      font-size: 60px;
+      margin: 0;
+    }
+  }
+}
+
+section {
+  &.our-parks {
+    position: relative;
+    padding: 75px 0;
+
+    .leaf-bg {
+      position: absolute;
+      top: -90px;
+      left: -35px;
+      z-index: -1;
+
+      @media only screen and (max-width: $desktop_width) {
+        display: none;
+      }
+
+      img {
+        width: 90%;
+      }
+    }
+
+    .palm-bg {
+      position: absolute;
+      right: -88px;
+      top: -60px;
+      z-index: -1;
+
+      @media only screen and (max-width: $desktop_width) {
+        display: none;
+      }
+
+      img {
+        width: 90%;
+      }
+    }
+
+    .park{
+      display: block;
+      margin-bottom: 30px;
+
+      > img{
+        height: 200px;
+        object-fit: cover;
+        width: 100%;
+      }
+
+      .content{
+        background-color: $light-green;
+        padding: 15px;
+        text-align: center;
+
+        h5{
+          margin-bottom: 0;
+        }
+
+        .location{
+          margin-bottom: 15px;
+          position: relative;
+
+          img.pin{
+            height: 16px;
+            position: relative;
+            top: -2px;
+            display: inline;
+          }
+        }
+
+        .view{
+          font-size: 14px;
+          position: relative;
+
+          img{
+            display: inline;
+          }
+        }
+      }
+    }
+
+    .slick-dotted.slick-slider {
+      margin-bottom: 60px;
+    }
+  }
+
+  &.our-services{
+    background: $light-green;
+    padding: 75px 0;
+  }
+
+  &.login{
+    @include abs-center;
+    width: 100%;
+
+    .login-form{
+      padding: 30px;
+    }
+
+    a{
+      color: $mid-green;
+    }
+  }
+
+  &.features {
+    padding: 150px 0 150px 0;
+
+    @media only screen and (max-width: $desktop_width) {
+      padding: 50px 0;
+    }
+
+    .card {
+      border: none;
+      // height: 550px;
+
+      .card-body {
+        padding: 30px 20px;
+
+        img {
+          max-width: 100px;
+          margin-bottom: 2rem;
+        }
+
+        ul {
+          li {
+            display: flex;
+            margin-bottom: 20px;
+
+            img {
+              margin-bottom: 0;
+              margin-right: 10px;
+            }
+          }
+        }
+
+        h5 {
+          color: $mid-green;
+        }
+
+        .features-link {
+          display: flex;
+          align-items: center;
+          color: $mid-green;
+          text-transform: uppercase;
+          // font-family: $montserrat;
+          font-weight: 500;
+          font-size: 1.5rem;
+
+          .text{
+            margin-right: 1rem;
+          }
+
+          .arrow-right {
+            width: 2rem;
+            margin-bottom: 0;
+          }
+
+        }
+
+      }
+
+    }
+
+  }
+
+  &.explore-parks {
+    padding: 70px 0;
+
+    .card {
+      padding: 3rem 2rem;
+      margin-bottom: 5rem;
+      transition: all .2s;
+      border: none;
+
+      &:hover {
+        transform: translateY(-2rem);
+        box-shadow: 1px 2px 8px 3px rgba(0, 0, 0, 0.3);
+      }
+
+      h5 {
+        font-size: 2rem;
+        color: $mid-green;
+      }
+    }
+
+    img {
+      padding: .5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    p{
+      font-size: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .park-location {
+      padding-bottom: 1rem;
+      margin-bottom: 2rem;
+      border-bottom: 1px solid $border-color ;
+    }
+
+    .content {
+      margin-right: 24px;
+      display: flex;
+      align-items: center;
+
+      img {
+        margin-bottom: 0;
+        max-height: 3rem;
+      }
+
+      span {
+        color: $mid-grey;
+        font-size: 1rem;
+        text-transform: uppercase;
+      }
+    }
+
+    .link {
+      color: $mid-green;
+      text-transform: uppercase;
+      font-weight: 500;
+      font-size: 1.2rem;
+      display: flex;
+      align-items: center;
+
+      span {
+        margin-right: 10px;
+      }
+
+      img {
+        max-height: 2rem;
+        margin-bottom: 0;
+      }
+    }
+  }
+
+
+
+  &.parks {
+    padding: 4rem 0;
+    background: $light-green ;
+
+    h2 {
+      margin-bottom: 5rem;
+    }
+
+    .park-details {
+      transition: all .5s;
+      margin-bottom: 2.5rem;
+
+      &:hover {
+        transform: translateY(-10px);
+      }
+
+      .park-image {
+        position: relative;
+
+        .park-location {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+
+          img {
+            margin-right: 10px;
+            max-width: 1.5rem;
+          }
+
+          h6 {
+            color: #fff;
+            font-size: 1.5rem;
+            margin-bottom: 0;
+          }
+
+          .d-flex {
+            margin-bottom: 10px;
+          }
+
+        }
+
+        .prk-image {
+          filter: brightness(.5);
+        }
+      }
+
+      .park-description {
+
+        p {
+        width: 80%;
+        margin-top: 20px;
+        font-size: 1.2rem;
+        }
+
+        .park-link {
+          color: $mid-green;
+          display: flex;
+
+          span {
+            font-size: 1.3rem;
+            margin-right: 1rem;
+          }
+        }
+      }
+
+      button {
+        padding: 1rem 2rem;
+        border: none;
+        background: $mid-green ;
+        position: absolute;
+        bottom: -20px;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+    }
+  }
+
+  &.home-request {
+    background:linear-gradient( rgba(15, 107, 45, .7) 100%, rgba(15, 107, 45, .7) 100%), url(/images/plant-bg.png);
+    background-size: cover;
+    background-position: right;
+    padding: 5rem 0;
+
+    .details {
+      padding: 5rem 5rem;
+      background: #fff;
+
+      @media only screen and (max-width: $mobile_width) {
+        padding: 3rem 3rem;
+      }
+
+      h3 {
+        font-size: 2.5rem;
+        color: $dim-grey;
+        margin-bottom: 30px;
+      }
+
+      ul {
+        li {
+          display: flex;
+          margin-bottom: 2rem;
+
+          img {
+            margin-right: 10px;
+          }
+        }
+      }
+    }
+  }
+
+  &.single-park {
+    padding: 50px 50px;
+
+    .container-fluid {
+      padding-right: 50px;
+      padding-left: 50px;
+    }
+
+    .head {
+      position: relative;
+
+      h1 {
+        font-size: 35px;
+        letter-spacing: 7px;
+        color: $mid-green ;
+        padding-left: 10px;
+        border-left: 5px solid $mid-green;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+    }
+
+    .image-slides {
+      padding: 50px 50px 15px;
+
+      img {
+        max-width: 100%;
+      }
+    } 
+  }
+
+  &.book-park {
+    padding: 50px 0;
+
+    .park-informations {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      margin-bottom: 50px;
+
+      .info {
+        width: 135px;
+        display: flex;
+        height: 135px;
+        text-align: center;
+        background: #EFFFEE;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 2rem;
+
+        img {
+          margin-bottom: 10px;
+        }
+
+        p {
+          color: $dark-green;
+        }
+
+        .first-p {
+          font-weight: 600;
+        }
+
+        .second-p {
+          margin-bottom: 0;
+          font-weight: 100;
+        }
+      }
+    }
+
+    .main-park-description {
+      h4 {
+        text-transform: uppercase;
+        color: $mid-green;
+      }
+
+      p {
+        line-height: 3rem;
+        text-align: justify;
+        margin-bottom: 100px;
+      }
+    }
+
+  }
+
+  &.services {
+    padding: 50px 0;
+
+    h2 {
+      margin-bottom: 50px;
+    }
+    
+    .image-holder {
+      position: relative;
+      transition: all .2s;
+     
+      img {
+        position: absolute;
+        top: 44%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        
+      }
+
+      .active {
+        display: none;
+      }
+
+      .image-3 {
+        max-height: 400px;
+      }
+    }
+
+    .card {
+      display: block;
+      padding: 1.5rem 1.5rem;
+      width: 90%;
+      padding: 2rem 2rem 3rem;
+
+      img {
+        max-width: 60px;
+      }
+    }
+
+    p {
+      line-height: 2;
+      text-align: justify;
+    }
+  }
+
+  &.park-management {
+    padding: 50px 50px;
+  }
+
+  &.profile-sect {
+    padding: 50px 50px;
+    background: #F2FFF1;
+
+    .card {
+      padding: 17px;
+      align-items: center;
+      margin-top: -180px;
+
+      img {
+        border-radius: 50%;
+      }
+
+      p {
+        margin-bottom: 20px;
+      }
+
+      button {
+        margin-top: 30px;
+        margin-bottom: 20px;
+      }
+    }
+
+  }
+
+  &.booking-history {
+
+    h4 {
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    table {
+      background: #fff;
+      color: $dim-grey;
+
+      th {
+        border-top: none;
+        padding: 14px;
+        font-weight: 400;
+      }
+
+      td {
+        padding: 14px;
+      }
+    }
+  }
+
+
+
+
+}

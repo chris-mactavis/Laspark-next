@@ -1,0 +1,43 @@
+footer {
+  padding: 50px 0;
+  background: $dark-green;
+
+  h5 {
+    color: white;
+  }
+
+  p {
+    font-weight: bold;
+    color: #fff;
+  }
+
+  ul {
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 2rem;
+
+    li {
+      color: #fff;
+    }
+  }
+
+  &.footer-bottom {
+    padding: 1rem 0;
+    background: $footer-bg;
+  }
+
+}
+
+div.footer-bottom{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: -1;
+  height: 200px;
+  padding: 25px 0;
+
+  img{
+    height: 100px;
+  }
+}

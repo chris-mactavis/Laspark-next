@@ -1,0 +1,105 @@
+.btn{
+  border: 1px solid #fff;
+  text-transform: uppercase;
+  font-size: 16px;
+  padding: 12px 20px;
+  color: #fff;
+  transition: all .2s;
+  font-family: $ffn;
+
+  &:hover {
+    color: #fff;
+  }
+
+  &.w-200{
+    width: 240px;
+  }
+
+  &.white{
+    background: white;
+    color: $mid-green;
+  }
+
+  &.thin{
+    padding: 8px 20px;
+  }
+
+  &.extra-thin{
+    padding: 3px 20px;
+  }
+
+  &.wide{
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+
+  &.green{
+    color: #fff;
+    background: $mid-green;
+    border: 1px solid transparent;
+    box-shadow: 0px 4px 17px -5px rgba(0,0,0,0.75);
+
+    &:focus {
+      box-shadow: none;
+    }
+
+    &:hover {
+      background: transparent;
+      color: $mid-green;
+      border: 1px solid $mid-green;
+    }
+  }
+
+
+
+  &.large {
+    font-size: 2rem;
+    padding: 18px 40px;
+    margin: 40px 0 0 0;
+    letter-spacing: 4px;
+    border-color: #fff;
+
+    &:hover {
+      background: $dark-green;
+      border-color: $dark-green;
+    }
+
+    @media only screen and (max-width: $mobile_width) {
+      font-size: 1.5rem;
+      padding: 17px 15px;
+      background-color: $mid-green;
+      border-color: $mid-green;
+    }
+
+    img {
+      margin-left: 15px;
+      margin-bottom: 4px;
+    }
+  }
+
+  &.request-btn {
+    padding: 18px 50px;
+    font-size: 1.7rem;
+    background: $mid-green;
+    color: #FFF;
+
+    @media only screen and (max-width: $desktop_width) {
+      padding: 18px 36px;
+    }
+
+    @media only screen and (max-width: $mobile_width) {
+      padding: 18px 28px;
+    }
+  }
+
+  &.btn-full-width {
+    color: $dark-green;
+    width: 100%;
+    font-size: 1.5rem;
+    background: $mid-green;
+    color: #fff;
+    padding: 20px 0;
+    letter-spacing: .3rem;
+  }
+
+}

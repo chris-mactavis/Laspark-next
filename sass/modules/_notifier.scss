@@ -1,0 +1,51 @@
+.notification {
+  position: fixed;
+  display: flex;
+  bottom: 20px;
+  right: -40px;
+  z-index: 100;
+  opacity: 0;
+
+  box-shadow: 2px 4px 8px rgba(0, 0, 0, .5);
+  padding: 10px 30px 10px 60px;
+  transition: .3s all;
+
+  color: white;
+
+  &::before {
+    content: '';
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    left: 30px;
+    top: 50%;
+    background-size: cover;
+    transform: translateY(-50%);
+  }
+
+  &.success {
+    background-color: green;
+
+    &::before {
+      background-image: url("/images/icon/tick.svg");
+    }
+  }
+
+  &.danger {
+    background-color: #D12B19;
+
+    &::before {
+      background-image: url("/images/icon/alert-white.svg");
+    }
+  }
+
+  &.show {
+    display: block;
+    right: 20px;
+    opacity: 1;
+  }
+
+  span {
+    cursor: pointer;
+  }
+}
