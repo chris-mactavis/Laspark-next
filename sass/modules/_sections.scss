@@ -100,6 +100,30 @@ section {
   &.our-services{
     background: $light-green;
     padding: 75px 0;
+
+    .service{
+      display: block;
+      margin-bottom: 30px;
+
+      .content{
+        background: white;
+        padding: 15px;
+        text-align: center;
+
+        .request{
+          font-size: 14px;
+          position: relative;
+
+          img{
+            display: inline;
+          }
+        }
+      }
+    }
+
+    .slick-dotted.slick-slider {
+      margin-bottom: 60px;
+    }
   }
 
   &.login{

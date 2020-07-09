@@ -9,7 +9,7 @@ const Footer = () => {
                         <h5>Address</h5>
                         <ul>
                             <li>
-                                <a href="">
+                                <a target="_blank" href="https://goo.gl/maps/iCe4n5nUs7wcWzwD9">
                                     Plot 2, Lateef Junaid Dosumu Street, CBD, Agidingbi, Ikeja, Lagos.
                                 </a>
                             </li>

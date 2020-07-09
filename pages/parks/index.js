@@ -1,70 +1,22 @@
-import Layout from "../Components/Layout";
-import React, {useEffect} from "react";
-import HeaderContent from "../Components/home/HeaderContent";
+import Layout from "../../Components/Layout";
 import Head from "next/head";
+import React from "react";
 
-const Home = () => {
-
-    useEffect(() => {
-        $('document').ready(function () {
-            $('.banner-slide').slick({
-                autoplay: true,
-                fade: true
-            });
-
-            $('.park-slider').slick({
-                autoplay: true,
-                slidesToShow: 3,
-                dots: true,
-                responsive: [
-                    {
-                        breakpoint: 992,
-                        settings: {
-                            slidesToShow: 2,
-                            slidesToScroll: 1
-                        }
-                    },
-                    {
-                        breakpoint: 767,
-                        settings: {
-                            slidesToShow: 1,
-                            slidesToScroll: 1
-                        }
-                    },
-                ]
-            });
-
-            $('.service-slider').slick({
-                autoplay: true,
-                slidesToShow: 3,
-                dots: true,
-            });
-        });
-    }, []);
-
-    return <Layout headerContent={<HeaderContent/>} page="home" headerClass="home-banner">
-
+const Parks = () => {
+    return <Layout hasHeader={false}>
         <Head>
-            <title>Laspark</title>
+            <title>Parks | Laspark</title>
         </Head>
 
-        <section id="our-parks" className="our-parks">
-            <div className="leaf-bg">
-                <img src="/images/leaf-background.png" alt=""/>
-            </div>
-
-            <div className="palm-bg">
-                <img src="/images/Palm-background.png" alt=""/>
-            </div>
-
+        <section className="our-parks">
             <div className="container">
                 <div className="row">
                     <div className="col">
-                        <h2 className="text-center mb-5">Book Our Parks</h2>
+                        <h2 className="text-center mb-5">Choose a Park</h2>
                     </div>
                 </div>
 
-                <div className="row park-slider">
+                <div className="row">
                     <div className="col-md-4">
                         <a className="park">
                             <img className="img-fluid" src="/images/parks/johnson-jakande.jpg"/>
@@ -124,7 +76,8 @@ const Home = () => {
                                 <h5>Muri Okunola Park</h5>
 
                                 <div className="location">
-                                    <img className="pin" src="/images/icon/location-green.svg"/> Victoria Island, Eti-Osa
+                                    <img className="pin" src="/images/icon/location-green.svg"/> Victoria Island,
+                                    Eti-Osa
                                 </div>
 
                                 <div className="view">View Park <img className="arrow-right"
@@ -235,87 +188,9 @@ const Home = () => {
                         </a>
                     </div>
                 </div>
-
-                <div className="text-center">
-                    <a href="#" className="btn green wide">View Parks</a>
-                </div>
             </div>
         </section>
-
-        <section className="our-services">
-            <div className="container">
-                <div className="row">
-                    <div className="col">
-                        <h2 className="text-center mb-5">Request Our Services</h2>
-                    </div>
-                </div>
-
-                <div className="row service-slider">
-                    <div className="col-md-4">
-                        <a className="service">
-                            <img className="img-fluid" src="/images/services/tree-felling.jpg"/>
-
-                            <div className="content">
-                                <h5>Tree Felling</h5>
-
-                                <div className="request">
-                                    Request <img className="arrow-right" src="/images/icon/arrow-right-green.svg"/>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-
-                    <div className="col-md-4">
-                        <a className="service">
-                            <img className="img-fluid" src="/images/services/tree-pruning.jpg"/>
-
-                            <div className="content">
-                                <h5>Tree Pruning</h5>
-
-                                <div className="request">
-                                    Request <img className="arrow-right" src="/images/icon/arrow-right-green.svg"/>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-
-                    <div className="col-md-4">
-                        <a className="service">
-                            <img className="img-fluid" src="/images/services/tree-planting.jpg"/>
-
-                            <div className="content">
-                                <h5>Tree Planting</h5>
-
-                                <div className="request">
-                                    Request <img className="arrow-right" src="/images/icon/arrow-right-green.svg"/>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-
-                    <div className="col-md-4">
-                        <a className="service">
-                            <img className="img-fluid" src="/images/services/open-space.jpg"/>
-
-                            <div className="content">
-                                <h5>Adoption of Open Space</h5>
-
-                                <div className="request">
-                                    Request <img className="arrow-right" src="/images/icon/arrow-right-green.svg"/>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-
-                <div className="text-center">
-                    <a href="#" className="btn green wide">View Services</a>
-                </div>
-            </div>
-
-        </section>
-
     </Layout>
 }
 
-export default Home;
+export default Parks;

@@ -66,21 +66,11 @@ nav.navbar {
     height: 50px;
   }
 
-  &.nav-bg-white {
-    background: #fff;
-    box-shadow: 0px 4px 17px -5px rgba(0, 0, 0, 0.75);
-    padding: 10px 65px;
+  &.white-nav{
+    box-shadow: 0 4px 10px rgba(0,0,0,0.07);
 
     .navbar-brand {
-
-      img {
-        max-width: 80px;
-
-        @media only screen and (max-width: $desktop_width) {
-          max-height: 60px;
-        }
-      }
-
+      padding-left: 0;
     }
 
     ul.navbar-nav {
@@ -88,9 +78,12 @@ nav.navbar {
         .nav-link {
           color: $dark-green;
         }
+
+        &.btn{
+          border-color: $dark-green;
+        }
       }
     }
-
   }
 }
 

@@ -47,6 +47,14 @@
       background: transparent;
       color: $mid-green;
       border: 1px solid $mid-green;
+      box-shadow: none;
+    }
+
+    &-transparent{
+      color: $mid-green;
+      background: white;
+      border: 1px solid $mid-green;
+      box-shadow: none;
     }
   }
 
