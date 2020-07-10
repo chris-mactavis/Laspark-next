@@ -499,6 +499,7 @@ section {
     .park-slider{
       img{
         height: 450px;
+        object-fit: cover;
       }
     }
 
@@ -554,9 +555,9 @@ section {
         }
 
         th{
-          background: $mid-green;
+          background: $mid-green !important;
           color: white;
-          padding: 10px 0;
+          padding: 10px 0 !important;
           font-family: $ffh;
         }
 
@@ -564,12 +565,12 @@ section {
           //border-bottom: 2px solid $light-grey;
           &:nth-of-type(even){
             td{
-              background: rgba($mid-green, 0.1);
+              background: rgba($mid-green, 0.1) !important;
             }
           }
 
           td{
-            padding: 20px 0;
+            padding: 20px 0 !important;
           }
         }
       }
