@@ -557,6 +557,62 @@ section.our-services .service .content .request img {
 section.our-services .slick-dotted.slick-slider {
   margin-bottom: 60px;
 }
+section.single-service {
+  background: #EFFFEE;
+}
+section.single-service .bg-row {
+  height: calc(100vh - 100px);
+}
+section.single-service .bg-row .bg {
+  background-image: url("/images/services/tree-felling.jpg");
+  background-size: cover;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-position: right;
+}
+section.single-service .bg-row .bg.pruning {
+  background-image: url("/images/services/tree-pruning.jpg");
+}
+section.single-service .bg-row .bg.planting {
+  background-image: url("/images/services/tree-planting.jpg");
+}
+section.single-service .bg-row .bg.adoption {
+  background-image: url("/images/services/open-space.jpg");
+}
+section.single-service .bg-row form {
+  text-align: center;
+}
+section.single-service .bg-row form h1 {
+  font-size: 48px;
+  text-align: center;
+}
+section.single-service .service {
+  display: block;
+  margin-bottom: 30px;
+}
+section.single-service .service .content {
+  background: white;
+  padding: 15px;
+  text-align: center;
+}
+section.single-service .service .content .request {
+  font-size: 14px;
+  position: relative;
+}
+section.single-service .service .content .request img {
+  display: inline;
+}
+section.single-service .slick-dotted.slick-slider {
+  margin-bottom: 60px;
+}
+section.single-service .radio + div {
+  text-align: left;
+}
+section.single-service .radio + div input {
+  width: auto !important;
+  margin-right: 10px;
+  margin-bottom: 5px;
+}
 section.login {
   position: absolute;
   top: 50%;
@@ -759,6 +815,24 @@ section.home-request .details ul li {
 }
 section.home-request .details ul li img {
   margin-right: 10px;
+}
+section.park-rules {
+  padding: 75px 0;
+}
+section.park-rules li {
+  margin-bottom: 20px;
+  position: relative;
+  padding-left: 30px;
+}
+section.park-rules li::before {
+  content: "";
+  background: url("/images/icon/flower-icon-green.svg") no-repeat center left;
+  width: 20px;
+  height: 20px;
+  display: block;
+  background-size: cover;
+  position: absolute;
+  left: 0;
 }
 section.single-park {
   padding: 75px 0;

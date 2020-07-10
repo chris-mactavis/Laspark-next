@@ -1,6 +1,7 @@
 import Head from "next/head";
 import Layout from "../../Components/Layout";
 import React from "react";
+import Router from "next/router";
 
 const Services = () => {
     return <Layout hasHeader={false}>
@@ -17,7 +18,7 @@ const Services = () => {
                 </div>
 
                 <div className="row">
-                    <div className="col-md-3">
+                    <div className="col-md-3" onClick={() => Router.push('/services/tree-felling')}>
                         <a className="service">
                             <img className="img-fluid" src="/images/services/tree-felling.jpg"/>
 
@@ -32,7 +33,7 @@ const Services = () => {
                     </div>
 
                     <div className="col-md-3">
-                        <a className="service">
+                        <a className="service" onClick={() => Router.push('/services/tree-pruning')}>
                             <img className="img-fluid" src="/images/services/tree-pruning.jpg"/>
 
                             <div className="content">
@@ -46,7 +47,7 @@ const Services = () => {
                     </div>
 
                     <div className="col-md-3">
-                        <a className="service">
+                        <a className="service" onClick={() => Router.push('/services/tree-planting')}>
                             <img className="img-fluid" src="/images/services/tree-planting.jpg"/>
 
                             <div className="content">
@@ -60,7 +61,7 @@ const Services = () => {
                     </div>
 
                     <div className="col-md-3">
-                        <a className="service">
+                        <a className="service" onClick={() => Router.push('/services/adoption-of-open-space')}>
                             <img className="img-fluid" src="/images/services/open-space.jpg"/>
 
                             <div className="content">

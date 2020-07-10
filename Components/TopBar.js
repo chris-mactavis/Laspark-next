@@ -61,6 +61,9 @@ const TopBar = ({isLoggedIn, page, headerContent}) => {
                 <li>
                     <a href="contact-us.html">Contact Us</a>
                 </li>
+                <li className="nav-item">
+                    <Link href="/park-rules"><a className="nav-link" href="park-rules.html">Park Rules</a></Link>
+                </li>
                 <li>
                     <a href="#">Logout</a>
                 </li>
