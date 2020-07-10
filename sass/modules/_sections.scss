@@ -130,6 +130,54 @@ section {
     }
   }
 
+  &.single-service{
+    background: $light-green;
+    //padding: 75px 0;
+
+    .bg-row{
+      height: calc(100vh - 100px);
+
+      .bg{
+        background: url("/images/services/tree-felling.jpg") no-repeat right;
+        background-size: cover;
+        height: 100%;
+      }
+
+      form{
+        text-align: center;
+
+        h1{
+          font-size: 48px;
+          text-align: center;
+        }
+      }
+    }
+
+    .service{
+      display: block;
+      margin-bottom: 30px;
+
+      .content{
+        background: white;
+        padding: 15px;
+        text-align: center;
+
+        .request{
+          font-size: 14px;
+          position: relative;
+
+          img{
+            display: inline;
+          }
+        }
+      }
+    }
+
+    .slick-dotted.slick-slider {
+      margin-bottom: 60px;
+    }
+  }
+
   &.login{
     @include abs-center;
     width: 100%;
@@ -385,6 +433,26 @@ section {
             margin-right: 10px;
           }
         }
+      }
+    }
+  }
+
+  &.park-rules{
+    padding: 75px 0;
+    li{
+      margin-bottom: 20px;
+      position: relative;
+      padding-left: 30px;
+
+      &::before{
+        content: "";
+        background: url("/images/icon/flower-icon-green.svg") no-repeat center left;
+        width: 20px;
+        height: 20px;
+        display: block;
+        background-size: cover;
+        position: absolute;
+        left: 0;
       }
     }
   }

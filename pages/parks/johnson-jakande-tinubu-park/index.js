@@ -350,7 +350,7 @@ const KanuPark = () => {
 
                                 <label className="d-flex flex-row align-items-center">
                                     <input type="checkbox" className="mb-0" name="tandc" required/>
-                                    I agree to the <Link href="#"><a> &nbsp; park
+                                    I agree to the <Link href="/park-rules"><a> &nbsp; park
                                     rules </a></Link> &nbsp; and <Link href="#"><a> &nbsp; terms and
                                     conditions</a></Link>
                                 </label>
