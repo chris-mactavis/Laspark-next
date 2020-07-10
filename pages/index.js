@@ -2,8 +2,18 @@ import Layout from "../Components/Layout";
 import React, {useEffect} from "react";
 import HeaderContent from "../Components/home/HeaderContent";
 import Head from "next/head";
+import Router from "next/router";
+import Link from "next/link";
 
 const Home = () => {
+
+    const goToPark = (parkUrl) => {
+        Router.push('/parks/' + parkUrl);
+    }
+
+    const goToService = (serviceUrl) => {
+        Router.push('/services/' + serviceUrl);
+    }
 
     useEffect(() => {
         $('document').ready(function () {
@@ -66,7 +76,7 @@ const Home = () => {
 
                 <div className="row park-slider">
                     <div className="col-md-4">
-                        <a className="park">
+                        <a className="park" onClick={() => goToPark('johnson-jakande-tinubu-parkd')}>
                             <img className="img-fluid" src="/images/parks/johnson-jakande.jpg"/>
 
                             <div className="content">
@@ -83,7 +93,7 @@ const Home = () => {
                     </div>
 
                     <div className="col-md-4">
-                        <a className="park">
+                        <a className="park" onClick={() => goToPark('ndubuisi-kanu-park')}>
                             <img className="img-fluid" src="/images/parks/ndubuisi-kanu.jpg"/>
 
                             <div className="content">
@@ -100,7 +110,7 @@ const Home = () => {
                     </div>
 
                     <div className="col-md-4">
-                        <a className="park">
+                        <a className="park" onClick={() => goToPark('oluyomi')}>
                             <img className="img-fluid" src="/images/parks/oluyomi-abayomi.jpg"/>
 
                             <div className="content">
@@ -117,7 +127,7 @@ const Home = () => {
                     </div>
 
                     <div className="col-md-4">
-                        <a className="park">
+                        <a className="park" onClick={() => goToPark('muri')}>
                             <img className="img-fluid" src="/images/parks/muri-okunola.jpg"/>
 
                             <div className="content">
@@ -134,7 +144,7 @@ const Home = () => {
                     </div>
 
                     <div className="col-md-4">
-                        <a className="park">
+                        <a className="park" onClick={() => goToPark('ikorodu')}>
                             <img className="img-fluid" src="/images/parks/ikorodu.jpg"/>
 
                             <div className="content">
@@ -151,7 +161,7 @@ const Home = () => {
                     </div>
 
                     <div className="col-md-4">
-                        <a className="park">
+                        <a className="park" onClick={() => goToPark('rafiu')}>
                             <img className="img-fluid" src="/images/parks/alimosho-park.jpg"/>
 
                             <div className="content">
@@ -168,7 +178,7 @@ const Home = () => {
                     </div>
 
                     <div className="col-md-4">
-                        <a className="park">
+                        <a className="park" onClick={() => goToPark('jibowu')}>
                             <img className="img-fluid" src="/images/parks/infinity-park.jpg"/>
 
                             <div className="content">
@@ -185,7 +195,7 @@ const Home = () => {
                     </div>
 
                     <div className="col-md-4">
-                        <a className="park">
+                        <a className="park" onClick={() => goToPark('gani')}>
                             <img className="img-fluid" src="/images/parks/gani-fawehinmi.jpg"/>
 
                             <div className="content">
@@ -202,7 +212,7 @@ const Home = () => {
                     </div>
 
                     <div className="col-md-4">
-                        <a className="park">
+                        <a className="park" onClick={() => goToPark('badagry')}>
                             <img className="img-fluid" src="/images/parks/badagry.jpg"/>
 
                             <div className="content">
@@ -219,7 +229,7 @@ const Home = () => {
                     </div>
 
                     <div className="col-md-4">
-                        <a className="park">
+                        <a className="park" onClick={() => goToPark('tunji')}>
                             <img className="img-fluid" src="/images/parks/tunji-braithwaite.jpg"/>
 
                             <div className="content">
@@ -237,7 +247,7 @@ const Home = () => {
                 </div>
 
                 <div className="text-center">
-                    <a href="#" className="btn green wide">View Parks</a>
+                    <Link href="/parks"><a className="btn green wide">View Parks</a></Link>
                 </div>
             </div>
         </section>
@@ -252,7 +262,7 @@ const Home = () => {
 
                 <div className="row service-slider">
                     <div className="col-md-4">
-                        <a className="service">
+                        <a className="service" onClick={() => goToService('tree-felling')}>
                             <img className="img-fluid" src="/images/services/tree-felling.jpg"/>
 
                             <div className="content">
@@ -266,7 +276,7 @@ const Home = () => {
                     </div>
 
                     <div className="col-md-4">
-                        <a className="service">
+                        <a className="service" onClick={() => goToService('tree-pruning')}>
                             <img className="img-fluid" src="/images/services/tree-pruning.jpg"/>
 
                             <div className="content">
@@ -280,7 +290,7 @@ const Home = () => {
                     </div>
 
                     <div className="col-md-4">
-                        <a className="service">
+                        <a className="service" onClick={() => goToService('tree-planting')}>
                             <img className="img-fluid" src="/images/services/tree-planting.jpg"/>
 
                             <div className="content">
@@ -294,7 +304,7 @@ const Home = () => {
                     </div>
 
                     <div className="col-md-4">
-                        <a className="service">
+                        <a className="service" onClick={() => goToService('adoption-of-open-space')}>
                             <img className="img-fluid" src="/images/services/open-space.jpg"/>
 
                             <div className="content">
@@ -309,7 +319,7 @@ const Home = () => {
                 </div>
 
                 <div className="text-center">
-                    <a href="#" className="btn green wide">View Services</a>
+                    <Link href="/services"><a className="btn green wide">View Services</a></Link>
                 </div>
             </div>
 
