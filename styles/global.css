@@ -849,6 +849,7 @@ section.single-park h1 {
 }
 section.single-park .park-slider img {
   height: 450px;
+  object-fit: cover;
 }
 section.single-park iframe {
   height: 400px;
@@ -890,16 +891,16 @@ section.single-park .profile-details table th, section.single-park .profile-deta
   text-align: center;
 }
 section.single-park .profile-details table th {
-  background: #0bb503;
+  background: #0bb503 !important;
   color: white;
-  padding: 10px 0;
+  padding: 10px 0 !important;
   font-family: "Quicksand", sans-serif;
 }
 section.single-park .profile-details table tr:nth-of-type(even) td {
-  background: rgba(11, 181, 3, 0.1);
+  background: rgba(11, 181, 3, 0.1) !important;
 }
 section.single-park .profile-details table tr td {
-  padding: 20px 0;
+  padding: 20px 0 !important;
 }
 section.book-park {
   padding: 50px 0;

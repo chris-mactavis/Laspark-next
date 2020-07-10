@@ -148,7 +148,7 @@ const KanuPark = () => {
 
                         <div className="col-md-7 pl-5 d-flex align-items-center">
                             <div>
-                                <h5>Profile Description</h5>
+                                <h5>Park Profile</h5>
 
                                 <p>
                                     Johnson Jakande Tinubu (JJT) Park, an ultra-modern recreational park in honour of

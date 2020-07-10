@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 
 const HeaderContent = () => {
     return <>
@@ -6,8 +7,9 @@ const HeaderContent = () => {
             <h1>Laspark</h1>
             <p className="desc">Making a greener and healthier Lagos.</p>
             <div className="text-center">
-                <a href="#" className="btn w-200 white">Book a park</a> &ensp; <a href="#" className="btn w-200 white">Request
-                Service</a>
+                <Link href="/parks"><a className="btn w-200 white">Book a park</a></Link> &ensp;
+                <Link href="/services"><a href="#" className="btn w-200 white">Request
+                    Service</a></Link>
             </div>
         </div>
 

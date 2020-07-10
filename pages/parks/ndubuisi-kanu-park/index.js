@@ -117,7 +117,7 @@ const KanuPark = () => {
 
                     <div className="col-md-7 pl-5 d-flex align-items-center">
                         <div>
-                            <h5>Profile Description</h5>
+                            <h5>Park Profile</h5>
 
                             <p>
                                 The Ndubuisi Kanu Park was commissioned on the 12th of June, 2014 during the
