@@ -1,7 +1,19 @@
 import Link from "next/link";
 import React from "react";
+import {logout} from "../store/actions/auth";
+import {useDispatch} from "react-redux";
+import {showNotifier} from "../store/actions/notifier";
+import Router from "next/router";
 
 const Nav = ({isLoggedIn}) => {
+    const dispatch = useDispatch();
+
+    const logoutHandler = () => {
+        dispatch(logout());
+        dispatch(showNotifier('Logged Out'));
+        Router.push('/');
+    }
+
     return <div className="navbar-collapse ml-auto" id="navbarSupportedContent">
         <ul className="navbar-nav">
             <li className="nav-item">
@@ -31,6 +43,12 @@ const Nav = ({isLoggedIn}) => {
             {
                 isLoggedIn && <li className="nav-item">
                     <Link href="/profile"><a className="nav-link">profile</a></Link>
+                </li>
+            }
+
+            {
+                isLoggedIn && <li className="nav-item">
+                    <a className="nav-link" href="#" onClick={logoutHandler}>logout</a>
                 </li>
             }
         </ul>

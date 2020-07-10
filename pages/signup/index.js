@@ -41,7 +41,7 @@ const Signup = () => {
     }
 
 
-    return <Layout mainClass="login">
+    return <Layout mainClass="bg signup">
 
         <Head>
             <title>Signup | Laspark</title>

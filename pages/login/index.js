@@ -31,7 +31,7 @@ const Login = () => {
         }
     }
 
-    return <Layout mainClass="login">
+    return <Layout mainClass="bg login">
         <Head>
             <title>Login | Laspark</title>
         </Head>

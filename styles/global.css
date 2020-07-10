@@ -449,15 +449,24 @@ form.contact-form textarea {
   letter-spacing: 0.3rem;
 }
 
-main.login {
+main.bg {
   background-position: center center;
-  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(/images/explore-banner.png);
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(/images/bgs/explore-banner.png);
   background-repeat: no-repeat;
   background-size: cover;
   position: relative;
   height: 100vh;
 }
-main.login h1 {
+main.bg.login {
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(/images/bgs/bg-1.jpg);
+}
+main.bg.signup {
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(/images/bgs/bg-2.jpg);
+}
+main.bg.contact {
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(/images/bgs/bg-3.jpg);
+}
+main.bg h1 {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -474,12 +483,7 @@ section.our-parks .leaf-bg {
   position: absolute;
   top: -90px;
   left: -35px;
-  z-index: -1;
-}
-@media only screen and (max-width: 992px) {
-  section.our-parks .leaf-bg {
-    display: none;
-  }
+  z-index: 0;
 }
 section.our-parks .leaf-bg img {
   width: 90%;
@@ -488,12 +492,7 @@ section.our-parks .palm-bg {
   position: absolute;
   right: -88px;
   top: -60px;
-  z-index: -1;
-}
-@media only screen and (max-width: 992px) {
-  section.our-parks .palm-bg {
-    display: none;
-  }
+  z-index: 0;
 }
 section.our-parks .palm-bg img {
   width: 90%;
@@ -762,30 +761,71 @@ section.home-request .details ul li img {
   margin-right: 10px;
 }
 section.single-park {
-  padding: 50px 50px;
+  padding: 75px 0;
 }
-section.single-park .container-fluid {
-  padding-right: 50px;
-  padding-left: 50px;
-}
-section.single-park .head {
-  position: relative;
-}
-section.single-park .head h1 {
-  font-size: 35px;
-  letter-spacing: 7px;
+section.single-park h1 {
+  font-size: 48px;
   color: #0bb503;
   padding-left: 10px;
-  border-left: 5px solid #0bb503;
+  border-left: 6px solid #0bb503;
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
+  margin: 0;
+}
+section.single-park .park-slider img {
+  height: 450px;
+}
+section.single-park iframe {
+  height: 400px;
+}
+section.single-park .amenities-row {
+  padding: 50px 0;
+}
+section.single-park .amenities-row .amenities {
+  text-align: center;
+}
+section.single-park .amenities-row .amenities img {
+  height: 50px;
+  display: block;
+  margin: 0 auto;
+}
+section.single-park .amenities-row .amenities p {
+  font-size: 16px;
+  margin-top: 5px;
+}
+section.single-park .profile-row {
+  margin-top: 50px;
+}
+section.single-park .profile-row iframe {
+  width: 100%;
+}
+section.single-park .profile-row p {
+  margin-bottom: 20px;
 }
 section.single-park .image-slides {
   padding: 50px 50px 15px;
 }
 section.single-park .image-slides img {
   max-width: 100%;
+}
+section.single-park .profile-details table {
+  width: 100%;
+}
+section.single-park .profile-details table th, section.single-park .profile-details table td {
+  text-align: center;
+}
+section.single-park .profile-details table th {
+  background: #0bb503;
+  color: white;
+  padding: 10px 0;
+  font-family: "Quicksand", sans-serif;
+}
+section.single-park .profile-details table tr:nth-of-type(even) td {
+  background: rgba(11, 181, 3, 0.1);
+}
+section.single-park .profile-details table tr td {
+  padding: 20px 0;
 }
 section.book-park {
   padding: 50px 0;
@@ -930,6 +970,10 @@ input {
 
 main {
   background: white;
+}
+
+.slick-prev::before, .slick-next::before {
+  color: #0bb503 !important;
 }
 
 .notification {
