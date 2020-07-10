@@ -40,11 +40,11 @@ const Nav = ({isLoggedIn}) => {
                 </li>
             }
 
-            {
-                isLoggedIn && <li className="nav-item">
-                    <Link href="/profile"><a className="nav-link">profile</a></Link>
-                </li>
-            }
+            {/*{*/}
+            {/*    isLoggedIn && <li className="nav-item">*/}
+            {/*        <Link href="/profile"><a className="nav-link">profile</a></Link>*/}
+            {/*    </li>*/}
+            {/*}*/}
 
             {
                 isLoggedIn && <li className="nav-item">
