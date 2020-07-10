@@ -1,209 +1,321 @@
-import Head from 'next/head'
+import Layout from "../Components/Layout";
+import React, {useEffect} from "react";
+import HeaderContent from "../Components/home/HeaderContent";
+import Head from "next/head";
 
-export default function Home() {
-  return (
-    <div className="container">
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+const Home = () => {
 
-      <main>
-        <h1 className="title">
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
+    useEffect(() => {
+        $('document').ready(function () {
+            $('.banner-slide').slick({
+                autoplay: true,
+                fade: true
+            });
 
-        <p className="description">
-          Get started by editing <code>pages/index.js</code>
-        </p>
+            $('.park-slider').slick({
+                autoplay: true,
+                slidesToShow: 3,
+                dots: true,
+                responsive: [
+                    {
+                        breakpoint: 992,
+                        settings: {
+                            slidesToShow: 2,
+                            slidesToScroll: 1
+                        }
+                    },
+                    {
+                        breakpoint: 767,
+                        settings: {
+                            slidesToShow: 1,
+                            slidesToScroll: 1
+                        }
+                    },
+                ]
+            });
 
-        <div className="grid">
-          <a href="https://nextjs.org/docs" className="card">
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
+            $('.service-slider').slick({
+                autoplay: true,
+                slidesToShow: 3,
+                dots: true,
+            });
+        });
+    }, []);
 
-          <a href="https://nextjs.org/learn" className="card">
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
+    return <Layout headerContent={<HeaderContent/>} page="home" headerClass="home-banner">
 
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className="card"
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
+        <Head>
+            <title>Laspark</title>
+        </Head>
 
-          <a
-            href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className="card"
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div>
-      </main>
+        <section id="our-parks" className="our-parks">
+            <div className="leaf-bg">
+                <img src="/images/leaf-background.png" alt=""/>
+            </div>
 
-      <footer>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className="logo" />
-        </a>
-      </footer>
+            <div className="palm-bg">
+                <img src="/images/Palm-background.png" alt=""/>
+            </div>
 
-      <style jsx>{`
-        .container {
-          min-height: 100vh;
-          padding: 0 0.5rem;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-        }
+            <div className="container">
+                <div className="row">
+                    <div className="col">
+                        <h2 className="text-center mb-5">Book Our Parks</h2>
+                    </div>
+                </div>
 
-        main {
-          padding: 5rem 0;
-          flex: 1;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-        }
+                <div className="row park-slider">
+                    <div className="col-md-4">
+                        <a className="park">
+                            <img className="img-fluid" src="/images/parks/johnson-jakande.jpg"/>
 
-        footer {
-          width: 100%;
-          height: 100px;
-          border-top: 1px solid #eaeaea;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        }
+                            <div className="content">
+                                <h5>Johnson Jakande Tinubu Park</h5>
 
-        footer img {
-          margin-left: 0.5rem;
-        }
+                                <div className="location">
+                                    <img className="pin" src="/images/icon/location-green.svg"/> Alausa, Ikeja
+                                </div>
 
-        footer a {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        }
+                                <div className="view">View Park <img className="arrow-right"
+                                                                     src="/images/icon/arrow-right-green.svg"/></div>
+                            </div>
+                        </a>
+                    </div>
 
-        a {
-          color: inherit;
-          text-decoration: none;
-        }
+                    <div className="col-md-4">
+                        <a className="park">
+                            <img className="img-fluid" src="/images/parks/ndubuisi-kanu.jpg"/>
 
-        .title a {
-          color: #0070f3;
-          text-decoration: none;
-        }
+                            <div className="content">
+                                <h5>Ndubuisi Kanu Park</h5>
 
-        .title a:hover,
-        .title a:focus,
-        .title a:active {
-          text-decoration: underline;
-        }
+                                <div className="location">
+                                    <img className="pin" src="/images/icon/location-green.svg"/> Alausa, Ikeja
+                                </div>
 
-        .title {
-          margin: 0;
-          line-height: 1.15;
-          font-size: 4rem;
-        }
+                                <div className="view">View Park <img className="arrow-right"
+                                                                     src="/images/icon/arrow-right-green.svg"/></div>
+                            </div>
+                        </a>
+                    </div>
 
-        .title,
-        .description {
-          text-align: center;
-        }
+                    <div className="col-md-4">
+                        <a className="park">
+                            <img className="img-fluid" src="/images/parks/oluyomi-abayomi.jpg"/>
 
-        .description {
-          line-height: 1.5;
-          font-size: 1.5rem;
-        }
+                            <div className="content">
+                                <h5>Dr. Oluyomi Abayomi Finnih Park</h5>
 
-        code {
-          background: #fafafa;
-          border-radius: 5px;
-          padding: 0.75rem;
-          font-size: 1.1rem;
-          font-family: Menlo, Monaco, Lucida Console, Liberation Mono,
-            DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace;
-        }
+                                <div className="location">
+                                    <img className="pin" src="/images/icon/location-green.svg"/> Allen, Ikeja
+                                </div>
 
-        .grid {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          flex-wrap: wrap;
+                                <div className="view">View Park <img className="arrow-right"
+                                                                     src="/images/icon/arrow-right-green.svg"/></div>
+                            </div>
+                        </a>
+                    </div>
 
-          max-width: 800px;
-          margin-top: 3rem;
-        }
+                    <div className="col-md-4">
+                        <a className="park">
+                            <img className="img-fluid" src="/images/parks/muri-okunola.jpg"/>
 
-        .card {
-          margin: 1rem;
-          flex-basis: 45%;
-          padding: 1.5rem;
-          text-align: left;
-          color: inherit;
-          text-decoration: none;
-          border: 1px solid #eaeaea;
-          border-radius: 10px;
-          transition: color 0.15s ease, border-color 0.15s ease;
-        }
+                            <div className="content">
+                                <h5>Muri Okunola Park</h5>
 
-        .card:hover,
-        .card:focus,
-        .card:active {
-          color: #0070f3;
-          border-color: #0070f3;
-        }
+                                <div className="location">
+                                    <img className="pin" src="/images/icon/location-green.svg"/> Victoria Island, Eti-Osa
+                                </div>
 
-        .card h3 {
-          margin: 0 0 1rem 0;
-          font-size: 1.5rem;
-        }
+                                <div className="view">View Park <img className="arrow-right"
+                                                                     src="/images/icon/arrow-right-green.svg"/></div>
+                            </div>
+                        </a>
+                    </div>
 
-        .card p {
-          margin: 0;
-          font-size: 1.25rem;
-          line-height: 1.5;
-        }
+                    <div className="col-md-4">
+                        <a className="park">
+                            <img className="img-fluid" src="/images/parks/ikorodu.jpg"/>
 
-        .logo {
-          height: 1em;
-        }
+                            <div className="content">
+                                <h5>Ikorodu Recreational Park</h5>
 
-        @media (max-width: 600px) {
-          .grid {
-            width: 100%;
-            flex-direction: column;
-          }
-        }
-      `}</style>
+                                <div className="location">
+                                    <img className="pin" src="/images/icon/location-green.svg"/> Ikorodu, Lagos
+                                </div>
 
-      <style jsx global>{`
-        html,
-        body {
-          padding: 0;
-          margin: 0;
-          font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
-            Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
-            sans-serif;
-        }
+                                <div className="view">View Park <img className="arrow-right"
+                                                                     src="/images/icon/arrow-right-green.svg"/></div>
+                            </div>
+                        </a>
+                    </div>
 
-        * {
-          box-sizing: border-box;
-        }
-      `}</style>
-    </div>
-  )
+                    <div className="col-md-4">
+                        <a className="park">
+                            <img className="img-fluid" src="/images/parks/alimosho-park.jpg"/>
+
+                            <div className="content">
+                                <h5>Rafiu Jafojo Park</h5>
+
+                                <div className="location">
+                                    <img className="pin" src="/images/icon/location-green.svg"/> Shasha, Alimosho
+                                </div>
+
+                                <div className="view">View Park <img className="arrow-right"
+                                                                     src="/images/icon/arrow-right-green.svg"/></div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div className="col-md-4">
+                        <a className="park">
+                            <img className="img-fluid" src="/images/parks/infinity-park.jpg"/>
+
+                            <div className="content">
+                                <h5>Infinity Park</h5>
+
+                                <div className="location">
+                                    <img className="pin" src="/images/icon/location-green.svg"/> Jibowu, Yaba
+                                </div>
+
+                                <div className="view">View Park <img className="arrow-right"
+                                                                     src="/images/icon/arrow-right-green.svg"/></div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div className="col-md-4">
+                        <a className="park">
+                            <img className="img-fluid" src="/images/parks/gani-fawehinmi.jpg"/>
+
+                            <div className="content">
+                                <h5>Gani Fawehinmi Park</h5>
+
+                                <div className="location">
+                                    <img className="pin" src="/images/icon/location-green.svg"/> Ojota, Ikorodu Road
+                                </div>
+
+                                <div className="view">View Park <img className="arrow-right"
+                                                                     src="/images/icon/arrow-right-green.svg"/></div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div className="col-md-4">
+                        <a className="park">
+                            <img className="img-fluid" src="/images/parks/badagry.jpg"/>
+
+                            <div className="content">
+                                <h5>Badagry Recreational Park</h5>
+
+                                <div className="location">
+                                    <img className="pin" src="/images/icon/location-green.svg"/> Hospital Road, Badagry
+                                </div>
+
+                                <div className="view">View Park <img className="arrow-right"
+                                                                     src="/images/icon/arrow-right-green.svg"/></div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div className="col-md-4">
+                        <a className="park">
+                            <img className="img-fluid" src="/images/parks/tunji-braithwaite.jpg"/>
+
+                            <div className="content">
+                                <h5>Tunji Braithwaite Park</h5>
+
+                                <div className="location">
+                                    <img className="pin" src="/images/icon/location-green.svg"/> Dolphin Estate, Ikoyi
+                                </div>
+
+                                <div className="view">View Park <img className="arrow-right"
+                                                                     src="/images/icon/arrow-right-green.svg"/></div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <div className="text-center">
+                    <a href="#" className="btn green wide">View Parks</a>
+                </div>
+            </div>
+        </section>
+
+        <section className="our-services">
+            <div className="container">
+                <div className="row">
+                    <div className="col">
+                        <h2 className="text-center mb-5">Request Our Services</h2>
+                    </div>
+                </div>
+
+                <div className="row service-slider">
+                    <div className="col-md-4">
+                        <a className="service">
+                            <img className="img-fluid" src="/images/services/tree-felling.jpg"/>
+
+                            <div className="content">
+                                <h5>Tree Felling</h5>
+
+                                <div className="request">
+                                    Request <img className="arrow-right" src="/images/icon/arrow-right-green.svg"/>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div className="col-md-4">
+                        <a className="service">
+                            <img className="img-fluid" src="/images/services/tree-pruning.jpg"/>
+
+                            <div className="content">
+                                <h5>Tree Pruning</h5>
+
+                                <div className="request">
+                                    Request <img className="arrow-right" src="/images/icon/arrow-right-green.svg"/>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div className="col-md-4">
+                        <a className="service">
+                            <img className="img-fluid" src="/images/services/tree-planting.jpg"/>
+
+                            <div className="content">
+                                <h5>Tree Planting</h5>
+
+                                <div className="request">
+                                    Request <img className="arrow-right" src="/images/icon/arrow-right-green.svg"/>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div className="col-md-4">
+                        <a className="service">
+                            <img className="img-fluid" src="/images/services/open-space.jpg"/>
+
+                            <div className="content">
+                                <h5>Adoption of Open Space</h5>
+
+                                <div className="request">
+                                    Request <img className="arrow-right" src="/images/icon/arrow-right-green.svg"/>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <div className="text-center">
+                    <a href="#" className="btn green wide">View Services</a>
+                </div>
+            </div>
+
+        </section>
+
+    </Layout>
 }
+
+export default Home;

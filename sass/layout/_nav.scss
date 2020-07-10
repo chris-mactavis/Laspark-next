@@ -1,0 +1,90 @@
+nav.navbar {
+  padding: 0;
+
+  .logo-container {
+    background: #fff;
+    padding: 10px;
+    border-bottom-left-radius: 70px;
+    border-bottom-right-radius: 70px;
+
+    img {
+      max-height: 80px;
+    }
+  }
+
+  .navbar-collapse {
+    flex-grow: 0;
+
+    @media only screen and (max-width: $desktop_width) {
+      display: none;
+    }
+  }
+
+  .move-right {
+    margin-right: 50px;
+    padding-right: 50px;
+  }
+
+  ul.navbar-nav {
+    flex-direction: row;
+    flex-wrap: inherit;
+    align-items: center;
+    padding-left: 1rem;
+
+    li.nav-item {
+      margin-right: 5rem;
+
+      .nav-link {
+        font-family: $ffn;
+        font-size: 15px;
+        text-transform: uppercase;
+      }
+    }
+  }
+
+  .signup-div:not(:last-child) {
+    margin-right: 50px;
+  }
+
+  .navbar-toggler {
+
+    &:focus {
+      outline: none;
+    }
+
+    .navbar-toggler-icon {
+      width: 2.5em;
+      height: 2.5em;
+    }
+  }
+
+  #account-button {
+    background: transparent;
+    border: 2px solid #166A30;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+  }
+
+  &.white-nav{
+    box-shadow: 0 4px 10px rgba(0,0,0,0.07);
+
+    .navbar-brand {
+      padding-left: 0;
+    }
+
+    ul.navbar-nav {
+      li.nav-item {
+        .nav-link {
+          color: $dark-green;
+        }
+
+        &.btn{
+          border-color: $dark-green;
+        }
+      }
+    }
+  }
+}
+
+
