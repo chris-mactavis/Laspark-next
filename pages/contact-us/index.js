@@ -26,7 +26,7 @@ const ContactUs = () => {
         }, 2000);
     }
 
-    return <Layout mainClass="login">
+    return <Layout mainClass="bg contact">
         <Head>
             <title>Contact Us | Laspark</title>
         </Head>

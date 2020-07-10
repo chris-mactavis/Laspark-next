@@ -1,8 +1,14 @@
 import Layout from "../../Components/Layout";
 import Head from "next/head";
 import React from "react";
+import Link from "next/link";
+import Router from "next/router";
 
 const Parks = () => {
+    const goToPark = (parkUrl) => {
+        Router.push(parkUrl);
+    }
+
     return <Layout hasHeader={false}>
         <Head>
             <title>Parks | Laspark</title>
@@ -18,7 +24,7 @@ const Parks = () => {
 
                 <div className="row">
                     <div className="col-md-4">
-                        <a className="park">
+                        <a className="park" onClick={() => goToPark('/parks/johnson-jakande-tinubu-park')}>
                             <img className="img-fluid" src="/images/parks/johnson-jakande.jpg"/>
 
                             <div className="content">
@@ -35,20 +41,20 @@ const Parks = () => {
                     </div>
 
                     <div className="col-md-4">
-                        <a className="park">
-                            <img className="img-fluid" src="/images/parks/ndubuisi-kanu.jpg"/>
+                            <a className="park" onClick={() => goToPark('/parks/ndubuisi-kanu-park')}>
+                                <img className="img-fluid" src="/images/parks/ndubuisi-kanu.jpg"/>
 
-                            <div className="content">
-                                <h5>Ndubuisi Kanu Park</h5>
+                                <div className="content">
+                                    <h5>Ndubuisi Kanu Park</h5>
 
-                                <div className="location">
-                                    <img className="pin" src="/images/icon/location-green.svg"/> Alausa, Ikeja
+                                    <div className="location">
+                                        <img className="pin" src="/images/icon/location-green.svg"/> Alausa, Ikeja
+                                    </div>
+
+                                    <div className="view">View Park <img className="arrow-right"
+                                                                         src="/images/icon/arrow-right-green.svg"/></div>
                                 </div>
-
-                                <div className="view">View Park <img className="arrow-right"
-                                                                     src="/images/icon/arrow-right-green.svg"/></div>
-                            </div>
-                        </a>
+                            </a>
                     </div>
 
                     <div className="col-md-4">
