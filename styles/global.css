@@ -564,9 +564,20 @@ section.single-service .bg-row {
   height: calc(100vh - 100px);
 }
 section.single-service .bg-row .bg {
-  background: url("/images/services/tree-felling.jpg") no-repeat right;
+  background-image: url("/images/services/tree-felling.jpg");
   background-size: cover;
   height: 100%;
+  background-repeat: no-repeat;
+  background-position: right;
+}
+section.single-service .bg-row .bg.pruning {
+  background-image: url("/images/services/tree-pruning.jpg");
+}
+section.single-service .bg-row .bg.planting {
+  background-image: url("/images/services/tree-planting.jpg");
+}
+section.single-service .bg-row .bg.adoption {
+  background-image: url("/images/services/open-space.jpg");
 }
 section.single-service .bg-row form {
   text-align: center;
@@ -593,6 +604,14 @@ section.single-service .service .content .request img {
 }
 section.single-service .slick-dotted.slick-slider {
   margin-bottom: 60px;
+}
+section.single-service .radio + div {
+  text-align: left;
+}
+section.single-service .radio + div input {
+  width: auto !important;
+  margin-right: 10px;
+  margin-bottom: 5px;
 }
 section.login {
   position: absolute;

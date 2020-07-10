@@ -138,9 +138,23 @@ section {
       height: calc(100vh - 100px);
 
       .bg{
-        background: url("/images/services/tree-felling.jpg") no-repeat right;
+        background-image: url("/images/services/tree-felling.jpg");
         background-size: cover;
         height: 100%;
+        background-repeat: no-repeat;
+        background-position: right;
+
+        &.pruning {
+          background-image: url("/images/services/tree-pruning.jpg");
+        }
+
+        &.planting {
+          background-image: url("/images/services/tree-planting.jpg");
+        }
+
+        &.adoption {
+          background-image: url("/images/services/open-space.jpg");
+        }
       }
 
       form{
@@ -175,6 +189,17 @@ section {
 
     .slick-dotted.slick-slider {
       margin-bottom: 60px;
+    }
+
+    .radio {
+      &+div {
+        text-align: left;
+        input {
+          width: auto !important;
+          margin-right: 10px;
+          margin-bottom: 5px;
+        }
+      }
     }
   }
 

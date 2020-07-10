@@ -40,7 +40,7 @@ const KanuPark = () => {
         handler.openIframe();
     }
 
-    const loadSpaceModal = (park, amount, capacity) => {
+    const loadSpaceModal = (park, capacity, amount) => {
         if (!Token()) {
             Cookies.set('redirectIntended', '/parks/johnson-jakande-tinubu-park')
             Router.push('/login');
