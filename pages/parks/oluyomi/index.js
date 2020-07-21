@@ -9,6 +9,8 @@ import Token from "../../../Utils/Token";
 import Link from "next/link";
 import Cookies from 'js-cookie';
 import Error from "../../../Components/Error";
+import axiosInstance from "../../../config/axios";
+import {useDispatch} from "react-redux";
 
 const Oluyomi = () => {
 
@@ -17,6 +19,9 @@ const Oluyomi = () => {
     const [park, setPark] = useState('Entire Park');
     const [amount, setAmount] = useState(10000);
     const [capacity, setCapacity] = useState(255);
+    const [space, setSpace] = useState(255);
+
+    const dispatch = useDispatch();
 
     const bookHandler = async data => {
         const handler = PaystackPop.setup({
@@ -26,7 +31,13 @@ const Oluyomi = () => {
             currency: 'NGN',
             firstname: User().full_name,
             reference: 'The reference',
-            callback: function (response) {
+            callback: async function (response) {
+                const {data: res} = await axiosInstance.post(`park-spaces/${space}/book`, {date: data.date}, {
+                    headers: {
+                        Authorization: `Bearer ${Token()}`
+                    }
+                });
+                console.log(res);
                 // const reference = response.reference;
                 // alert('Payment complete! Reference: ' + reference);
                 $('#spaceModal').modal('hide');
@@ -40,7 +51,7 @@ const Oluyomi = () => {
         handler.openIframe();
     }
 
-    const loadSpaceModal = (park, amount, capacity) => {
+    const loadSpaceModal = (park, amount, capacity, currentSpace) => {
         if (!Token()) {
             Cookies.set('redirectIntended', '/parks/oluyomi')
             Router.push('/login');
@@ -49,6 +60,7 @@ const Oluyomi = () => {
         setPark(park);
         setAmount(amount);
         setCapacity(capacity);
+        setSpace(currentSpace);
         $('#spaceModal').modal('show');
     }
 
@@ -200,7 +212,7 @@ const Oluyomi = () => {
                                     <td role="cell">Exclusive Use</td>
                                     <td role="cell">1,000</td>
                                     <td role="cell">500,000</td>
-                                    <td role="cell" onClick={() => loadSpaceModal('Exclusive Use', 500000, 1000)}><a
+                                    <td role="cell" onClick={() => loadSpaceModal('Exclusive Use', 500000, 1000, 20)}><a
                                         className="btn extra-thin green-transparent" href="#">Book Now</a>
                                     </td>
                                 </tr>
@@ -209,7 +221,7 @@ const Oluyomi = () => {
                                     <td role="cell">Adult Corner + Car park + Gazebo 1</td>
                                     <td role="cell">350</td>
                                     <td role="cell">250,000</td>
-                                    <td role="cell" onClick={() => loadSpaceModal('Platform', 250000, 350)}><a
+                                    <td role="cell" onClick={() => loadSpaceModal('Platform', 250000, 350, 21)}><a
                                         className="btn extra-thin green-transparent" href="#">Book Now</a>
                                     </td>
                                 </tr>
@@ -218,7 +230,7 @@ const Oluyomi = () => {
                                     <td role="cell">Car Park</td>
                                     <td role="cell">200</td>
                                     <td role="cell">120,000</td>
-                                    <td role="cell" onClick={() => loadSpaceModal('Platform', 120000, 200)}><a
+                                    <td role="cell" onClick={() => loadSpaceModal('Platform', 120000, 200, 22)}><a
                                         className="btn extra-thin green-transparent" href="#">Book Now</a>
                                     </td>
                                 </tr>
@@ -227,7 +239,7 @@ const Oluyomi = () => {
                                     <td role="cell">Platform/Adult Corner</td>
                                     <td role="cell">100</td>
                                     <td role="cell">100,000</td>
-                                    <td role="cell" onClick={() => loadSpaceModal('Platform', 100000, 100)}><a
+                                    <td role="cell" onClick={() => loadSpaceModal('Platform', 100000, 100, 23)}><a
                                         className="btn extra-thin green-transparent" href="#">Book Now</a>
                                     </td>
                                 </tr>
@@ -236,7 +248,7 @@ const Oluyomi = () => {
                                     <td role="cell">Gazebo 1</td>
                                     <td role="cell">70</td>
                                     <td role="cell">60,000</td>
-                                    <td role="cell" onClick={() => loadSpaceModal('Platform', 60000, 70)}><a
+                                    <td role="cell" onClick={() => loadSpaceModal('Platform', 60000, 70, 24)}><a
                                         className="btn extra-thin green-transparent" href="#">Book Now</a>
                                     </td>
                                 </tr>
@@ -245,7 +257,7 @@ const Oluyomi = () => {
                                     <td role="cell">Cool Spot</td>
                                     <td role="cell">60</td>
                                     <td role="cell">70,000</td>
-                                    <td role="cell" onClick={() => loadSpaceModal('Platform', 70000, 60)}><a
+                                    <td role="cell" onClick={() => loadSpaceModal('Platform', 70000, 60, 25)}><a
                                         className="btn extra-thin green-transparent" href="#">Book Now</a>
                                     </td>
                                 </tr>
@@ -254,7 +266,7 @@ const Oluyomi = () => {
                                     <td role="cell">Gazebo 2</td>
                                     <td role="cell">30</td>
                                     <td role="cell">30,000</td>
-                                    <td role="cell" onClick={() => loadSpaceModal('Platform', 30000, 30)}><a
+                                    <td role="cell" onClick={() => loadSpaceModal('Platform', 30000, 30, 26)}><a
                                         className="btn extra-thin green-transparent" href="#">Book Now</a>
                                     </td>
                                 </tr>
