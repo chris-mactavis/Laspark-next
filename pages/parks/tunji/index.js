@@ -9,6 +9,8 @@ import Token from "../../../Utils/Token";
 import Link from "next/link";
 import Cookies from 'js-cookie';
 import Error from "../../../Components/Error";
+import axiosInstance from "../../../config/axios";
+import {useDispatch} from "react-redux";
 
 const Tunji = () => {
 
@@ -17,6 +19,8 @@ const Tunji = () => {
     const [park, setPark] = useState('Entire Park');
     const [amount, setAmount] = useState(10000);
     const [capacity, setCapacity] = useState(255);
+    const [space, setSpace] = useState('');
+    const dispatch = useDispatch();
 
     const bookHandler = async data => {
         const handler = PaystackPop.setup({
@@ -26,7 +30,13 @@ const Tunji = () => {
             currency: 'NGN',
             firstname: User().full_name,
             reference: 'The reference',
-            callback: function (response) {
+            callback: async function (response) {
+                const {data: res} = await axiosInstance.post(`park-spaces/${space}/book`, {date: data.date}, {
+                    headers: {
+                        Authorization: `Bearer ${Token()}`
+                    }
+                });
+                console.log(res);
                 // const reference = response.reference;
                 // alert('Payment complete! Reference: ' + reference);
                 $('#spaceModal').modal('hide');
@@ -40,7 +50,7 @@ const Tunji = () => {
         handler.openIframe();
     }
 
-    const loadSpaceModal = (park, amount, capacity) => {
+    const loadSpaceModal = (park, amount, capacity, currentSpace) => {
         if (!Token()) {
             Cookies.set('redirectIntended', '/parks/tunji')
             Router.push('/login');
@@ -49,6 +59,7 @@ const Tunji = () => {
         setPark(park);
         setAmount(amount);
         setCapacity(capacity);
+        setSpace(currentSpace);
         $('#spaceModal').modal('show');
     }
 
@@ -158,7 +169,7 @@ const Tunji = () => {
                                 <tr role="row">
                                     <td role="cell">Video Shoot</td>
                                     <td role="cell">500,000</td>
-                                    <td role="cell" onClick={() => loadSpaceModal('Exclusive Use', 500000, 0)}><a
+                                    <td role="cell" onClick={() => loadSpaceModal('Exclusive Use', 500000, 0, 1)}><a
                                         className="btn extra-thin green-transparent" href="#">Book Now</a>
                                     </td>
                                 </tr>
@@ -166,7 +177,7 @@ const Tunji = () => {
                                 <tr role="row">
                                     <td role="cell">Photo Shoot</td>
                                     <td role="cell">2,500</td>
-                                    <td role="cell" onClick={() => loadSpaceModal('Platform', 2500, 0)}><a
+                                    <td role="cell" onClick={() => loadSpaceModal('Platform', 2500, 0, 2)}><a
                                         className="btn extra-thin green-transparent" href="#">Book Now</a>
                                     </td>
                                 </tr>
