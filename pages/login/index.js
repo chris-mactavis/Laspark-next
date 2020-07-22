@@ -10,6 +10,7 @@ import {showNotifier} from "../../store/actions/notifier";
 import Router from "next/router";
 import {withoutAuth} from "../../Components/hoc/auth";
 import Cookies from 'js-cookie';
+import Link from "next/link";
 
 const Login = () => {
 
@@ -25,7 +26,6 @@ const Login = () => {
             dispatch(showNotifier('Logged In'));
             Router.push(Cookies.get('redirectIntended') || '/');
             Cookies.remove('redirectIntended');
-            // Router.push('/');
         } catch (e) {
             console.log(e);
         }
@@ -43,7 +43,7 @@ const Login = () => {
                         <div className="sign-up-form login-form bg-white text-center">
                             <div className="heading">
                                 <h3>Login</h3>
-                                <p>No account? <a href="signup.html">Sign Up</a></p>
+                                <p>No account? <Link href="/signup"><a>Sign Up</a></Link></p>
                             </div>
 
                             <form className="account-create" onSubmit={handleSubmit(loginHandler)}>
