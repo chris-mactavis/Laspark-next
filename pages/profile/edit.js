@@ -40,7 +40,7 @@ const ProfileEdit = ({user}) => {
         } catch (e) {
             console.log(e);
             dispatch(loader());
-            dispatch(showNotifier(e.response.data.message));
+            dispatch(showNotifier(e.response.data.message, 'danger'));
         }
     }
 

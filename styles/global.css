@@ -1040,6 +1040,24 @@ section.profile .booking-history table tr:nth-of-type(even) td {
 section.profile .booking-history table tr td {
   padding: 20px 0 !important;
 }
+section.single-service-booking .reply-container {
+  padding: 15px;
+  border: 1px solid #0f6b2d;
+  background: #fff;
+}
+section.single-service-booking .chats {
+  border: 1px solid #0f6b2d;
+  margin-top: 10px;
+  background: #fff;
+  font-size: 14px;
+}
+section.single-service-booking .chats .header {
+  margin: 10px 0;
+}
+section.single-service-booking .chats .attachment-section {
+  margin: 10px 0;
+  border-top: 1px solid #0f6b2d;
+}
 
 ul {
   list-style: none;
@@ -1071,6 +1089,10 @@ main {
 
 .slick-prev::before, .slick-next::before {
   color: #0bb503 !important;
+}
+
+.cursor-pointer {
+  cursor: pointer;
 }
 
 .notification {
