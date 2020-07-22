@@ -762,5 +762,27 @@ section {
     }
   }
 
+  &.single-service-booking {
+    .reply-container {
+      padding: 15px;
+      border: 1px solid $dark-green;
+      background: #fff;
+    }
+
+    .chats {
+
+      border: 1px solid $dark-green;
+      margin-top: 10px;
+      background: #fff;
+        font-size: 14px;
+      .header {
+        margin: 10px 0;
+      }
+      .attachment-section {
+        margin: 10px 0;
+        border-top: 1px solid $dark-green;
+      }
+    }
+  }
 
 }

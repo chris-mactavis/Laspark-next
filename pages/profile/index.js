@@ -5,9 +5,12 @@ import Layout from "../../Components/Layout";
 import axiosInstance from "../../config/axios";
 import Token from "../../Utils/Token";
 import Link from "next/link";
+import Router from "next/router";
 
 const Profile = ({parkBookings, serviceBookings}) => {
-    console.log(parkBookings);
+
+    const goToChat = bookingId => Router.push('/profile/service-bookings/[id]', '/profile/service-bookings/' + bookingId);
+
     return <Layout hasHeader={false}>
         <Head>
             <title>My Profile | Laspark</title>
@@ -63,18 +66,18 @@ const Profile = ({parkBookings, serviceBookings}) => {
                             <thead role="rowgroup">
                             <tr role="row">
                                 <th role="columnheader">Service</th>
-                                <th role="columnheader">Amount Paid(₦)</th>
-                                <th role="columnheader">Date Booked</th>
-                                <th role="columnheader">Status</th>
+                                <th role="columnheader">Purpose</th>
+                                <th role="columnheader">Location</th>
                             </tr>
                             </thead>
                             <tbody role="rowgroup">
-                            <tr role="row">
-                                <td role="cell">Exclusive Use</td>
-                                <td role="cell">1,500,000</td>
-                                <td role="cell">3,500</td>
-                                <td role="cell">3,500</td>
-                            </tr>
+                            {
+                                serviceBookings.map(booking => <tr role="row" key={booking.id} className="cursor-pointer" onClick={() => goToChat(booking.id)}>
+                                    <td role="cell">{booking.service.service}</td>
+                                    <td role="cell">{booking.purpose}</td>
+                                    <td role="cell">{booking.location}</td>
+                                </tr>)
+                            }
                             </tbody>
                         </table>
                     </div>
@@ -83,8 +86,8 @@ const Profile = ({parkBookings, serviceBookings}) => {
                 <div className="row mt-5">
                     <div className="col text-center">
                         <Link href="/profile/edit">
-                        <a
-                            className="btn extra-thin green-transparent">Edit Profile</a>
+                            <a
+                                className="btn extra-thin green-transparent">Edit Profile</a>
                         </Link>
                     </div>
                 </div>

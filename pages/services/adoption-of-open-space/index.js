@@ -7,16 +7,39 @@ import {loader} from "../../../store/actions/loader";
 import {showNotifier} from "../../../store/actions/notifier";
 import Error from "../../../Components/Error";
 import Router from "next/router";
+import axiosInstance from "../../../config/axios";
+import Token from "../../../Utils/Token";
 
 const Adoption = () => {
     const dispatch = useDispatch();
     const {errors, register, handleSubmit} = useForm();
     const serviceRequestHandler = async data => {
+        const formData = new FormData();
+        Object.keys(data).forEach(key => {
+            if (key === 'request_letter') {
+                formData.append('request_letter', data[key][0]);
+            } else if (key === 'tree_pictures') {
+                Array.from(data[key]).forEach((tp, index) => formData.append('pictures[]', data[key][index]));
+            } else {
+                formData.append(key, data[key])
+            }
+        });
+
         dispatch(loader());
-        setTimeout(() => {
+
+        try {
+            const {data: response} = await axiosInstance.post(`services/4/book`, formData, {
+                headers: {Authorization: `Bearer ${Token()}`}
+            })
+            console.log(response);
             dispatch(loader());
-            dispatch(showNotifier('Request Sent'));
-        }, 1500);
+            dispatch(showNotifier('Request sent!'));
+            Router.push('/services');
+        } catch (e) {
+            console.log(e);
+            dispatch(loader());
+            dispatch(showNotifier(e.response.data.message, 'danger'));
+        }
     }
     return <Layout hasHeader={false}>
         <Head>
@@ -40,14 +63,14 @@ const Adoption = () => {
                             <div className="radio text-left">
                                 <label className="radio">Purpose of Adoption</label>
                                 <div className="d-flex flex-column">
-                                    <label><input checked type="radio" name="adoption"/>Corporate Branding</label>
-                                    <label><input type="radio" name="adoption"/>Static Billboard</label>
-                                    <label><input type="radio" name="adoption"/>Digital Billboard</label>
-                                    <label><input type="radio" name="adoption"/>Recreational Park</label>
-                                    <label><input type="radio" name="adoption"/>Scenic Park</label>
-                                    <label><input type="radio" name="adoption"/>Green House</label>
-                                    <label><input type="radio" name="adoption"/>Public Art</label>
-                                    <label><input type="radio" name="adoption"/>Other</label>
+                                    <label><input defaultChecked value="Corporate Branding" type="radio" ref={register({required: 'This field is required'})} name="purpose"/>Corporate Branding</label>
+                                    <label><input value="Static Billboard" type="radio" ref={register({required: 'This field is required'})} name="purpose"/>Static Billboard</label>
+                                    <label><input value="Digital Billboard" type="radio" ref={register({required: 'This field is required'})} name="purpose"/>Digital Billboard</label>
+                                    <label><input value="Recreational Park" type="radio" ref={register({required: 'This field is required'})} name="purpose"/>Recreational Park</label>
+                                    <label><input value="Scenic Park" type="radio" ref={register({required: 'This field is required'})} name="purpose"/>Scenic Park</label>
+                                    <label><input value="Green House" type="radio" ref={register({required: 'This field is required'})} name="purpose"/>Green House</label>
+                                    <label><input value="Public Art" type="radio" ref={register({required: 'This field is required'})} name="purpose"/>Public Art</label>
+                                    <label><input value="Other" type="radio" ref={register({required: 'This field is required'})} name="purpose"/>Other</label>
                                 </div>
                             </div>
 
