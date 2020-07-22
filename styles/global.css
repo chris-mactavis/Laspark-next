@@ -1018,6 +1018,28 @@ section.booking-history table th {
 section.booking-history table td {
   padding: 14px;
 }
+section.profile {
+  background: #EFFFEE;
+  padding: 75px 0;
+}
+section.profile .booking-history table {
+  width: 100%;
+}
+section.profile .booking-history table th, section.profile .booking-history table td {
+  text-align: center;
+}
+section.profile .booking-history table th {
+  background: #0bb503 !important;
+  color: white;
+  padding: 10px 0 !important;
+  font-family: "Quicksand", sans-serif;
+}
+section.profile .booking-history table tr:nth-of-type(even) td {
+  background: rgba(11, 181, 3, 0.1) !important;
+}
+section.profile .booking-history table tr td {
+  padding: 20px 0 !important;
+}
 
 ul {
   list-style: none;

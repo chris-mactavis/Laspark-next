@@ -349,8 +349,6 @@ section {
     }
   }
 
-
-
   &.parks {
     padding: 4rem 0;
     background: $light-green ;
@@ -729,7 +727,40 @@ section {
     }
   }
 
+  &.profile {
+    background: $light-green;
+    padding: 75px 0;
 
+    .booking-history{
+      table{
+        width: 100%;
+
+        th, td{
+          text-align: center;
+        }
+
+        th{
+          background: $mid-green !important;
+          color: white;
+          padding: 10px 0 !important;
+          font-family: $ffh;
+        }
+
+        tr{
+          //border-bottom: 2px solid $light-grey;
+          &:nth-of-type(even){
+            td{
+              background: rgba($mid-green, 0.1) !important;
+            }
+          }
+
+          td{
+            padding: 20px 0 !important;
+          }
+        }
+      }
+    }
+  }
 
 
 }
