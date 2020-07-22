@@ -9,6 +9,8 @@ import Token from "../../../Utils/Token";
 import Link from "next/link";
 import Cookies from 'js-cookie';
 import Error from "../../../Components/Error";
+import axiosInstance from "../../../config/axios";
+import {useDispatch} from "react-redux";
 
 const KanuPark = () => {
 
@@ -17,6 +19,8 @@ const KanuPark = () => {
     const [park, setPark] = useState('Entire Park');
     const [amount, setAmount] = useState(10000);
     const [capacity, setCapacity] = useState(255);
+    const [space, setSpace] = useState('');
+    const dispatch = useDispatch();
 
     const bookHandler = async data => {
         const handler = PaystackPop.setup({
@@ -26,7 +30,13 @@ const KanuPark = () => {
             currency: 'NGN',
             firstname: User().full_name,
             reference: 'The reference',
-            callback: function (response) {
+            callback: async function (response) {
+                const {data: res} = await axiosInstance.post(`park-spaces/${space}/book`, {date: data.date}, {
+                    headers: {
+                        Authorization: `Bearer ${Token()}`
+                    }
+                });
+                console.log(res);
                 // const reference = response.reference;
                 // alert('Payment complete! Reference: ' + reference);
                 $('#spaceModal').modal('hide');
@@ -40,7 +50,7 @@ const KanuPark = () => {
         handler.openIframe();
     }
 
-    const loadSpaceModal = (park, amount, capacity) => {
+    const loadSpaceModal = (park, amount, capacity, currentSpace) => {
         if (!Token()) {
             Cookies.set('redirectIntended', '/parks/ndubuisi-kanu-park')
             Router.push('/login');
@@ -49,6 +59,7 @@ const KanuPark = () => {
         setPark(park);
         setAmount(amount);
         setCapacity(capacity);
+        setSpace(currentSpace);
         $('#spaceModal').modal('show');
     }
 
@@ -206,7 +217,7 @@ const KanuPark = () => {
                                 <td role="cell">Exclusive Use</td>
                                 <td role="cell">2,500</td>
                                 <td role="cell">1,200,000</td>
-                                <td role="cell" onClick={() => loadSpaceModal('Exclusive Use', 1200000, 2500)}><a
+                                <td role="cell" onClick={() => loadSpaceModal('Exclusive Use', 1200000, 2500, 27)}><a
                                     className="btn extra-thin green-transparent" href="#">Book Now</a>
                                 </td>
                             </tr>
@@ -215,7 +226,7 @@ const KanuPark = () => {
                                 <td role="cell">Basketball Court</td>
                                 <td role="cell">300</td>
                                 <td role="cell">250,000</td>
-                                <td role="cell" onClick={() => loadSpaceModal('Basketball Court', 250000, 300)}><a
+                                <td role="cell" onClick={() => loadSpaceModal('Basketball Court', 250000, 300, 28)}><a
                                     className="btn extra-thin green-transparent" href="#">Book Now</a>
                                 </td>
                             </tr>
@@ -224,7 +235,7 @@ const KanuPark = () => {
                                 <td role="cell">Uncle Vinnie's Corner</td>
                                 <td role="cell">80</td>
                                 <td role="cell">100,000</td>
-                                <td role="cell" onClick={() => loadSpaceModal('Uncle Vinnie\'s Corner', 100000, 80)}><a
+                                <td role="cell" onClick={() => loadSpaceModal('Uncle Vinnie\'s Corner', 100000, 80, 29)}><a
                                     className="btn extra-thin green-transparent" href="#">Book Now</a>
                                 </td>
                             </tr>
@@ -233,7 +244,7 @@ const KanuPark = () => {
                                 <td role="cell">Gazebo 1</td>
                                 <td role="cell">70</td>
                                 <td role="cell">80,000</td>
-                                <td role="cell" onClick={() => loadSpaceModal('Gazebo 1', 80000, 70)}><a
+                                <td role="cell" onClick={() => loadSpaceModal('Gazebo 1', 80000, 70, 30)}><a
                                     className="btn extra-thin green-transparent" href="#">Book Now</a>
                                 </td>
                             </tr>
@@ -242,7 +253,7 @@ const KanuPark = () => {
                                 <td role="cell">The Fountain Corner</td>
                                 <td role="cell">50</td>
                                 <td role="cell">50,000</td>
-                                <td role="cell" onClick={() => loadSpaceModal('The Fountain Corner', 50000, 50)}><a
+                                <td role="cell" onClick={() => loadSpaceModal('The Fountain Corner', 50000, 50, 31)}><a
                                     className="btn extra-thin green-transparent" href="#">Book Now</a>
                                 </td>
                             </tr>
@@ -251,7 +262,7 @@ const KanuPark = () => {
                                 <td role="cell">Rotunda</td>
                                 <td role="cell">40</td>
                                 <td role="cell">40,000</td>
-                                <td role="cell" onClick={() => loadSpaceModal('Rotunda', 40000, 40)}><a
+                                <td role="cell" onClick={() => loadSpaceModal('Rotunda', 40000, 40, 32)}><a
                                     className="btn extra-thin green-transparent" href="#">Book Now</a>
                                 </td>
                             </tr>
