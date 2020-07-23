@@ -7,17 +7,42 @@ import {loader} from "../../../store/actions/loader";
 import {showNotifier} from "../../../store/actions/notifier";
 import Error from "../../../Components/Error";
 import Router from "next/router";
+import axiosInstance from "../../../config/axios";
+import Token from "../../../Utils/Token";
 
 const TreePruning = () => {
     const dispatch = useDispatch();
     const {errors, register, handleSubmit} = useForm();
     const serviceRequestHandler = async data => {
+
+        const formData = new FormData();
+        Object.keys(data).forEach(key => {
+            if (key === 'request_letter') {
+                formData.append('request_letter', data[key][0]);
+            } else if (key === 'tree_pictures') {
+                Array.from(data[key]).forEach((tp, index) => formData.append('pictures[]', data[key][index]));
+            } else {
+                formData.append(key, data[key])
+            }
+        });
+
         dispatch(loader());
-        setTimeout(() => {
+
+        try {
+            const {data: response} = await axiosInstance.post(`services/2/book`, formData, {
+                headers: {Authorization: `Bearer ${Token()}`}
+            })
+            console.log(response);
             dispatch(loader());
-            dispatch(showNotifier('Request Sent'));
-        }, 1500);
+            dispatch(showNotifier('Request sent!'));
+            Router.push('/services');
+        } catch (e) {
+            console.log(e);
+            dispatch(loader());
+            dispatch(showNotifier(e.response.data.message, 'danger'));
+        }
     }
+
     return <Layout hasHeader={false}>
         <Head>
             <title>Tree pruning | Laspark</title>
@@ -37,7 +62,7 @@ const TreePruning = () => {
                                    id="name" placeholder="Location of pruning*"/>
                             {errors.location && <Error>{errors.location.message}</Error>}
 
-                            <input ref={register({required: 'This field is required'})} type="text" name="no_of_trees"
+                            <input ref={register({required: 'This field is required'})} type="number" name="no_of_trees"
                                    id="cname" placeholder="Number of trees to be pruned*"/>
                             {errors.no_of_trees && <Error>{errors.no_of_trees.message}</Error>}
 
