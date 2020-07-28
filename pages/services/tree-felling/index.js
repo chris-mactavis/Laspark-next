@@ -81,6 +81,7 @@ const TreeFelling = ({localGovernment}) => {
                                    id="cname" placeholder="Number of trees to be felled*"/>
                             {errors.no_of_trees && <Error>{errors.no_of_trees.message}</Error>}
 
+
                             <select ref={register({required: 'This field is required'})} name="purpose">
                                 <option value="">Purpose for Felling*</option>
                                 <option value="weak">Weak</option>

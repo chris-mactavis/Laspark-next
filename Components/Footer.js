@@ -10,7 +10,7 @@ const Footer = () => {
                         <ul>
                             <li>
                                 <a target="_blank" href="https://goo.gl/maps/iCe4n5nUs7wcWzwD9">
-                                    Plot 2, Lateef Junaid Dosumu Street, CBD, Agidingbi, Ikeja, Lagos.
+                                    Plot 2, Lateef Junaid Dosunmu Street, CBD, Agidingbi, Ikeja, Lagos.
                                 </a>
                             </li>
                         </ul>
@@ -54,7 +54,7 @@ const Footer = () => {
 
                 <div className="row">
                     <div className="col text-center">
-                        <p> &copy;2020. All Rights Reserved. Lagos State Parks & Gardens. </p>
+                        <p> &copy;2020. All Rights Reserved. Lagos State Parks & Gardens Agency. </p>
                     </div>
                 </div>
             </div>
