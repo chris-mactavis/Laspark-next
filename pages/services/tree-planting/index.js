@@ -10,16 +10,14 @@ import Router from "next/router";
 import axiosInstance from "../../../config/axios";
 import Token from "../../../Utils/Token";
 
-const TreePlanting = () => {
+const TreePlanting = ({localGovernment}) => {
     const dispatch = useDispatch();
     const {errors, register, handleSubmit} = useForm();
     const serviceRequestHandler = async data => {
 
         const formData = new FormData();
         Object.keys(data).forEach(key => {
-            if (key === 'request_letter') {
-                formData.append('request_letter', data[key][0]);
-            } else if (key === 'tree_pictures') {
+            if (key === 'tree_pictures') {
                 Array.from(data[key]).forEach((tp, index) => formData.append('pictures[]', data[key][index]));
             } else {
                 formData.append(key, data[key])
@@ -58,24 +56,52 @@ const TreePlanting = () => {
                     <div className="col-md-6 d-flex align-items-center">
                         <form className="account-create w-100" onSubmit={handleSubmit(serviceRequestHandler)}>
                             <h1>Tree Planting</h1>
-                            <input ref={register({required: 'This field is required'})} type="text" name="location"
-                                   id="name" placeholder="Location of planting*"/>
-                            {errors.location && <Error>{errors.location.message}</Error>}
+
+                            <input ref={register({required: 'This field is required'})} type="text" name="tree_type"
+                                   placeholder="Tree type*"/>
+                            {errors.tree_type && <Error>{errors.tree_type.message}</Error>}
+
+                            <div className="text-left">
+                                <label className="w-100">Attach Tree Picture*</label>
+                                <input ref={register({required: 'This field is required'})} type="file" multiple
+                                       name="tree_pictures" placeholder="Tree Pictures*"/>
+                                {errors.tree_pictures && <Error>{errors.tree_pictures.message}</Error>}
+                            </div>
+
+                            <div className="d-flex inline-form">
+                                <label>Date for Planting</label>
+                                <input ref={register({required: 'This field is required'})} type="date"
+                                       name="date_for_planting"
+                                       placeholder="Proposed date for planting*"/>
+                            </div>
+
+                            <select ref={register({required: 'This field is required'})} name="local_government_id">
+                                <option value="">Select Local Government</option>
+                                {
+                                    localGovernment.map(lg => <option value={lg.id} key={lg.id}>{lg.name}</option>)
+                                }
+                            </select>
+                            {errors.local_government_id && <Error>{errors.local_government_id.message}</Error>}
+
+                            <input ref={register({required: 'This field is required'})} type="text" name="street_name"
+                                   placeholder="Street name*"/>
+                            {errors.street_name && <Error>{errors.street_name.message}</Error>}
+
+                            <input ref={register({required: 'This field is required'})} type="text" name="house_number"
+                                   placeholder="House Number*"/>
+                            {errors.house_number && <Error>{errors.house_number.message}</Error>}
 
                             <input ref={register({required: 'This field is required'})} type="number" name="no_of_trees"
                                    id="cname" placeholder="Number of trees to be planted (TPM)*"/>
                             {errors.no_of_trees && <Error>{errors.no_of_trees.message}</Error>}
 
-                            <input ref={register({required: 'This field is required'})} type="text" name="purpose"
-                                   id="text" placeholder="Purpose for Planting*"/>
+                            <input ref={register} type="text" name="purpose"
+                                   placeholder="Purpose for Planting*"/>
                             {errors.purpose && <Error>{errors.purpose.message}</Error>}
 
-                            <div className="text-left">
-                                <label className="w-100">Request Letter*</label>
-                                <input ref={register({required: 'This field is required'})} id="req-letter" type="file"
-                                       name="request_letter" placeholder="Request letter*"/>
-                                {errors.purpose && <Error>{errors.request_letter.message}</Error>}
-                            </div>
+                            <textarea ref={register} rows="3" name="request_letter"
+                                      placeholder="Request letter"/>
+                            {errors.request_letter && <Error>{errors.request_letter.message}</Error>}
 
                             <button className="btn green thin wide" type="submit">Submit Request</button>
                         </form>
@@ -136,6 +162,14 @@ const TreePlanting = () => {
             </div>
         </section>
     </Layout>
+}
+
+TreePlanting.getInitialProps = async () => {
+    const {data} = await axiosInstance.get('local-governments');
+
+    return {
+        localGovernment: data
+    }
 }
 
 export default TreePlanting;

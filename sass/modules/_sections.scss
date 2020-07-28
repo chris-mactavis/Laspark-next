@@ -135,7 +135,7 @@ section {
     //padding: 75px 0;
 
     .bg-row{
-      height: calc(100vh - 100px);
+      //height: calc(100vh - 100px);
 
       .bg{
         background-image: url("/images/services/tree-felling.jpg");
@@ -201,6 +201,10 @@ section {
         }
       }
     }
+
+    //.other-services {
+    //  margin-top: 300px;
+    //}
   }
 
   &.login{
