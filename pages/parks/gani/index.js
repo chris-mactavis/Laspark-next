@@ -131,7 +131,7 @@ const Gani = () => {
                             <div>
                                 <h5>Park Profile</h5>
 
-                                <p>Gani Fawehinmi Park, Ikorodu Road, Ojota.</p>
+                                <p>The Gani Fawehinmi Park, Ojota formerly known as ‘Freedom Park’ was named after a prominent human right activist Chief Abdul-Ganiyu "Gani" Oyesola Fawehinmi. The park was commissioned by The Lagos State Governor, Mr. Akinwunmi Ambode in the year 2018 by unveiling 44-feet edifice to commemorate the late legal luminary, for his 80th posthumous birthday of the late icon. The beautified park is situated in the heart of Ojota along Ikorodu road on a piece of land measuring up to 9,194M2  with the following structures:</p>
                             </div>
                         </div>
                     </div>
@@ -141,17 +141,22 @@ const Gani = () => {
                             <div className="amenities">
                                 <div>
                                     <img src="/images/amenities/toilet.svg"/>
-                                    <p>5 Toilets</p>
+                                    <p>Toilets</p>
                                 </div>
 
                                 <div>
-                                    <img src="/images/amenities/electricity.svg"/>
-                                    <p>24-hours Electricity</p>
+                                    <img src="/images/amenities/parking.svg"/>
+                                    <p>Car park </p>
+                                </div>
+
+                                <div>
+                                    <img src="/images/amenities/backup-generator.svg"/>
+                                    <p>Back-up Generator</p>
                                 </div>
 
                                 <div>
                                     <img src="/images/amenities/slide.svg"/>
-                                    <p>Children Playground</p>
+                                    <p>Children’s play area</p>
                                 </div>
                             </div>
                         </div>
