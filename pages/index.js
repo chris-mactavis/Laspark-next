@@ -70,7 +70,7 @@ const Home = () => {
             <div className="container">
                 <div className="row">
                     <div className="col">
-                        <h2 className="text-center mb-5">Book Our Parks</h2>
+                        <h2 className="text-center mb-5">Book A Park</h2>
                     </div>
                 </div>
 
@@ -247,7 +247,7 @@ const Home = () => {
                 </div>
 
                 <div className="text-center">
-                    <Link href="/parks"><a className="btn green wide">Book a Park</a></Link>
+                    <Link href="/parks"><a className="btn green wide">View Parks</a></Link>
                 </div>
             </div>
         </section>
@@ -256,7 +256,7 @@ const Home = () => {
             <div className="container">
                 <div className="row">
                     <div className="col">
-                        <h2 className="text-center mb-5">Request Our Services</h2>
+                        <h2 className="text-center mb-5">Request A Service</h2>
                     </div>
                 </div>
 
@@ -319,7 +319,7 @@ const Home = () => {
                 </div>
 
                 <div className="text-center">
-                    <Link href="/services"><a className="btn green wide">Request a Service</a></Link>
+                    <Link href="/services"><a className="btn green wide">Our Services</a></Link>
                 </div>
             </div>
 

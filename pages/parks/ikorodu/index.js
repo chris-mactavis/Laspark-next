@@ -137,7 +137,9 @@ const Ikorodu = () => {
                             <div>
                                 <h5>Park Profile</h5>
 
-                                <p>Near Custom Service Lighter Terminal Ipakodo – Ebute,Ikorodu, Lagos.</p>
+                                <p>Ikorodu recreational park an ultra-modern recreational garden was established in 2010, a strategy employed by the government to take governance to the people of that locality. The purpose of it’s creation of the park is mainly for relaxations as well as social event.
+                                The park sits on a total land area of approximately 10,200M2 and is managed by Lagos State Parks & Gardens Agency (LASPARK)
+                                Some of the side attraction of the park includes:</p>
                             </div>
                         </div>
                     </div>
@@ -146,23 +148,8 @@ const Ikorodu = () => {
                         <div className="col">
                             <div className="amenities">
                                 <div>
-                                    <img src="/images/amenities/toilet.svg"/>
-                                    <p>8 Toilets</p>
-                                </div>
-
-                                <div>
-                                    <img src="/images/amenities/electricity.svg"/>
-                                    <p>24-hours Electricity</p>
-                                </div>
-
-                                <div>
-                                    <img src="/images/amenities/fountain.svg"/>
-                                    <p>Fountain</p>
-                                </div>
-
-                                <div>
                                     <img src="/images/amenities/slide.svg"/>
-                                    <p>Children Play Area</p>
+                                    <p>Children Playground</p>
                                 </div>
 
                                 <div>
@@ -171,18 +158,23 @@ const Ikorodu = () => {
                                 </div>
 
                                 <div>
-                                    <img src="/images/amenities/security.svg"/>
-                                    <p>Security Presence</p>
+                                    <img src="/images/amenities/lounge.png"/>
+                                    <p>lounge/ Huts</p>
                                 </div>
 
                                 <div>
-                                    <img src="/images/amenities/parking.svg"/>
-                                    <p>Parking Space</p>
+                                    <img src="/images/amenities/zoo.svg"/>
+                                    <p>Mini Zoo</p>
                                 </div>
 
                                 <div>
                                     <img src="/images/amenities/football.svg"/>
                                     <p>Five-a-side Football Pitch</p>
+                                </div>
+
+                                <div>
+                                    <img src="/images/amenities/food-stall.svg"/>
+                                    <p>Food Court</p>
                                 </div>
                             </div>
                         </div>

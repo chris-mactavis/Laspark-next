@@ -129,7 +129,7 @@ const Badagry = () => {
                             <div>
                                 <h5>Park Profile</h5>
 
-                                <p>Badagry Recreational Park, Idale-Topo, Badagry.</p>
+                                <p>The Badagry Recreational Park located at Topo-Idale Whedakoh, Ascon Road ,Badagry was established and commissioned in the year 2017 by the Special Adviser on Housing to the Former Lagos State Governor; Akinwunmi Ambode. It sits on an expanse of Land measuring up to 17,710 square meters and houses the following structures:</p>
                             </div>
                         </div>
                     </div>
@@ -139,32 +139,62 @@ const Badagry = () => {
                             <div className="amenities">
                                 <div>
                                     <img src="/images/amenities/toilet.svg"/>
-                                    <p>4 Toilets</p>
+                                    <p>Toilets</p>
                                 </div>
 
                                 <div>
-                                    <img src="/images/amenities/electricity.svg"/>
-                                    <p>24-hours Electricity</p>
-                                </div>
-
-                                <div>
-                                    <img src="/images/amenities/basketball.svg"/>
-                                    <p>Basketball Court</p>
-                                </div>
-
-                                <div>
-                                    <img src="/images/amenities/conference.png"/>
-                                    <p>Conference Room</p>
-                                </div>
-
-                                <div>
-                                    <img src="/images/amenities/tennis-court.svg"/>
-                                    <p>Lawn Tennis Court</p>
+                                    <img src="/images/amenities/slide.svg"/>
+                                    <p>Children's Playground</p>
                                 </div>
 
                                 <div>
                                     <img src="/images/amenities/football.svg"/>
                                     <p>Five-a-side Football Pitch</p>
+                                </div>
+
+                                <div>
+                                    <img src="/images/amenities/fountain.svg"/>
+                                    <p>A Fountain</p>
+                                </div>
+
+                                <div>
+                                    <img src="/images/amenities/fish.png"/>
+                                    <p>A Fish Pond</p>
+                                </div>
+
+                                <div>
+                                    <img src="/images/amenities/police-station.svg"/>
+                                    <p>A Security Building</p>
+                                </div>
+
+                                <div>
+                                    <img src="/images/amenities/gazebo.svg"/>
+                                    <p>Gazebo</p>
+                                </div>
+
+                                <div>
+                                    <img src="/images/amenities/parking.svg"/>
+                                    <p>Car Park</p>
+                                </div>
+
+                                <div>
+                                    <img src="/images/amenities/stadium.svg"/>
+                                    <p>A Multipurpose Court for Sports</p>
+                                </div>
+
+                                <div>
+                                    <img src="/images/amenities/kitchen.svg"/>
+                                    <p>Kitchen</p>
+                                </div>
+
+                                <div>
+                                    <img src="/images/amenities/administration.svg"/>
+                                    <p>An Administrative Block</p>
+                                </div>
+
+                                <div>
+                                    <img src="/images/amenities/backup-generator.svg"/>
+                                    <p>Generator House</p>
                                 </div>
                             </div>
                         </div>
