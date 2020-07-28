@@ -2,7 +2,7 @@ form {
   &.account-create {
     padding: 0 20px;
 
-    input, textarea {
+    input, textarea, select {
       width: 100%;
       background: transparent;
       border-top: 0;
@@ -17,6 +17,10 @@ form {
       &:focus{
         border-color: $mid-green;
       }
+    }
+
+    select {
+      border-bottom: 2px solid #C4C4C4;
     }
 
     .forgot-pwd {
@@ -80,6 +84,15 @@ form {
     }
   }
   
-
+  .inline-form {
+    display: flex;
+    label {
+      display: block;
+      margin-right: 10px;
+    }
+    input {
+      flex: 1;
+    }
+  }
 
 }

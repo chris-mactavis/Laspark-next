@@ -10,7 +10,7 @@ import Router from "next/router";
 import axiosInstance from "../../../config/axios";
 import Token from "../../../Utils/Token";
 
-const TreeFelling = () => {
+const TreeFelling = ({localGovernment}) => {
     const dispatch = useDispatch();
     const {errors, register, handleSubmit} = useForm();
 
@@ -18,9 +18,10 @@ const TreeFelling = () => {
 
         const formData = new FormData();
         Object.keys(data).forEach(key => {
-            if (key === 'request_letter') {
-                formData.append('request_letter', data[key][0]);
-            } else if (key === 'tree_pictures') {
+            // if (key === 'request_letter') {
+            //     formData.append('request_letter', data[key][0]);
+            // } else
+            if (key === 'tree_pictures') {
                 Array.from(data[key]).forEach((tp, index) => formData.append('pictures[]', data[key][index]));
             } else {
                 formData.append(key, data[key])
@@ -59,24 +60,44 @@ const TreeFelling = () => {
                     <div className="col-md-6 d-flex align-items-center">
                         <form className="account-create w-100" onSubmit={handleSubmit(serviceRequestHandler)}>
                             <h1>Tree Felling</h1>
-                            <input ref={register({required: 'This field is required'})} type="text" name="location"
-                                   id="name" placeholder="Location of felling*"/>
-                            {errors.location && <Error>{errors.location.message}</Error>}
+
+                            <select ref={register({required: 'This field is required'})} name="local_government_id">
+                                <option value="">Select Local Government</option>
+                                {
+                                    localGovernment.map(lg => <option value={lg.id} key={lg.id}>{lg.name}</option>)
+                                }
+                            </select>
+                            {errors.local_government_id && <Error>{errors.local_government_id.message}</Error>}
+
+                            <input ref={register({required: 'This field is required'})} type="text" name="street_name"
+                                   placeholder="Street name*"/>
+                            {errors.street_name && <Error>{errors.street_name.message}</Error>}
+
+                            <input ref={register({required: 'This field is required'})} type="text" name="house_number"
+                                   placeholder="House Number*"/>
+                            {errors.house_number && <Error>{errors.house_number.message}</Error>}
 
                             <input ref={register({required: 'This field is required'})} type="number" name="no_of_trees"
                                    id="cname" placeholder="Number of trees to be felled*"/>
                             {errors.no_of_trees && <Error>{errors.no_of_trees.message}</Error>}
 
-                            <input ref={register({required: 'This field is required'})} type="text" name="purpose"
-                                   id="text" placeholder="Why do you want to fell a tree*"/>
+
+                            <select ref={register({required: 'This field is required'})} name="purpose">
+                                <option value="">Purpose for Felling*</option>
+                                <option value="weak">Weak</option>
+                                <option value="old">Old</option>
+                                <option value="disturbance">Disturbance</option>
+                                <option value="obstruction">Obstruction</option>
+                                <option value="threat to the environment">Threat to the environment</option>
+                                <option value="obstruct pathway">Obstruct pathway</option>
+                                <option value="others">Others</option>
+                            </select>
                             {errors.purpose && <Error>{errors.purpose.message}</Error>}
 
-                            <div className="text-left">
-                                <label className="text-left">Request Letter*</label>
-                                <input ref={register({required: 'This field is required'})} id="req-letter" type="file"
-                                       name="request_letter" placeholder="Request letter*"/>
-                                {errors.purpose && <Error>{errors.request_letter.message}</Error>}
-                            </div>
+                            <textarea ref={register} rows="3" name="request_letter"
+                                   placeholder="Request letter"/>
+                            {errors.request_letter && <Error>{errors.request_letter.message}</Error>}
+
 
                             <div className="text-left">
                                 <label className="text-left">Tree Pictures*</label>
@@ -144,6 +165,14 @@ const TreeFelling = () => {
             </div>
         </section>
     </Layout>
+}
+
+TreeFelling.getInitialProps = async () => {
+    const {data} = await axiosInstance.get('local-governments');
+
+    return {
+        localGovernment: data
+    }
 }
 
 export default TreeFelling;
