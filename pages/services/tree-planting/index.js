@@ -100,7 +100,7 @@ const TreePlanting = ({localGovernment}) => {
                             {errors.purpose && <Error>{errors.purpose.message}</Error>}
 
                             <textarea ref={register} rows="3" name="request_letter"
-                                      placeholder="Request letter"/>
+                                      placeholder="Request letter (minimum of 250 words)"/>
                             {errors.request_letter && <Error>{errors.request_letter.message}</Error>}
 
                             <button className="btn green thin wide" type="submit">Submit Request</button>
