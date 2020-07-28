@@ -247,7 +247,7 @@ const Home = () => {
                 </div>
 
                 <div className="text-center">
-                    <Link href="/parks"><a className="btn green wide">View Parks</a></Link>
+                    <Link href="/parks"><a className="btn green wide">Book a Park</a></Link>
                 </div>
             </div>
         </section>
@@ -319,7 +319,7 @@ const Home = () => {
                 </div>
 
                 <div className="text-center">
-                    <Link href="/services"><a className="btn green wide">View Services</a></Link>
+                    <Link href="/services"><a className="btn green wide">Request a Service</a></Link>
                 </div>
             </div>
 

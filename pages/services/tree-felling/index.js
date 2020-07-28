@@ -68,7 +68,7 @@ const TreeFelling = () => {
                             {errors.no_of_trees && <Error>{errors.no_of_trees.message}</Error>}
 
                             <input ref={register({required: 'This field is required'})} type="text" name="purpose"
-                                   id="text" placeholder="Purpose for Felling*"/>
+                                   id="text" placeholder="Why do you want to fell a tree*"/>
                             {errors.purpose && <Error>{errors.purpose.message}</Error>}
 
                             <div className="text-left">

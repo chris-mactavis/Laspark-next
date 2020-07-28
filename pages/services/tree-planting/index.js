@@ -63,7 +63,7 @@ const TreePlanting = () => {
                             {errors.location && <Error>{errors.location.message}</Error>}
 
                             <input ref={register({required: 'This field is required'})} type="number" name="no_of_trees"
-                                   id="cname" placeholder="Number of trees to be planted (TPM)*"/>
+                                   id="cname" placeholder="Number of trees to be planted*"/>
                             {errors.no_of_trees && <Error>{errors.no_of_trees.message}</Error>}
 
                             <input ref={register({required: 'This field is required'})} type="text" name="purpose"
