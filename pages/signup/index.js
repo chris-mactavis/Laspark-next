@@ -40,6 +40,15 @@ const Signup = () => {
         }
     }
 
+    const verifyPhoneHandler = async phone => {
+        try {
+            const {data: {phone_exists}} = await axiosInstance.post('verify-phone', {phone});
+            return !phone_exists || 'Phone number already exists';
+        } catch (e) {
+
+        }
+    }
+
 
     return <Layout mainClass="bg signup">
 
@@ -73,11 +82,14 @@ const Signup = () => {
                                        id="email" placeholder="Email address*"/>
                                 {errors.email && <Error>{errors.email.message}</Error>}
 
-                                <input type="tel" ref={register({required: 'This field is required'})} name="phone"
+                                <input type="tel" ref={register({
+                                    required: 'This field is required',
+                                    validate: async value => verifyPhoneHandler(value)
+                                })} name="phone"
                                        id="tel" placeholder="Phone number*"/>
                                 {errors.phone && <Error>{errors.phone.message}</Error>}
 
-                                <input type="text" ref={register({required: 'This field is required'})} name="address"
+                                <input type="text" ref={register} name="address"
                                        id="address" placeholder="Address"/>
 
                                 <input type="password" ref={register({required: 'You must specify a password'})}

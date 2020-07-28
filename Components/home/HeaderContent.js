@@ -5,11 +5,11 @@ const HeaderContent = () => {
     return <>
         <div className="banner-description z-10">
             <h1>Laspark</h1>
-            <p className="desc">Making a greener and healthier Lagos.</p>
+            <p className="desc">Lagos State Parks & Gardens Agency.</p>
             <div className="text-center">
-                <Link href="/parks"><a className="btn w-200 white">Book a park</a></Link> &ensp;
-                <Link href="/services"><a href="#" className="btn w-200 white">Request
-                    Service</a></Link>
+                <Link href="/parks"><a className="btn w-200 white">Our parks</a></Link> &ensp;
+                <Link href="/services"><a href="#" className="btn w-200 white">Our
+                    Services</a></Link>
             </div>
         </div>
 
