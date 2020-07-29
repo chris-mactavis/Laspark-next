@@ -75,8 +75,8 @@ export default function ServiceBookingDetail({booking, serviceMessages}) {
                     messages.map(message => <div key={message.id} className="row">
                         <div className="col-8 mx-auto chats">
                             <div className="header d-flex flex-column">
-                                <p className="mb-0">{message.user.full_name}</p>
-                                <span>{message.user.role === 'admin' ? 'Staff' : 'Me'}</span>
+                                <p className="mb-0">{message.user ? message.user.full_name : 'N/A'}</p>
+                                <span>{message.user ? (message.user.role === 'admin' ? 'Staff' : 'Me') : 'N/A'}</span>
                             </div>
                             <div className="body">
                                 <div dangerouslySetInnerHTML={createMarkup(message.message)}/>
