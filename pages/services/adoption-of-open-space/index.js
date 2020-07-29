@@ -76,7 +76,7 @@ const Adoption = ({localGovernment}) => {
                             {errors.size && <Error>{errors.size.message}</Error>}
 
                             <div className="text-left">
-                                <label className="text-left w-100">Current Tree Picture*</label>
+                                <label className="text-left w-100">Current Picture*</label>
                                 <input ref={register({required: 'This field is required'})} type="file"
                                        name="tree_pictures" placeholder="Current Picture*"/>
                                 {errors.current_tree_picture && <Error>{errors.current_tree_picture.message}</Error>}
