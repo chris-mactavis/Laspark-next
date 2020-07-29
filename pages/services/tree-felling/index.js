@@ -18,10 +18,9 @@ const TreeFelling = ({localGovernment}) => {
 
         const formData = new FormData();
         Object.keys(data).forEach(key => {
-            // if (key === 'request_letter') {
-            //     formData.append('request_letter', data[key][0]);
-            // } else
-            if (key === 'tree_pictures') {
+            if (key === 'request_letter') {
+                formData.append('request_letter_file', data[key][0]);
+            } else if (key === 'tree_pictures') {
                 Array.from(data[key]).forEach((tp, index) => formData.append('pictures[]', data[key][index]));
             } else {
                 formData.append(key, data[key])
@@ -81,7 +80,6 @@ const TreeFelling = ({localGovernment}) => {
                                    id="cname" placeholder="Number of trees to be felled*"/>
                             {errors.no_of_trees && <Error>{errors.no_of_trees.message}</Error>}
 
-
                             <select ref={register({required: 'This field is required'})} name="purpose">
                                 <option value="">Purpose for Felling*</option>
                                 <option value="weak">Weak</option>
@@ -94,10 +92,13 @@ const TreeFelling = ({localGovernment}) => {
                             </select>
                             {errors.purpose && <Error>{errors.purpose.message}</Error>}
 
-                            <textarea ref={register} rows="3" name="request_letter"
-                                   placeholder="Request letter (minimum of 250 words)"/>
-                            {errors.request_letter && <Error>{errors.request_letter.message}</Error>}
-
+                            <div className="text-left">
+                                <label className="text-left">Request Letter*</label>
+                                <input ref={register({required: 'This field is required'})} type="file"
+                                       name="request_letter"
+                                       placeholder="Request letter"/>
+                                {errors.request_letter && <Error>{errors.request_letter.message}</Error>}
+                            </div>
 
                             <div className="text-left">
                                 <label className="text-left">Tree Pictures*</label>
