@@ -2,20 +2,20 @@ import axiosInstance from "../../../config/axios";
 import Layout from "../../../Components/Layout";
 import Head from "next/head";
 import React, {useState} from "react";
-import Error from "../../../Components/Error";
 import {useForm} from "react-hook-form";
 import {useDispatch} from "react-redux";
 import {loader} from "../../../store/actions/loader";
 import Token from "../../../Utils/Token";
 import {showNotifier} from "../../../store/actions/notifier";
 
-export default function ServiceBookingDetail({booking}) {
+export default function ServiceBookingDetail({booking, serviceMessages}) {
+
     const createMarkup = (content) => ({__html: content});
 
     const {register, handleSubmit, reset} = useForm();
     const dispatch = useDispatch();
 
-    const [messages, setMessages] = useState(booking.messages || []);
+    const [messages, setMessages] = useState(serviceMessages || []);
 
     const replyHandler = async data => {
         dispatch(loader());
@@ -49,7 +49,7 @@ export default function ServiceBookingDetail({booking}) {
             <div className="container">
                 <div className="row">
                     <div className="col">
-                        <h2 className="text-center mb-5">{booking.service.service}</h2>
+                        <h2 className="text-center mb-5">#{booking.order_number} ({booking.service.service})</h2>
                     </div>
                 </div>
 
@@ -114,11 +114,12 @@ export async function getStaticPaths(context) {
 
 export async function getStaticProps(context) {
     const id = context.params.id;
-    const {data: {data: booking}} = await axiosInstance.get(`my-booked-services/${id}`);
+    const {data: {data: booking, messages}} = await axiosInstance.get(`my-booked-services/${id}`);
 
     return {
         props: {
-            booking
+            booking,
+            serviceMessages: messages
         }
     }
 }
