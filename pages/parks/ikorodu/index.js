@@ -137,8 +137,8 @@ const Ikorodu = () => {
                             <div>
                                 <h5>Park Profile</h5>
 
-                                <p>Ikorodu recreational park an ultra-modern recreational garden was established in 2010, a strategy employed by the government to take governance to the people of that locality. The purpose of it’s creation of the park is mainly for relaxations as well as social event.
-                                The park sits on a total land area of approximately 10,200M2 and is managed by Lagos State Parks & Gardens Agency (LASPARK)
+                                <p>Ikorodu recreational park an ultra-modern recreational garden was established in 2010, a strategy employed by the government to take governance to the people of that locality. The purpose of it’s creation of the park is mainly for relaxations as well as social event.</p>
+                                <p>The park sits on a total land area of approximately 10,200M2 and is managed by Lagos State Parks & Gardens Agency (LASPARK)
                                 Some of the side attraction of the park includes:</p>
                             </div>
                         </div>

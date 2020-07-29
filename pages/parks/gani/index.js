@@ -131,7 +131,8 @@ const Gani = () => {
                             <div>
                                 <h5>Park Profile</h5>
 
-                                <p>The Gani Fawehinmi Park, Ojota formerly known as ‘Freedom Park’ was named after a prominent human right activist Chief Abdul-Ganiyu "Gani" Oyesola Fawehinmi. The park was commissioned by The Lagos State Governor, Mr. Akinwunmi Ambode in the year 2018 by unveiling 44-feet edifice to commemorate the late legal luminary, for his 80th posthumous birthday of the late icon. The beautified park is situated in the heart of Ojota along Ikorodu road on a piece of land measuring up to 9,194M2  with the following structures:</p>
+                                <p>The Gani Fawehinmi Park, Ojota formerly known as ‘Freedom Park’ was named after a prominent human right activist Chief Abdul-Ganiyu "Gani" Oyesola Fawehinmi. The park was commissioned by The Lagos State Governor, Mr. Akinwunmi Ambode in the year 2018 by unveiling 44-feet edifice to commemorate the late legal luminary, for his 80th posthumous birthday of the late icon.</p> 
+                                <p>The beautified park is situated in the heart of Ojota along Ikorodu road on a piece of land measuring up to 9,194M2  with the following structures:</p>
                             </div>
                         </div>
                     </div>
