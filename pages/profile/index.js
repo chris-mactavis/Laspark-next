@@ -35,6 +35,7 @@ const Profile = ({parkBookings, serviceBookings}) => {
                         <table role="table">
                             <thead role="rowgroup">
                             <tr role="row">
+                                <th role="columnheader">Order #</th>
                                 <th role="columnheader">Park Space(Park)</th>
                                 <th role="columnheader">Amount Paid(₦)</th>
                                 <th role="columnheader">Date Booked</th>
@@ -43,6 +44,7 @@ const Profile = ({parkBookings, serviceBookings}) => {
                             <tbody role="rowgroup">
                             {
                                 parkBookings.map(booking => <tr role="row" key={booking.id}>
+                                    <td role="cell">#{booking.order_number}</td>
                                     <td role="cell">{booking.park_space.space} ({booking.park.name})</td>
                                     <td role="cell">{booking.amount_formatted}</td>
                                     <td role="cell">{booking.date}</td>
@@ -65,6 +67,7 @@ const Profile = ({parkBookings, serviceBookings}) => {
                         <table role="table">
                             <thead role="rowgroup">
                             <tr role="row">
+                                <th role="columnheader">Order #</th>
                                 <th role="columnheader">Service</th>
                                 <th role="columnheader">Purpose</th>
                                 <th role="columnheader">Location</th>
@@ -73,9 +76,10 @@ const Profile = ({parkBookings, serviceBookings}) => {
                             <tbody role="rowgroup">
                             {
                                 serviceBookings.map(booking => <tr role="row" key={booking.id} className="cursor-pointer" onClick={() => goToChat(booking.id)}>
+                                    <td role="cell">#{booking.order_number}</td>
                                     <td role="cell">{booking.service.service}</td>
                                     <td role="cell">{booking.purpose}</td>
-                                    <td role="cell">{booking.location}</td>
+                                    <td role="cell">{booking.local_government}</td>
                                 </tr>)
                             }
                             </tbody>
