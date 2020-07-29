@@ -129,7 +129,9 @@ const Badagry = () => {
                             <div>
                                 <h5>Park Profile</h5>
 
-                                <p>The Badagry Recreational Park located at Topo-Idale Whedakoh, Ascon Road ,Badagry was established and commissioned in the year 2017 by the Special Adviser on Housing to the Former Lagos State Governor; Akinwunmi Ambode. It sits on an expanse of Land measuring up to 17,710 square meters and houses the following structures:</p>
+                                <p>The Badagry Recreational Park located at Topo-Idale Whedakoh, Ascon Road, Badagry was established and commissioned in the year 2017 by the Special Adviser on Housing to the Former Lagos State Governor; Akinwunmi Ambode.</p>
+                                <p>Badagry known for its legendary historical backgrounds as a tourist haven is the motivation for establishing the park in that axis to further enhance its accessibility to tourists and fun seekers as well as those living in the locality.</p> 
+                                <p> It sits on an expanse of Land measuring up to 17,710 square meters and houses the following structures:</p>
                             </div>
                         </div>
                     </div>
