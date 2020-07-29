@@ -10,6 +10,7 @@ import {loader} from "../../store/actions/loader";
 import axiosInstance from "../../config/axios";
 import {showNotifier} from "../../store/actions/notifier";
 import {withoutAuth} from "../../Components/hoc/auth";
+import {storeAuth} from "../../store/actions/auth";
 
 const Signup = () => {
     const {register, errors, handleSubmit, watch} = useForm();
@@ -20,6 +21,7 @@ const Signup = () => {
         dispatch(loader());
         try {
             const {data: response} = await axiosInstance.post('register', data);
+            dispatch(storeAuth(data))
             dispatch(loader());
             dispatch(showNotifier('Registered successfully!'))
             Router.push('/');
