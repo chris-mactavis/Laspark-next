@@ -1,14 +1,14 @@
 import axiosInstance from "../../../config/axios";
 import Layout from "../../../Components/Layout";
 import Head from "next/head";
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {useForm} from "react-hook-form";
 import {useDispatch} from "react-redux";
 import {loader} from "../../../store/actions/loader";
 import Token from "../../../Utils/Token";
 import {showNotifier} from "../../../store/actions/notifier";
 
-export default function ServiceBookingDetail({booking, serviceMessages}) {
+export default function ServiceBookingDetail({booking, serviceMessages, serviceBookingId}) {
 
     const createMarkup = (content) => ({__html: content});
 
@@ -16,6 +16,14 @@ export default function ServiceBookingDetail({booking, serviceMessages}) {
     const dispatch = useDispatch();
 
     const [messages, setMessages] = useState(serviceMessages || []);
+
+    useEffect(() => {
+        async function fetchData() {
+            const {data: {messages}} = await axiosInstance.get(`my-booked-services/${serviceBookingId}`);
+            setMessages(messages);
+        }
+        fetchData();
+    }, [])
 
     const replyHandler = async data => {
         dispatch(loader());
@@ -119,7 +127,8 @@ export async function getStaticProps(context) {
     return {
         props: {
             booking,
-            serviceMessages: messages
+            serviceMessages: messages,
+            serviceBookingId: id
         }
     }
 }
