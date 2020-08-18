@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import Head from "next/head";
 import TopBar from "./TopBar";
 import Footer from "./Footer";
@@ -7,9 +7,16 @@ import Notifier from "./UI/Notifier";
 import Nav from "./Nav";
 import Link from "next/link";
 import {useSelector} from "react-redux";
+import ParkRules from "./ParkRules";
 
 const Layout = ({children, headerContent, page = null, mainClass = null, headerClass = null, hasHeader = true}) => {
     const isLoggedIn = useSelector(state => state.auth.loggedIn);
+
+    const showRules = useSelector(state => state.bookings.showParkRules);
+
+    useEffect(() => {
+        $('#parkRules').modal(showRules ? 'show' : 'hide');
+    }, [showRules])
 
     return (
         <>
@@ -79,13 +86,15 @@ const Layout = ({children, headerContent, page = null, mainClass = null, headerC
                                 <img className="navbar-toggler-icon" src="/images/icon/button.svg" alt=""/>
                             </button>
 
-                            <Nav isLoggedIn={isLoggedIn} />
+                            <Nav isLoggedIn={isLoggedIn}/>
                         </div>
                     </nav>
                 }
 
                 {children}
             </main>
+
+            <ParkRules/>
 
             <Footer/>
         </>
