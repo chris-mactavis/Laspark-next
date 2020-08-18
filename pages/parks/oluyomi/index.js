@@ -43,7 +43,7 @@ const Oluyomi = () => {
                 // alert('Payment complete! Reference: ' + reference);
                 $('#spaceModal').modal('hide');
                 dispatch(showNotifier('Space Booked'));
-                // Router.push('/');
+                Router.push('/');
             },
             onClose: function () {
                 // alert('Transaction was not completed, window closed.');
