@@ -11,6 +11,7 @@ import Cookies from 'js-cookie';
 import Error from "../../../Components/Error";
 import {useDispatch} from "react-redux";
 import axiosInstance from "../../../config/axios";
+import {toggleParkRules} from "../../../store/actions/booking";
 
 const Ikorodu = () => {
 
@@ -41,7 +42,7 @@ const Ikorodu = () => {
                 // alert('Payment complete! Reference: ' + reference);
                 $('#spaceModal').modal('hide');
                 dispatch(showNotifier('Space Booked'));
-                // Router.push('/');
+                Router.push('/');
             },
             onClose: function () {
                 // alert('Transaction was not completed, window closed.');
@@ -271,8 +272,7 @@ const Ikorodu = () => {
 
                                 <label className="d-flex flex-row align-items-center">
                                     <input type="checkbox" className="mb-0" name="tandc" required/>
-                                    I agree to the <Link href="/park-rules"><a> &nbsp; park
-                                    rules </a></Link>
+                                    I agree to the <a href="#" onClick={() => dispatch(toggleParkRules())}> &nbsp; park rules </a>
                                 </label>
 
                             </div>
