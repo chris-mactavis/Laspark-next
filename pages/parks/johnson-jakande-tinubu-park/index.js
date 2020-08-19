@@ -96,6 +96,21 @@ const KanuPark = () => {
         });
     }, []);
 
+    useEffect(() => {
+        let dtToday = new Date();
+
+        let month = dtToday.getMonth() + 1;
+        let day = dtToday.getDate();
+        let year = dtToday.getFullYear();
+        if(month < 10)
+            month = '0' + month.toString();
+        if(day < 10)
+            day = '0' + day.toString();
+
+        let maxDate = year + '-' + month + '-' + day;
+        $('#txtDate').attr('min', maxDate);
+    }, [])
+
     return <>
         <Layout hasHeader={false}>
             <Head>
@@ -357,7 +372,7 @@ const KanuPark = () => {
                                 <label>Amount(N)</label>
                                 <input type="number" name="price" placeholder="Price" value={amount} disabled/>
                                 <label>Book Date</label>
-                                <input type="date" name="date" placeholder="Date" required
+                                <input type="date" name="date" placeholder="Date" required id="txtDate"
                                        ref={register({required: 'This field is required'})}/>
                                 {errors.date && <Error>{errors.date.message}</Error>}
 
@@ -365,6 +380,7 @@ const KanuPark = () => {
                                     <input type="checkbox" className="mb-0" name="tandc" required/>
                                     I agree to the <a href="#" onClick={() => dispatch(toggleParkRules())}> &nbsp; park rules </a>
                                 </label>
+                                <small>Payment is non refundable!</small>
 
                             </div>
                             <div className="modal-footer">
