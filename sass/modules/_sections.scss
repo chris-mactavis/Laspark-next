@@ -789,4 +789,7 @@ section {
     }
   }
 
+  &.empty {
+    height: calc(100vh - 390px);
+  }
 }
