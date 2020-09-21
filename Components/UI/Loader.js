@@ -27,7 +27,7 @@ export default function Loader() {
                 opacity: .6;
                 width: 100%;
                 height: 100%;
-                z-index: 200;
+                z-index: 1200;
             }
             .loader {
                 display: inline-block;
@@ -37,7 +37,7 @@ export default function Loader() {
                 display: inline-block;
                 width: 50px;
                 height: 50px;
-                z-index: 201;
+                z-index: 1201;
                 transform: translate(-50%, -50%);
             }
             .loader div {
