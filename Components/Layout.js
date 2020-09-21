@@ -56,6 +56,7 @@ const Layout = ({children, headerContent, page = null, mainClass = null, headerC
                         crossOrigin="anonymous"/>
                 <script type="text/javascript" src="/slick/slick.min.js"/>
                 <script src="/js/bootstrap.min.js"/>
+                <script src="/js/crypto-js.min.js"/>
                 <script src="/js/main.js"/>
             </Head>
 
