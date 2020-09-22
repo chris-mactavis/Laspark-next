@@ -12,6 +12,8 @@ import Error from "../../../Components/Error";
 import axiosInstance from "../../../config/axios";
 import {useDispatch} from "react-redux";
 import {toggleParkRules} from "../../../store/actions/booking";
+import {loader} from "../../../store/actions/loader";
+import {randomString} from "../../../Utils/String";
 
 const KanuPark = () => {
 
@@ -21,35 +23,33 @@ const KanuPark = () => {
     const [amount, setAmount] = useState(10000);
     const [capacity, setCapacity] = useState(255);
     const [space, setSpace] = useState('');
-
+    const [billNumber, setBillNumber] = useState(null);
+    const [stringHash, setStringHash] = useState(null);
+    const [transactionId, setTransactionId] = useState(randomString(20));
     const dispatch = useDispatch();
 
     const bookHandler = async data => {
-        const handler = PaystackPop.setup({
-            key: 'pk_test_128d82585adfc879f77acfeaf7b3d0412a03aeb4',
-            email: User().email,
-            amount: amount * 100,
-            currency: 'NGN',
-            firstname: User().full_name,
-            reference: 'The reference',
-            callback: async function (response) {
-                const {data: res} = await axiosInstance.post(`park-spaces/${space}/book`, {date: data.date}, {
-                    headers: {
-                        Authorization: `Bearer ${Token()}`
-                    }
-                });
-                console.log(res);
-                // const reference = response.reference;
-                // alert('Payment complete! Reference: ' + reference);
-                $('#spaceModal').modal('hide');
-                dispatch(showNotifier('Space Booked'));
-                Router.push('/');
-            },
-            onClose: function () {
-                // alert('Transaction was not completed, window closed.');
-            },
-        });
-        handler.openIframe();
+        dispatch(loader());
+        try {
+            const {data: {bill_number}} = await axiosInstance.post(`payment/get-bill-reference`, {amount}, {
+                headers: {
+                    Authorization: `Bearer ${Token()}`
+                }
+            });
+            setBillNumber(bill_number);
+            const hashString = `${process.env.REVPAY_TOKEN}LASPARK${bill_number}${transactionId}${amount}` + "http://165.227.73.31/verify-payment";
+            setStringHash(
+                CryptoJS.MD5(hashString).toString().toUpperCase()
+            )
+
+            localStorage.setItem('bookedPark', JSON.stringify({date: data.date, spaceId: space}));
+
+            document.getElementById('frm').submit();
+        } catch (e) {
+            console.log(e);
+            dispatch(showNotifier(e.response.data.message, 'danger'));
+            dispatch(loader());
+        }
     }
 
     const loadSpaceModal = (park, capacity, amount, currentSpace) => {
@@ -347,6 +347,16 @@ const KanuPark = () => {
                             </table>
                         </div>
                     </div>
+                    <form name="frm" id="frm" method="post" target="_parent"
+                          action="https://test.qpay.ng/PaymentGateway/Index">
+                        <input type="hidden" name="type" value="Webguid"/>
+                        <input type="hidden" name="transactionId" value={transactionId}/>
+                        <input type="hidden" name="billReference" value={billNumber} />
+                        <input type="hidden" name="amount" value={amount} />
+                        <input type="hidden" name="returnUrl" value="http://165.227.73.31/verify-payment"/>
+                        <input type="hidden" name="clientCode" value="LASPARK"/>
+                        <input type="hidden" name="Hash" value={stringHash}/>
+                    </form>
                 </div>
             </section>
 

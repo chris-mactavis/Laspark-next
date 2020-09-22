@@ -38,7 +38,7 @@ const Oluyomi = () => {
                 }
             });
             setBillNumber(bill_number);
-            const hashString = `88C57643A15222E7B1E00961BB88C099LASPARK${bill_number}${transactionId}${amount}` + "http://165.227.73.31/verify-payment";
+            const hashString = `${process.env.REVPAY_TOKEN}LASPARK${bill_number}${transactionId}${amount}` + "http://165.227.73.31/verify-payment";
             setStringHash(
                 CryptoJS.MD5(hashString).toString().toUpperCase()
             )
