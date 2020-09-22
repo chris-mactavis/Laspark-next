@@ -52,7 +52,8 @@ const Jibowu = () => {
         }
     }
 
-    const loadSpaceModal = (park, amount, capacity, currentSpace) => {
+    const loadSpaceModal = (park, amount, capacity, currentSpace, e) => {
+        e.preventDefault();
         if (!Token()) {
             Cookies.set('redirectIntended', '/parks/jibowu')
             Router.push('/login');
@@ -202,7 +203,7 @@ const Jibowu = () => {
                                     <td role="cell">Exclusive Use</td>
                                     <td role="cell">200</td>
                                     <td role="cell">150,000</td>
-                                    <td role="cell" onClick={() => loadSpaceModal('Exclusive Use', 150000, 200, 7)}><a
+                                    <td role="cell" onClick={(e) => loadSpaceModal('Exclusive Use', 150000, 200, 7, e)}><a
                                         className="btn extra-thin green-transparent" href="#">Book Now</a>
                                     </td>
                                 </tr>
@@ -211,7 +212,7 @@ const Jibowu = () => {
                                     <td role="cell">Gazebo 1</td>
                                     <td role="cell">30</td>
                                     <td role="cell">25,000</td>
-                                    <td role="cell" onClick={() => loadSpaceModal('Platform', 25000, 30, 8)}><a
+                                    <td role="cell" onClick={(e) => loadSpaceModal('Platform', 25000, 30, 8, e)}><a
                                         className="btn extra-thin green-transparent" href="#">Book Now</a>
                                     </td>
                                 </tr>

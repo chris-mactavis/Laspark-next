@@ -52,7 +52,8 @@ const Tunji = () => {
         }
     }
 
-    const loadSpaceModal = (park, amount, capacity, currentSpace) => {
+    const loadSpaceModal = (park, amount, capacity, currentSpace, e) => {
+        e.preventDefault();
         if (!Token()) {
             Cookies.set('redirectIntended', '/parks/tunji')
             Router.push('/login');
@@ -186,7 +187,7 @@ const Tunji = () => {
                                 <tr role="row">
                                     <td role="cell">Video Shoot</td>
                                     <td role="cell">500,000</td>
-                                    <td role="cell" onClick={() => loadSpaceModal('Exclusive Use', 500000, 0, 1)}><a
+                                    <td role="cell" onClick={(e) => loadSpaceModal('Exclusive Use', 500000, 0, 1, e)}><a
                                         className="btn extra-thin green-transparent" href="#">Book Now</a>
                                     </td>
                                 </tr>
@@ -194,7 +195,7 @@ const Tunji = () => {
                                 <tr role="row">
                                     <td role="cell">Photo Shoot</td>
                                     <td role="cell">2,500</td>
-                                    <td role="cell" onClick={() => loadSpaceModal('Platform', 2500, 0, 2)}><a
+                                    <td role="cell" onClick={(e) => loadSpaceModal('Platform', 2500, 0, 2, e)}><a
                                         className="btn extra-thin green-transparent" href="#">Book Now</a>
                                     </td>
                                 </tr>

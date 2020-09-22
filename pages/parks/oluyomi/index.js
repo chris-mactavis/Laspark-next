@@ -46,35 +46,6 @@ const Oluyomi = () => {
             localStorage.setItem('bookedPark', JSON.stringify({date: data.date, spaceId: space}));
 
             document.getElementById('frm').submit();
-            // dispatch(loader());
-
-
-
-            // dler = PaystackPop.setup({
-                //     key: 'pk_test_128d82585adfc879f77acfeaf7b3d0412a03aeb4',
-                //     email: User().email,
-                //     amount: amount * 100,
-                //     currency: 'NGN',
-                //     firstname: User().full_name,
-                //     reference: 'The reference',
-                //     callback: async function (response) {
-                //         const {data: res} = await axiosInstance.post(`park-spaces/${space}/book`, {date: data.date}, {
-                //             headers: {
-                //                 Authorization: `Bearer ${Token()}`
-                //             }
-                //         });
-                //         console.log(res);
-                //         // const reference = response.reference;
-                //         // alert('Payment complete! Reference: ' + reference);
-                //         $('#spaceModal').modal('hide');
-                //         dispatch(showNotifier('Space Booked'));
-                //         Router.push('/');
-                //     },
-                //     onClose: function () {
-                //         // alert('Transaction was not completed, window closed.');
-                //     },
-                // });
-                // handler.openIframe();
         } catch (e) {
             console.log(e);
             dispatch(showNotifier(e.response.data.message, 'danger'));
@@ -82,7 +53,8 @@ const Oluyomi = () => {
         }
     }
 
-    const loadSpaceModal = (park, amount, capacity, currentSpace) => {
+    const loadSpaceModal = (park, amount, capacity, currentSpace, e) => {
+        e.preventDefault();
         if (!Token()) {
             Cookies.set('redirectIntended', '/parks/oluyomi')
             Router.push('/login');
@@ -258,7 +230,7 @@ const Oluyomi = () => {
                                     <td role="cell">Exclusive Use</td>
                                     <td role="cell">1,000</td>
                                     <td role="cell">500,000</td>
-                                    <td role="cell" onClick={() => loadSpaceModal('Exclusive Use', 500000, 1000, 20)}><a
+                                    <td role="cell" onClick={(e) => loadSpaceModal('Exclusive Use', 500000, 1000, 20, e)}><a
                                         className="btn extra-thin green-transparent" href="#">Book Now</a>
                                     </td>
                                 </tr>
@@ -267,7 +239,7 @@ const Oluyomi = () => {
                                     <td role="cell">Adult Corner + Car park + Gazebo 1</td>
                                     <td role="cell">350</td>
                                     <td role="cell">250,000</td>
-                                    <td role="cell" onClick={() => loadSpaceModal('Platform', 250000, 350, 21)}><a
+                                    <td role="cell" onClick={(e) => loadSpaceModal('Platform', 250000, 350, 21, e)}><a
                                         className="btn extra-thin green-transparent" href="#">Book Now</a>
                                     </td>
                                 </tr>
@@ -276,7 +248,7 @@ const Oluyomi = () => {
                                     <td role="cell">Car Park</td>
                                     <td role="cell">200</td>
                                     <td role="cell">120,000</td>
-                                    <td role="cell" onClick={() => loadSpaceModal('Platform', 120000, 200, 22)}><a
+                                    <td role="cell" onClick={(e) => loadSpaceModal('Platform', 120000, 200, 22, e)}><a
                                         className="btn extra-thin green-transparent" href="#">Book Now</a>
                                     </td>
                                 </tr>
@@ -285,7 +257,7 @@ const Oluyomi = () => {
                                     <td role="cell">Platform/Adult Corner</td>
                                     <td role="cell">100</td>
                                     <td role="cell">100,000</td>
-                                    <td role="cell" onClick={() => loadSpaceModal('Platform', 100000, 100, 23)}><a
+                                    <td role="cell" onClick={(e) => loadSpaceModal('Platform', 100000, 100, 23, e)}><a
                                         className="btn extra-thin green-transparent" href="#">Book Now</a>
                                     </td>
                                 </tr>
@@ -294,7 +266,7 @@ const Oluyomi = () => {
                                     <td role="cell">Gazebo 1</td>
                                     <td role="cell">70</td>
                                     <td role="cell">60,000</td>
-                                    <td role="cell" onClick={() => loadSpaceModal('Platform', 60000, 70, 24)}><a
+                                    <td role="cell" onClick={(e) => loadSpaceModal('Platform', 60000, 70, 24, e)}><a
                                         className="btn extra-thin green-transparent" href="#">Book Now</a>
                                     </td>
                                 </tr>
@@ -303,7 +275,7 @@ const Oluyomi = () => {
                                     <td role="cell">Cool Spot</td>
                                     <td role="cell">60</td>
                                     <td role="cell">70,000</td>
-                                    <td role="cell" onClick={() => loadSpaceModal('Platform', 70000, 60, 25)}><a
+                                    <td role="cell" onClick={(e) => loadSpaceModal('Platform', 70000, 60, 25, e)}><a
                                         className="btn extra-thin green-transparent" href="#">Book Now</a>
                                     </td>
                                 </tr>
@@ -312,7 +284,7 @@ const Oluyomi = () => {
                                     <td role="cell">Gazebo 2</td>
                                     <td role="cell">30</td>
                                     <td role="cell">30,000</td>
-                                    <td role="cell" onClick={() => loadSpaceModal('Platform', 30000, 30, 26)}><a
+                                    <td role="cell" onClick={(e) => loadSpaceModal('Platform', 30000, 30, 26, e)}><a
                                         className="btn extra-thin green-transparent" href="#">Book Now</a>
                                     </td>
                                 </tr>

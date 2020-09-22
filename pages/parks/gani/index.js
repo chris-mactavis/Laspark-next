@@ -52,7 +52,8 @@ const Gani = () => {
         }
     }
 
-    const loadSpaceModal = (park, amount, capacity, currentSpace) => {
+    const loadSpaceModal = (park, amount, capacity, currentSpace, e) => {
+        e.preventDefault();
         if (!Token()) {
             Cookies.set('redirectIntended', '/parks/gani')
             Router.push('/login');
@@ -196,7 +197,7 @@ const Gani = () => {
                                     <td role="cell">Exclusive Use</td>
                                     <td role="cell">500</td>
                                     <td role="cell">500,000</td>
-                                    <td role="cell" onClick={() => loadSpaceModal('Exclusive Use', 500000, 500, 5)}><a
+                                    <td role="cell" onClick={(e) => loadSpaceModal('Exclusive Use', 500000, 500, 5, e)}><a
                                         className="btn extra-thin green-transparent" href="#">Book Now</a>
                                     </td>
                                 </tr>
@@ -205,7 +206,7 @@ const Gani = () => {
                                     <td role="cell">Platform</td>
                                     <td role="cell">70</td>
                                     <td role="cell">50,000</td>
-                                    <td role="cell" onClick={() => loadSpaceModal('Platform', 500000, 70, 6)}><a
+                                    <td role="cell" onClick={(e) => loadSpaceModal('Platform', 500000, 70, 6, e)}><a
                                         className="btn extra-thin green-transparent" href="#">Book Now</a>
                                     </td>
                                 </tr>

@@ -52,7 +52,8 @@ const Rafiu = () => {
         }
     }
 
-    const loadSpaceModal = (park, amount, capacity, currentSpace) => {
+    const loadSpaceModal = (park, amount, capacity, currentSpace, e) => {
+        e.preventDefault();
         if (!Token()) {
             Cookies.set('redirectIntended', '/parks/rafiu')
             Router.push('/login');
@@ -249,7 +250,7 @@ const Rafiu = () => {
                                     <td role="cell">Exclusive Use</td>
                                     <td role="cell">3,000</td>
                                     <td role="cell">600,000</td>
-                                    <td role="cell" onClick={() => loadSpaceModal('Platform', 600000, 3000, 9)}><a
+                                    <td role="cell" onClick={(e) => loadSpaceModal('Platform', 600000, 3000, 9, e)}><a
                                         className="btn extra-thin green-transparent" href="#">Book Now</a>
                                     </td>
                                 </tr>
@@ -257,7 +258,7 @@ const Rafiu = () => {
                                     <td role="cell">Basketball Court</td>
                                     <td role="cell">300</td>
                                     <td role="cell">200,000</td>
-                                    <td role="cell" onClick={() => loadSpaceModal('Exclusive Use', 200000, 300, 10)}><a
+                                    <td role="cell" onClick={(e) => loadSpaceModal('Exclusive Use', 200000, 300, 10, e)}><a
                                         className="btn extra-thin green-transparent" href="#">Book Now</a>
                                     </td>
                                 </tr>
@@ -266,7 +267,7 @@ const Rafiu = () => {
                                     <td role="cell">Gazebo 1</td>
                                     <td role="cell">70</td>
                                     <td role="cell">30,000</td>
-                                    <td role="cell" onClick={() => loadSpaceModal('Platform', 30000, 70, 11)}><a
+                                    <td role="cell" onClick={(e) => loadSpaceModal('Platform', 30000, 70, 11, e)}><a
                                         className="btn extra-thin green-transparent" href="#">Book Now</a>
                                     </td>
                                 </tr>
@@ -275,7 +276,7 @@ const Rafiu = () => {
                                     <td role="cell">Rotunda</td>
                                     <td role="cell">40</td>
                                     <td role="cell">20,000</td>
-                                    <td role="cell" onClick={() => loadSpaceModal('Platform', 20000, 40, 12)}><a
+                                    <td role="cell" onClick={(e) => loadSpaceModal('Platform', 20000, 40, 12, e)}><a
                                         className="btn extra-thin green-transparent" href="#">Book Now</a>
                                     </td>
                                 </tr>
@@ -284,7 +285,7 @@ const Rafiu = () => {
                                     <td role="cell">Gazebo 2</td>
                                     <td role="cell">30</td>
                                     <td role="cell">15,000</td>
-                                    <td role="cell" onClick={() => loadSpaceModal('Platform', 15000, 30, 13)}><a
+                                    <td role="cell" onClick={(e) => loadSpaceModal('Platform', 15000, 30, 13, e)}><a
                                         className="btn extra-thin green-transparent" href="#">Book Now</a>
                                     </td>
                                 </tr>
