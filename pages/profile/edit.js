@@ -61,9 +61,13 @@ const ProfileEdit = ({user}) => {
                             </div>
 
                             <form className="account-create" onSubmit={handleSubmit(updateHandler)}>
-                                <input type="text" ref={register({required: 'This field is required'})} name="full_name"
-                                       id="name" placeholder="Full name*" defaultValue={user.full_name}/>
-                                {errors.full_name && <Error>{errors.full_name.message}</Error>}
+                                <input type="text" ref={register({required: 'This field is required'})} name="first_name"
+                                       id="name" placeholder="First name*" defaultValue={user.first_name}/>
+                                {errors.first_name && <Error>{errors.first_name.message}</Error>}
+
+                                <input type="text" ref={register({required: 'This field is required'})} name="last_name"
+                                       id="name" placeholder="Last name*" defaultValue={user.last_name}/>
+                                {errors.last_name && <Error>{errors.last_name.message}</Error>}
 
                                 <input type="text" ref={register}
                                        name="company_name" id="cname" placeholder="Company name" defaultValue={user.company_name}/>

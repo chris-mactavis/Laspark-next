@@ -70,9 +70,13 @@ const Signup = () => {
                             </div>
 
                             <form className="account-create" onSubmit={handleSubmit(signupHandler)}>
-                                <input type="text" ref={register({required: 'This field is required'})} name="full_name"
-                                       id="name" placeholder="Full name*"/>
-                                {errors.full_name && <Error>{errors.full_name.message}</Error>}
+                                <input type="text" ref={register({required: 'This field is required'})} name="first_name"
+                                       id="name" placeholder="First name*"/>
+                                {errors.first_name && <Error>{errors.first_name.message}</Error>}
+
+                                <input type="text" ref={register({required: 'This field is required'})} name="last_name"
+                                       id="name" placeholder="Last name*"/>
+                                {errors.last_name && <Error>{errors.last_name.message}</Error>}
 
                                 <input type="text" ref={register}
                                        name="company_name" id="cname" placeholder="Company name"/>
