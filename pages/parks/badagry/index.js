@@ -52,7 +52,8 @@ const Badagry = () => {
         }
     }
 
-    const loadSpaceModal = (park, amount, capacity, currentSpace) => {
+    const loadSpaceModal = (park, amount, capacity, currentSpace, e) => {
+        e.preventDefault();
         if (!Token()) {
             Cookies.set('redirectIntended', '/parks/badagry')
             Router.push('/login');
@@ -235,7 +236,7 @@ const Badagry = () => {
                                     <td role="cell">Exclusive Use</td>
                                     <td role="cell">3000</td>
                                     <td role="cell">500,000</td>
-                                    <td role="cell" onClick={() => loadSpaceModal('Exclusive Use', 500000, 3000, 3)}><a
+                                    <td role="cell" onClick={(e) => loadSpaceModal('Exclusive Use', 500000, 3000, 3, e)}><a
                                         className="btn extra-thin green-transparent" href="#">Book Now</a>
                                     </td>
                                 </tr>
@@ -244,7 +245,7 @@ const Badagry = () => {
                                     <td role="cell">Platform</td>
                                     <td role="cell">30</td>
                                     <td role="cell">25,000</td>
-                                    <td role="cell" onClick={() => loadSpaceModal('Platform', 250000, 30, 4)}><a
+                                    <td role="cell" onClick={(e) => loadSpaceModal('Platform', 250000, 30, 4, e)}><a
                                         className="btn extra-thin green-transparent" href="#">Book Now</a>
                                     </td>
                                 </tr>

@@ -52,7 +52,8 @@ const Muri = () => {
         }
     }
 
-    const loadSpaceModal = (park, amount, capacity, currentSpace) => {
+    const loadSpaceModal = (park, amount, capacity, currentSpace, e) => {
+        e.preventDefault();
         if (!Token()) {
             Cookies.set('redirectIntended', '/parks/muri')
             Router.push('/login');
@@ -224,7 +225,7 @@ const Muri = () => {
                                     <td role="cell">Exclusive Use</td>
                                     <td role="cell">3,500</td>
                                     <td role="cell">1,500,000</td>
-                                    <td role="cell" onClick={() => loadSpaceModal('Exclusive Use', 1500000, 3500, 19)}><a
+                                    <td role="cell" onClick={(e) => loadSpaceModal('Exclusive Use', 1500000, 3500, 19, e)}><a
                                         className="btn extra-thin green-transparent" href="#">Book Now</a>
                                     </td>
                                 </tr>

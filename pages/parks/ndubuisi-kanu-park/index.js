@@ -52,7 +52,8 @@ const KanuPark = () => {
         }
     }
 
-    const loadSpaceModal = (park, amount, capacity, currentSpace) => {
+    const loadSpaceModal = (park, amount, capacity, currentSpace, e) => {
+        e.preventDefault();
         if (!Token()) {
             Cookies.set('redirectIntended', '/parks/ndubuisi-kanu-park')
             Router.push('/login');
@@ -102,9 +103,9 @@ const KanuPark = () => {
         let month = dtToday.getMonth() + 1;
         let day = dtToday.getDate();
         let year = dtToday.getFullYear();
-        if(month < 10)
+        if (month < 10)
             month = '0' + month.toString();
-        if(day < 10)
+        if (day < 10)
             day = '0' + day.toString();
 
         let maxDate = year + '-' + month + '-' + day;
@@ -235,7 +236,7 @@ const KanuPark = () => {
                                     <td role="cell">Exclusive Use</td>
                                     <td role="cell">2,500</td>
                                     <td role="cell">1,200,000</td>
-                                    <td role="cell" onClick={() => loadSpaceModal('Exclusive Use', 1200000, 2500, 27)}>
+                                    <td role="cell" onClick={(e) => loadSpaceModal('Exclusive Use', 1200000, 2500, 27, e)}>
                                         <a
                                             className="btn extra-thin green-transparent" href="#">Book Now</a>
                                     </td>
@@ -245,7 +246,7 @@ const KanuPark = () => {
                                     <td role="cell">Basketball Court</td>
                                     <td role="cell">300</td>
                                     <td role="cell">250,000</td>
-                                    <td role="cell" onClick={() => loadSpaceModal('Basketball Court', 250000, 300, 28)}>
+                                    <td role="cell" onClick={(e) => loadSpaceModal('Basketball Court', 250000, 300, 28, e)}>
                                         <a
                                             className="btn extra-thin green-transparent" href="#">Book Now</a>
                                     </td>
@@ -256,7 +257,7 @@ const KanuPark = () => {
                                     <td role="cell">80</td>
                                     <td role="cell">100,000</td>
                                     <td role="cell"
-                                        onClick={() => loadSpaceModal('Uncle Vinnie\'s Corner', 100000, 80, 29)}><a
+                                        onClick={(e) => loadSpaceModal('Uncle Vinnie\'s Corner', 100000, 80, 29, e)}><a
                                         className="btn extra-thin green-transparent" href="#">Book Now</a>
                                     </td>
                                 </tr>
@@ -265,7 +266,7 @@ const KanuPark = () => {
                                     <td role="cell">Gazebo 1</td>
                                     <td role="cell">70</td>
                                     <td role="cell">80,000</td>
-                                    <td role="cell" onClick={() => loadSpaceModal('Gazebo 1', 80000, 70, 30)}><a
+                                    <td role="cell" onClick={(e) => loadSpaceModal('Gazebo 1', 80000, 70, 30, e)}><a
                                         className="btn extra-thin green-transparent" href="#">Book Now</a>
                                     </td>
                                 </tr>
@@ -275,7 +276,7 @@ const KanuPark = () => {
                                     <td role="cell">50</td>
                                     <td role="cell">50,000</td>
                                     <td role="cell"
-                                        onClick={() => loadSpaceModal('The Fountain Corner', 50000, 50, 31)}><a
+                                        onClick={(e) => loadSpaceModal('The Fountain Corner', 50000, 50, 31, e)}><a
                                         className="btn extra-thin green-transparent" href="#">Book Now</a>
                                     </td>
                                 </tr>
@@ -284,7 +285,7 @@ const KanuPark = () => {
                                     <td role="cell">Rotunda</td>
                                     <td role="cell">40</td>
                                     <td role="cell">40,000</td>
-                                    <td role="cell" onClick={() => loadSpaceModal('Rotunda', 40000, 40, 32)}><a
+                                    <td role="cell" onClick={(e) => loadSpaceModal('Rotunda', 40000, 40, 32, e)}><a
                                         className="btn extra-thin green-transparent" href="#">Book Now</a>
                                     </td>
                                 </tr>
@@ -310,8 +311,8 @@ const KanuPark = () => {
                           action="https://test.qpay.ng/PaymentGateway/Index">
                         <input type="hidden" name="type" value="Webguid"/>
                         <input type="hidden" name="transactionId" value={transactionId}/>
-                        <input type="hidden" name="billReference" value={billNumber} />
-                        <input type="hidden" name="amount" value={amount} />
+                        <input type="hidden" name="billReference" value={billNumber}/>
+                        <input type="hidden" name="amount" value={amount}/>
                         <input type="hidden" name="returnUrl" value="http://165.227.73.31/verify-payment"/>
                         <input type="hidden" name="clientCode" value="LASPARK"/>
                         <input type="hidden" name="Hash" value={stringHash}/>
@@ -347,7 +348,8 @@ const KanuPark = () => {
 
                                 <label className="d-flex flex-row align-items-center">
                                     <input type="checkbox" className="mb-0" name="tandc" required/>
-                                    I agree to the <a href="#" onClick={() => dispatch(toggleParkRules())}> &nbsp; park rules </a>
+                                    I agree to the <a href="#" onClick={() => dispatch(toggleParkRules())}> &nbsp; park
+                                    rules </a>
                                 </label>
                                 <small>Payment is non refundable!</small>
 

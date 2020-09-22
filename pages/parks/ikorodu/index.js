@@ -52,7 +52,8 @@ const Ikorodu = () => {
         }
     }
 
-    const loadSpaceModal = (park, amount, capacity, currentSpace) => {
+    const loadSpaceModal = (park, amount, capacity, currentSpace, e) => {
+        e.preventDefault();
         if (!Token()) {
             Cookies.set('redirectIntended', '/parks/ikorodu')
             Router.push('/login');
@@ -213,7 +214,7 @@ const Ikorodu = () => {
                                     <td role="cell">Exclusive Use</td>
                                     <td role="cell">2,500</td>
                                     <td role="cell">700,000</td>
-                                    <td role="cell" onClick={() => loadSpaceModal('Exclusive Use', 700000, 2500, 14)}><a
+                                    <td role="cell" onClick={(e) => loadSpaceModal('Exclusive Use', 700000, 2500, 14, e)}><a
                                         className="btn extra-thin green-transparent" href="#">Book Now</a>
                                     </td>
                                 </tr>
@@ -222,7 +223,7 @@ const Ikorodu = () => {
                                     <td role="cell">Football Pitch</td>
                                     <td role="cell">250</td>
                                     <td role="cell">200,000</td>
-                                    <td role="cell" onClick={() => loadSpaceModal('Platform', 200000, 250, 15)}><a
+                                    <td role="cell" onClick={(e) => loadSpaceModal('Platform', 200000, 250, 15, e)}><a
                                         className="btn extra-thin green-transparent" href="#">Book Now</a>
                                     </td>
                                 </tr>
@@ -231,7 +232,7 @@ const Ikorodu = () => {
                                     <td role="cell">Basketball Court</td>
                                     <td role="cell">200</td>
                                     <td role="cell">150,000</td>
-                                    <td role="cell" onClick={() => loadSpaceModal('Platform', 150000, 200, 16)}><a
+                                    <td role="cell" onClick={(e) => loadSpaceModal('Platform', 150000, 200, 16, e)}><a
                                         className="btn extra-thin green-transparent" href="#">Book Now</a>
                                     </td>
                                 </tr>
@@ -240,7 +241,7 @@ const Ikorodu = () => {
                                     <td role="cell">Gazebo 1</td>
                                     <td role="cell">40</td>
                                     <td role="cell">30,000</td>
-                                    <td role="cell" onClick={() => loadSpaceModal('Platform', 30000, 40, 17)}><a
+                                    <td role="cell" onClick={(e) => loadSpaceModal('Platform', 30000, 40, 17, e)}><a
                                         className="btn extra-thin green-transparent" href="#">Book Now</a>
                                     </td>
                                 </tr>
@@ -249,7 +250,7 @@ const Ikorodu = () => {
                                     <td role="cell">Gazebo 2</td>
                                     <td role="cell">250</td>
                                     <td role="cell">200,000</td>
-                                    <td role="cell" onClick={() => loadSpaceModal('Platform', 200000, 250, 18)}><a
+                                    <td role="cell" onClick={(e) => loadSpaceModal('Platform', 200000, 250, 18, e)}><a
                                         className="btn extra-thin green-transparent" href="#">Book Now</a>
                                     </td>
                                 </tr>
