@@ -1,5 +1,6 @@
 module.exports = {
     env: {
-        environment: 'dev'
+        environment: 'dev',
+        REVPAY_TOKEN: process.env.REVPAY_TOKEN
     }
 }
