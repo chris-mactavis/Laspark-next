@@ -16,17 +16,17 @@ const Nav = ({isLoggedIn}) => {
 
     return <div className="navbar-collapse ml-auto" id="navbarSupportedContent">
         <ul className="navbar-nav">
-            <li className="nav-item">
-                <Link href="/parks"><a className="nav-link">Parks</a></Link>
-            </li>
+            {/*<li className="nav-item">*/}
+            {/*    <Link href="/parks"><a className="nav-link">Parks</a></Link>*/}
+            {/*</li>*/}
 
-            <li className="nav-item">
-                <Link href="/services"><a className="nav-link">Services</a></Link>
-            </li>
+            {/*<li className="nav-item">*/}
+            {/*    <Link href="/services"><a className="nav-link">Services</a></Link>*/}
+            {/*</li>*/}
 
-            <li className="nav-item">
-                <Link href="/contact-us"><a className="nav-link">Contact Us</a></Link>
-            </li>
+            {/*<li className="nav-item">*/}
+            {/*    <Link href="/contact-us"><a className="nav-link">Contact Us</a></Link>*/}
+            {/*</li>*/}
 
             {
                 !isLoggedIn && <li className="nav-item">

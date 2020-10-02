@@ -17,7 +17,6 @@ const reducers = combineReducers({
     auth: auth,
     bookings: bookings
 });
-
 const store = process.env.environment === 'dev' ? createStore(reducers, composeWithDevTools(applyMiddleware(thunkMiddleware))) : createStore(reducers, applyMiddleware(thunkMiddleware));
 
 export default function App({Component, pageProps}) {
