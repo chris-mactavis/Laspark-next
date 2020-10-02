@@ -22,7 +22,7 @@ const VerifyPayment = ({reference}) => {
             const stringHash = md5(`88C57643A15222E7B1E00961BB88C099LASPARK${reference}`).toString().toUpperCase();
             const bookedPark = JSON.parse(localStorage.getItem('bookedPark'));
             try {
-                const link = `https://test.qpay.ng/PaymentGateway/Verify/${reference}/LASPARK/${stringHash}`;
+                const link = `https://52.168.24.59:7071/PaymentGateway/Verify/${reference}/LASPARK/${stringHash}`;
                 const {data} = await axiosInstance.post(`payment/verify-payment`, {...bookedPark, link}, {
                     headers: {
                         Authorization: `Bearer ${Token()}`
