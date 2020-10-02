@@ -74,7 +74,7 @@ const Layout = ({children, headerContent, page = null, mainClass = null, headerC
                 {
                     !hasHeader && <nav className="navbar navbar-expand-lg white-nav">
                         <div className="container">
-                            <a href="http://laspark-wp.test" className="navbar-brand logo-container">
+                            <a href="http://laspark-frontend.test" className="navbar-brand logo-container">
                                 <img src="/images/laspark-logo.png" alt=""/>
                             </a>
 
