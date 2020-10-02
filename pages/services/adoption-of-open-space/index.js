@@ -1,6 +1,6 @@
 import Layout from "../../../Components/Layout";
 import Head from "next/head";
-import React from "react";
+import React, {useEffect} from "react";
 import {useForm} from "react-hook-form";
 import {useDispatch} from "react-redux";
 import {loader} from "../../../store/actions/loader";
@@ -9,10 +9,24 @@ import Error from "../../../Components/Error";
 import Router from "next/router";
 import axiosInstance from "../../../config/axios";
 import Token from "../../../Utils/Token";
+import Cookies from "js-cookie";
 
 const Adoption = ({localGovernment}) => {
     const dispatch = useDispatch();
     const {errors, register, handleSubmit} = useForm();
+
+    useEffect(() => {
+        dispatch(loader());
+
+        if (!Token()) {
+            dispatch(loader());
+            Cookies.set('redirectIntended', `/services/adoption-of-open-space`)
+            Router.push('/login');
+        } else {
+            dispatch(loader());
+        }
+    }, []);
+
     const serviceRequestHandler = async data => {
         const formData = new FormData();
         Object.keys(data).forEach(key => {
@@ -34,7 +48,7 @@ const Adoption = ({localGovernment}) => {
             console.log(response);
             dispatch(loader());
             dispatch(showNotifier('Request sent!'));
-            Router.push('/services');
+            Router.push('/profile');
         } catch (e) {
             console.log(e);
             dispatch(loader());
