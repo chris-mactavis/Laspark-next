@@ -19,7 +19,7 @@ const Footer = () => {
                         <h5>Contact</h5>
                         <ul>
                             <li><a href="tel:07005277275">0700LASPARK</a></li>
-                            <li><a href="mailto:info@laspark.lg.gov.ng">info@laspark.lg.gov.ng</a></li>
+                            <li><a href="mailto:laspark@lagosstate.gov.ng">laspark@lagosstate.gov.ng</a></li>
                         </ul>
                     </div>
                     <div className="col-md-4">

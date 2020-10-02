@@ -9,9 +9,10 @@ const Nav = ({isLoggedIn}) => {
     const dispatch = useDispatch();
 
     const logoutHandler = () => {
+        window.location = 'http://138.197.187.14';
         dispatch(logout());
         dispatch(showNotifier('Logged Out'));
-        Router.push('/');
+        // Router.push('http://138.197.187.14/');
     }
 
     return <div className="navbar-collapse ml-auto" id="navbarSupportedContent">

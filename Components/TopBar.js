@@ -15,11 +15,9 @@ const TopBar = ({isLoggedIn, page, headerContent}) => {
 
         <div className="container position-relative z-10">
             <nav className="navbar navbar-expand-lg">
-                <Link href="/">
-                    <a className="navbar-brand logo-container">
-                        <img src="/images/laspark-logo.png" alt=""/>
-                    </a>
-                </Link>
+                <a href="http://138.197.187.14/" className="navbar-brand logo-container">
+                    <img src="/images/laspark-logo.png" alt=""/>
+                </a>
 
                 <button className="navbar-toggler" id="show-nav" type="button" data-toggle="collapse"
                         data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -28,7 +26,7 @@ const TopBar = ({isLoggedIn, page, headerContent}) => {
                     <img className="navbar-toggler-icon" src="/images/icon/button.svg" alt=""/>
                 </button>
 
-                <Nav isLoggedIn={isLoggedIn} />
+                <Nav isLoggedIn={isLoggedIn}/>
             </nav>
         </div>
 

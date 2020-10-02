@@ -30,7 +30,7 @@ const VerifyPayment = ({reference}) => {
                 });
                 dispatch(loader());
                 dispatch(showNotifier(data.message));
-                Router.push('/');
+                Router.push('/profile');
             } catch (e) {
                 console.log(e);
             }

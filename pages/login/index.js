@@ -24,7 +24,7 @@ const Login = () => {
         try {
             await dispatch(loginAsync(data));
             dispatch(showNotifier('Logged In'));
-            Router.push(Cookies.get('redirectIntended') || '/');
+            Cookies.get('redirectIntended') ? Router.push(Cookies.get('redirectIntended')) : window.location = 'http://138.197.187.14';
             Cookies.remove('redirectIntended');
         } catch (e) {
             console.log(e);
