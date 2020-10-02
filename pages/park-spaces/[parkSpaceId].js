@@ -99,7 +99,7 @@ const SingleParkSpace = ({parkSpace, parkSpaceRef}) => {
                                     <td role="cell">{parkSpace.park.name}</td>
                                 </tr>
 
-                                {parkSpace.space !== 'Video Shoot' && <tr role="row">
+                                {(parkSpace.space !== 'Video Shoot' && parkSpace.space !== 'Photo Shoot') && <tr role="row">
                                     <td role="cell">Space Capacity (People)</td>
                                     <td role="cell">{new Intl.NumberFormat().format(parkSpace.capacity)}</td>
                                 </tr>}
