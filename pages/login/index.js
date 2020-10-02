@@ -24,7 +24,7 @@ const Login = () => {
         try {
             await dispatch(loginAsync(data));
             dispatch(showNotifier('Logged In'));
-            Cookies.get('redirectIntended') ? Router.push(Cookies.get('redirectIntended')) : window.location = 'http://138.197.187.14';
+            Cookies.get('redirectIntended') ? Router.push(Cookies.get('redirectIntended')) : window.location = 'http://laspark-wp.test';
             Cookies.remove('redirectIntended');
         } catch (e) {
             console.log(e);

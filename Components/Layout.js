@@ -74,11 +74,9 @@ const Layout = ({children, headerContent, page = null, mainClass = null, headerC
                 {
                     !hasHeader && <nav className="navbar navbar-expand-lg white-nav">
                         <div className="container">
-                            <Link href="/">
-                                <a className="navbar-brand logo-container">
-                                    <img src="/images/laspark-logo.png" alt=""/>
-                                </a>
-                            </Link>
+                            <a href="http://laspark-wp.test" className="navbar-brand logo-container">
+                                <img src="/images/laspark-logo.png" alt=""/>
+                            </a>
 
                             <button className="navbar-toggler" id="show-nav" type="button" data-toggle="collapse"
                                     data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
