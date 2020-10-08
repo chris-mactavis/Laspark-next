@@ -3,10 +3,11 @@ import Layout from "../../Components/Layout";
 import React, {useState, useEffect} from "react";
 import axiosInstance from "../../config/axios";
 import {randomString} from "../../Utils/String";
+import cookies from "next-cookies";
 import {toggleParkRules} from "../../store/actions/booking";
 
 const Invoice = ({billNumber, invoice}) => {
-    console.log(billNumber, invoice);
+    // console.log(billNumber, invoice);
     const [transactionId, setTransactionId] = useState(randomString(20));
     const [stringHash, setStringHash] = useState(null);
     console.log(stringHash);
@@ -76,32 +77,34 @@ const Invoice = ({billNumber, invoice}) => {
             </div>
         </section>
 
-        {/*<form name="frm" id="frm2" method="post" target="_parent"*/}
-        {/*      action="https://test.qpay.ng:7071/PaymentGateway/Index">*/}
-        {/*    <input type="hidden" name="type" value="Webguid"/>*/}
-        {/*    <input type="hidden" name="transactionId" value={transactionId}/>*/}
-        {/*    <input type="hidden" name="billReference" value={billNumber}/>*/}
-        {/*    <input type="hidden" name="amount" value={invoice.amount}/>*/}
-        {/*    <input type="hidden" name="returnUrl" value="http://165.227.73.31/verify-payment"/>*/}
-        {/*    <input type="hidden" name="clientCode" value="LASPARK"/>*/}
-        {/*    <input type="hidden" name="Hash" value={stringHash}/>*/}
-        {/*</form>*/}
-
         <form name="frm" id="frm" method="post" target="_parent"
               action="https://test.qpay.ng:7071/PaymentGateway/Index">
             <input type="hidden" name="type" value="Webguid"/>
-            <input type="hidden" name="transactionId" value="wd7tzzvq9y000000wd7t"/>
-            <input type="hidden" name="billReference" value="LASPARK-1602155126"/>
-            <input type="hidden" name="amount" value="3000"/>
+            <input type="hidden" name="transactionId" value={transactionId}/>
+            <input type="hidden" name="billReference" value={billNumber}/>
+            <input type="hidden" name="amount" value={invoice.amount}/>
             <input type="hidden" name="returnUrl" value="http://165.227.73.31/verify-payment"/>
             <input type="hidden" name="clientCode" value="LASPARK"/>
-            <input type="hidden" name="Hash" value="5DD5EE4CD61C3809E9E86275D4CF7ED7"/>
+            <input type="hidden" name="Hash" value={stringHash}/>
         </form>
+
+        {/*<form name="frm" id="frm" method="post" target="_parent"*/}
+        {/*      action="https://test.qpay.ng:7071/PaymentGateway/Index">*/}
+        {/*    <input type="hidden" name="type" value="Webguid"/>*/}
+        {/*    <input type="hidden" name="transactionId" value="bx2l67vi60e00000bx2l"/>*/}
+        {/*    <input type="hidden" name="billReference" value="LASPARK-1602161082"/>*/}
+        {/*    <input type="hidden" name="amount" value="700000"/>*/}
+        {/*    <input type="hidden" name="returnUrl" value="http://165.227.73.31/verify-payment"/>*/}
+        {/*    <input type="hidden" name="clientCode" value="LASPARK"/>*/}
+        {/*    <input type="hidden" name="Hash" value="5DD5EE4CD61C3809E9E86275D4CF7ED7"/>*/}
+        {/*</form>*/}
     </Layout>
 }
 
-Invoice.getInitialProps = async ({query, req}) => {
-    const token = req.cookies.token;
+Invoice.getInitialProps = async (ctx) => {
+    const {query, req} = ctx;
+    const token = cookies(ctx).token;
+    // const token = req.cookies.token;
     try {
         const {data: {invoice, bill_number: billNumber}} = await axiosInstance.get(`invoices/${query.invoice}`, {
             headers: {
@@ -113,7 +116,7 @@ Invoice.getInitialProps = async ({query, req}) => {
             invoice
         }
     } catch (e) {
-        console.log(e);
+        console.log(e, 'the error');
         return {
             billNumber: null,
             invoice: null
