@@ -4,22 +4,23 @@ import React, {useState, useEffect} from "react";
 import axiosInstance from "../../config/axios";
 import {randomString} from "../../Utils/String";
 import cookies from "next-cookies";
-import {toggleParkRules} from "../../store/actions/booking";
 
 const Invoice = ({billNumber, invoice}) => {
-    // console.log(billNumber, invoice);
     const [transactionId, setTransactionId] = useState(randomString(20));
     const [stringHash, setStringHash] = useState(null);
-    console.log(stringHash);
-    const payHandler = () => {
-        const hashString = `${process.env.REVPAY_TOKEN}LASPARK${billNumber}${transactionId}${invoice.amount}` + "http://165.227.73.31/verify-payment";
+    const [isLoading, setIsLoading] = useState(false);
+
+    useEffect(() => {
+        const hashString = `${process.env.REVPAY_TOKEN}LASPARK${billNumber}${transactionId}${invoice.amount}` + "http://165.227.73.31/profile";
         setStringHash(
             CryptoJS.MD5(hashString).toString().toUpperCase()
         )
-        // return;
-        // localStorage.setItem('bookedPark', JSON.stringify({date: data.date, spaceId: parkSpace.id}));
+    }, []);
 
+
+    const payHandler = () => {
         document.getElementById('frm').submit();
+        setIsLoading(true);
     }
 
     return <Layout hasHeader={false}>
@@ -45,19 +46,19 @@ const Invoice = ({billNumber, invoice}) => {
                             </tr>
                             </thead>
                             <tbody role="rowgroup">
-                            <tr role="row" className="cursor-pointer">
+                            <tr role="row">
                                 <td role="cell">Invoice Number</td>
                                 <td role="cell">#{invoice.ref}</td>
                             </tr>
-                            <tr role="row" className="cursor-pointer">
+                            <tr role="row">
                                 <td role="cell">Bill To</td>
                                 <td role="cell">{invoice.user.first_name} {invoice.user.last_name}</td>
                             </tr>
-                            <tr role="row" className="cursor-pointer">
+                            <tr role="row">
                                 <td role="cell">Item Description</td>
                                 <td role="cell">{invoice.is_service ? invoice.service.service : invoice.park_space.parks_garden.name}</td>
                             </tr>
-                            <tr role="row" className="cursor-pointer">
+                            <tr role="row">
                                 <td role="cell">Amount</td>
                                 <td role="cell">₦{Intl.NumberFormat().format(invoice.amount)}</td>
                             </tr>
@@ -68,7 +69,8 @@ const Invoice = ({billNumber, invoice}) => {
                 <div className="row mt-5">
                     <div className="col text-center d-flex flex-column">
                         <div>
-                            <button type="button" onClick={payHandler} className="btn extra-thin green-transparent">Pay Now
+                            <button type="button" disabled={isLoading} onClick={payHandler} className="btn extra-thin green-transparent">Pay
+                                Now
                             </button>
                         </div>
                         <small className="mt-2">Payment is non refundable!</small>
@@ -83,21 +85,10 @@ const Invoice = ({billNumber, invoice}) => {
             <input type="hidden" name="transactionId" value={transactionId}/>
             <input type="hidden" name="billReference" value={billNumber}/>
             <input type="hidden" name="amount" value={invoice.amount}/>
-            <input type="hidden" name="returnUrl" value="http://165.227.73.31/verify-payment"/>
+            <input type="hidden" name="returnUrl" value="http://165.227.73.31/profile"/>
             <input type="hidden" name="clientCode" value="LASPARK"/>
             <input type="hidden" name="Hash" value={stringHash}/>
         </form>
-
-        {/*<form name="frm" id="frm" method="post" target="_parent"*/}
-        {/*      action="https://test.qpay.ng:7071/PaymentGateway/Index">*/}
-        {/*    <input type="hidden" name="type" value="Webguid"/>*/}
-        {/*    <input type="hidden" name="transactionId" value="bx2l67vi60e00000bx2l"/>*/}
-        {/*    <input type="hidden" name="billReference" value="LASPARK-1602161082"/>*/}
-        {/*    <input type="hidden" name="amount" value="700000"/>*/}
-        {/*    <input type="hidden" name="returnUrl" value="http://165.227.73.31/verify-payment"/>*/}
-        {/*    <input type="hidden" name="clientCode" value="LASPARK"/>*/}
-        {/*    <input type="hidden" name="Hash" value="5DD5EE4CD61C3809E9E86275D4CF7ED7"/>*/}
-        {/*</form>*/}
     </Layout>
 }
 
