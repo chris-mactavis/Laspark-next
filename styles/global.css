@@ -1084,12 +1084,16 @@ button:focus {
   outline: none;
 }
 
-input {
+input, select {
   border-top: none;
   border-right: none;
   border-left: none;
   outline: none;
   color: #686868;
+}
+
+select {
+  border-bottom-width: 2px;
 }
 
 .z-10 {
