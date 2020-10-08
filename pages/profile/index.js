@@ -9,7 +9,11 @@ import Router from "next/router";
 
 const Profile = ({parkBookings, serviceBookings}) => {
 
-    const goToChat = bookingId => Router.push('/profile/service-bookings/[id]', '/profile/service-bookings/' + bookingId);
+    const goToChat = (bookingId, park = false) => {
+        park
+            ? Router.push('/profile/park-bookings/[id]', '/profile/park-bookings/' + bookingId)
+            : Router.push('/profile/service-bookings/[id]', '/profile/service-bookings/' + bookingId);
+    }
 
     return <Layout hasHeader={false}>
         <Head>
@@ -43,7 +47,7 @@ const Profile = ({parkBookings, serviceBookings}) => {
                             </thead>
                             <tbody role="rowgroup">
                             {
-                                parkBookings.map(booking => <tr role="row" key={booking.id}>
+                                parkBookings.map(booking => <tr role="row" key={booking.id} className="cursor-pointer" onClick={() => goToChat(booking.id, true)}>
                                     <td role="cell">#{booking.order_number}</td>
                                     <td role="cell">{booking.park_space.space} ({booking.park.name})</td>
                                     <td role="cell">{booking.amount_formatted}</td>

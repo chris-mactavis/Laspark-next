@@ -38,28 +38,43 @@ const SingleParkSpace = ({parkSpace, parkSpaceRef}) => {
     }, []);
 
     const bookingHandler = async data => {
-
-        dispatch(loader());
+        console.log(data);
         try {
-            const {data: {bill_number}} = await axiosInstance.post(`payment/get-bill-reference`, {amount: parkSpace.price}, {
+            dispatch(loader());
+            const {data:response} = await axiosInstance.post(`/park-spaces/${parkSpaceRef}/book`, {...data, amount: parkSpace.price}, {
                 headers: {
                     Authorization: `Bearer ${Token()}`
                 }
             });
-            setBillNumber(bill_number);
-            const hashString = `${process.env.REVPAY_TOKEN}LASPARK${bill_number}${transactionId}${parkSpace.price}` + "http://165.227.73.31/verify-payment";
-            setStringHash(
-                CryptoJS.MD5(hashString).toString().toUpperCase()
-            )
-
-            localStorage.setItem('bookedPark', JSON.stringify({date: data.date, spaceId: parkSpace.id}));
-
-            document.getElementById('frm').submit();
+            dispatch(loader());
+            Router.push('/profile');
         } catch (e) {
             console.log(e);
             dispatch(showNotifier(e.response.data.message, 'danger'));
             dispatch(loader());
         }
+
+        // dispatch(loader());
+        // try {
+        //     const {data: {bill_number}} = await axiosInstance.post(`payment/get-bill-reference`, {amount: parkSpace.price}, {
+        //         headers: {
+        //             Authorization: `Bearer ${Token()}`
+        //         }
+        //     });
+        //     setBillNumber(bill_number);
+        //     const hashString = `${process.env.REVPAY_TOKEN}LASPARK${bill_number}${transactionId}${parkSpace.price}` + "http://165.227.73.31/verify-payment";
+        //     setStringHash(
+        //         CryptoJS.MD5(hashString).toString().toUpperCase()
+        //     )
+        //
+        //     localStorage.setItem('bookedPark', JSON.stringify({date: data.date, spaceId: parkSpace.id}));
+        //
+        //     document.getElementById('frm').submit();
+        // } catch (e) {
+        //     console.log(e);
+        //     dispatch(showNotifier(e.response.data.message, 'danger'));
+        //     dispatch(loader());
+        // }
     };
     return <Layout hasHeader={false}>
         <Head>
@@ -116,6 +131,38 @@ const SingleParkSpace = ({parkSpace, parkSpaceRef}) => {
                                                placeholder="Date" required id="txtDate"
                                                ref={register({required: 'This field is required'})}/>
                                         {errors.date && <Error>{errors.date.message}</Error>}
+                                    </td>
+                                </tr>
+
+                                <tr role="row">
+                                    <td role="cell">Nature of the Event</td>
+                                    <td role="cell">
+                                        <select style={{background: 'transparent'}} name="event_nature" required
+                                                ref={register({required: 'This field is required'})}>
+                                            <option value="">Nature of the Event</option>
+                                            <option value="Picnic">Picnic</option>
+                                            <option value="Birthday Party">Birthday Party</option>
+                                            <option value="Wedding Reception">Wedding Reception</option>
+                                            <option value="Product Launch">Product Launch</option>
+                                            <option value="Trade Fairs/Exhibitions">Trade Fairs/Exhibitions</option>
+                                            <option value="Get-together">Get-together</option>
+                                            <option value="Reunions">Reunions</option>
+                                            <option value="Festival Gatherings">Festival Gatherings</option>
+                                            <option value="Metting">Metting</option>
+                                        </select>
+                                        {errors.event_nature && <Error>{errors.event_nature.message}</Error>}
+                                    </td>
+                                </tr>
+
+                                <tr role="row">
+                                    <td role="cell">Expected Number of People</td>
+                                    <td role="cell">
+                                        <input style={{background: 'transparent'}} type="number"
+                                               placeholder="Number of People" required
+                                               name="no_of_people"
+                                               ref={register({required: 'This field is required'})}/>
+                                        <span className="small d-block">Park is free for less than 10 people.</span>
+                                        {errors.no_of_people && <Error>{errors.no_of_people.message}</Error>}
                                     </td>
                                 </tr>
                                 </tbody>
