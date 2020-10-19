@@ -135,11 +135,11 @@ const SingleParkSpace = ({parkSpace, parkSpaceRef}) => {
                                 </tr>
 
                                 <tr role="row">
-                                    <td role="cell">Nature of the Event</td>
+                                    <td role="cell">Nature of Event</td>
                                     <td role="cell">
                                         <select style={{background: 'transparent'}} name="event_nature" required
                                                 ref={register({required: 'This field is required'})}>
-                                            <option value="">Nature of the Event</option>
+                                            <option value="">Nature of Event</option>
                                             <option value="Picnic">Picnic</option>
                                             <option value="Birthday Party">Birthday Party</option>
                                             <option value="Wedding Reception">Wedding Reception</option>
@@ -148,7 +148,7 @@ const SingleParkSpace = ({parkSpace, parkSpaceRef}) => {
                                             <option value="Get-together">Get-together</option>
                                             <option value="Reunions">Reunions</option>
                                             <option value="Festival Gatherings">Festival Gatherings</option>
-                                            <option value="Metting">Metting</option>
+                                            <option value="Meeting">Meeting</option>
                                         </select>
                                         {errors.event_nature && <Error>{errors.event_nature.message}</Error>}
                                     </td>
