@@ -1,6 +1,6 @@
 import Layout from "../../Components/Layout";
 import Head from "next/head";
-import React from "react";
+import React, {useState} from "react";
 import {useForm} from "react-hook-form";
 import {useDispatch} from "react-redux";
 import {loader} from "../../store/actions/loader";
@@ -11,12 +11,15 @@ import Router from "next/router";
 import {withoutAuth} from "../../Components/hoc/auth";
 import Cookies from 'js-cookie';
 import Link from "next/link";
+import axiosInstance from "../../config/axios";
 
 const Login = () => {
 
     const dispatch = useDispatch();
 
-    const {register, errors, handleSubmit} = useForm({
+    const [showForgotPassword, setShowForgotPassword] = useState(false);
+
+    const {register, errors, handleSubmit, reset} = useForm({
         validateCriteriaMode: "all"
     });
 
@@ -31,9 +34,21 @@ const Login = () => {
         }
     }
 
+    const forgotPasswordHandler = async data => {
+        dispatch(loader());
+        try {
+            const {data: res} = await axiosInstance.post('send-reset-link', data);
+            dispatch(loader());
+            dispatch(showNotifier(res.message));
+            reset();
+        } catch (e) {
+            console.log(e);
+        }
+    }
+
     return <Layout mainClass="bg login">
         <Head>
-            <title>Login | Laspark</title>
+            <title>{showForgotPassword ? 'Forgot Password' : 'Login'} | Laspark</title>
         </Head>
 
         <section className="login" id="myLogin">
@@ -42,21 +57,41 @@ const Login = () => {
                     <div className="col-md-6 mx-auto">
                         <div className="sign-up-form login-form bg-white text-center">
                             <div className="heading">
-                                <h3>Login</h3>
-                                <p>No account? <Link href="/signup"><a>Sign Up</a></Link></p>
+                                <h3>{showForgotPassword ? 'Forgot Password' : 'Login'}</h3>
+                                {!showForgotPassword && <p>No account? <Link href="/signup"><a>Sign Up</a></Link></p>}
                             </div>
 
-                            <form className="account-create" onSubmit={handleSubmit(loginHandler)}>
-                                <input ref={register({required: 'This field is required'})} type="email" name="email" id="email" placeholder="Email"/>
-                                {errors.email && <Error>{errors.email.message}</Error>}
+                            {
+                                !showForgotPassword && <form className="account-create" onSubmit={handleSubmit(loginHandler)}>
+                                    <input ref={register({required: 'This field is required'})} type="email"
+                                           name="email"
+                                           id="email" placeholder="Email"/>
+                                    {errors.email && <Error>{errors.email.message}</Error>}
 
-                                <input ref={register({required: 'This field is required'})} type="password" name="password" id="pwd" placeholder="Password"/>
-                                {errors.password && <Error>{errors.password.message}</Error>}
+                                    <input ref={register({required: 'This field is required'})} type="password"
+                                           name="password" id="pwd" placeholder="Password"/>
+                                    {errors.password && <Error>{errors.password.message}</Error>}
 
-                                <button className="btn green thin wide" type="submit">Login</button>
+                                    <button className="btn green thin wide" type="submit">Login</button>
 
-                                <p className="mt-5">Forgot password? <a href="#">Click here</a></p>
-                            </form>
+                                    <p className="mt-5">Forgot password? <a href="#"
+                                                                            onClick={() => setShowForgotPassword(true)}>Click
+                                        here</a></p>
+                                </form>
+                            }
+
+                            {
+                                showForgotPassword && <form className="account-create mt-5" onSubmit={handleSubmit(forgotPasswordHandler)}>
+                                    <input ref={register({required: 'This field is required'})} type="email"
+                                           name="email"
+                                           id="email" placeholder="Email"/>
+                                    {errors.email && <Error>{errors.email.message}</Error>}
+
+                                    <button className="btn green thin wide" type="submit">Recover Password</button>
+
+                                    <p className="mt-5"><a href="#" onClick={() => setShowForgotPassword(false)}>Back to login</a></p>
+                                </form>
+                            }
                         </div>
                     </div>
                 </div>
