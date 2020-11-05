@@ -159,6 +159,7 @@ const SingleParkSpace = ({parkSpace, parkSpaceRef}) => {
                                     <td role="cell">
                                         <input style={{background: 'transparent'}} type="number"
                                                placeholder="Number of People" required
+                                               defaultValue={1}
                                                name="no_of_people"
                                                ref={register({required: 'This field is required'})}/>
                                         <span className="small d-block">Park is free for less than 10 people.</span>
