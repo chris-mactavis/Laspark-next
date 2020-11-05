@@ -4,6 +4,7 @@ import React, {useState, useEffect} from "react";
 import axiosInstance from "../../config/axios";
 import {randomString} from "../../Utils/String";
 import cookies from "next-cookies";
+import Cookies from 'js-cookie';
 
 const Invoice = ({billNumber, invoice}) => {
     const [transactionId, setTransactionId] = useState(randomString(20));
@@ -11,7 +12,8 @@ const Invoice = ({billNumber, invoice}) => {
     const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
-        const hashString = `${process.env.REVPAY_TOKEN}LASPARK${billNumber}${transactionId}${invoice.amount}` + "http://165.227.73.31/profile";
+        Cookies.set('paymentInfo', JSON.stringify({amount: invoice.amount, bookingId: invoice.park_space_booking_id, parkSpaceId: invoice.park_space_id}));
+        const hashString = `${process.env.REVPAY_TOKEN}LASPARK${billNumber}${transactionId}${invoice.amount}` + "http://165.227.73.31/verify-payment";
         setStringHash(
             CryptoJS.MD5(hashString).toString().toUpperCase()
         )
@@ -85,7 +87,7 @@ const Invoice = ({billNumber, invoice}) => {
             <input type="hidden" name="transactionId" value={transactionId}/>
             <input type="hidden" name="billReference" value={billNumber}/>
             <input type="hidden" name="amount" value={invoice.amount}/>
-            <input type="hidden" name="returnUrl" value="http://165.227.73.31/profile"/>
+            <input type="hidden" name="returnUrl" value="http://165.227.73.31/verify-payment"/>
             <input type="hidden" name="clientCode" value="LASPARK"/>
             <input type="hidden" name="Hash" value={stringHash}/>
         </form>
