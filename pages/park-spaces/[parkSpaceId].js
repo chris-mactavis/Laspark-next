@@ -185,7 +185,7 @@ const SingleParkSpace = ({parkSpace, parkSpaceRef}) => {
                                 <button type="submit" className="btn extra-thin green-transparent justify-">Book Now
                                 </button>
                             </div>
-                            <small className="mt-2">Payment is non refundable!</small>
+                            {/*<small className="mt-2">Payment is non refundable!</small>*/}
                         </div>
                     </div>
                 </form>
