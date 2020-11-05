@@ -8,13 +8,38 @@ import Layout from "../../Components/Layout";
 import Token from "../../Utils/Token";
 import {showNotifier} from "../../store/actions/notifier";
 import Router from "next/router";
+import Cookies from 'js-cookie';
 
 
 const VerifyPayment = () => {
 
-    // const dispatch = useDispatch();
+    const dispatch = useDispatch();
     useEffect(() => {
-        Router.push('/profile');
+        dispatch(loader());
+        let paymentInfo = Cookies.get('paymentInfo');
+        paymentInfo = paymentInfo ? JSON.parse(paymentInfo) : null;
+
+        async function updatePayment() {
+            try {
+                // const link = `https://52.168.24.59:7071/PaymentGateway/Verify/${reference}/LASPARK/${stringHash}`;
+                const {data} = await axiosInstance.post(`payment/update-payment`, paymentInfo, {
+                    headers: {
+                        Authorization: `Bearer ${Token()}`
+                    }
+                });
+                dispatch(loader());
+                console.log(data);
+                // dispatch(showNotifier(data.message));
+                Router.push('/profile');
+            } catch (e) {
+                console.log(e);
+            }
+        }
+
+        updatePayment();
+
+
+        // Router.push('/profile');
         // async function verifyPayment() {
         //     dispatch(loader());
         //
