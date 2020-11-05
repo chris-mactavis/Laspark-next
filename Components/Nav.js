@@ -9,7 +9,7 @@ const Nav = ({isLoggedIn}) => {
     const dispatch = useDispatch();
 
     const logoutHandler = () => {
-        window.location = 'http://laspark-frontend.test';
+        window.location = 'http://138.197.187.14/';
         dispatch(logout());
         dispatch(showNotifier('Logged Out'));
         // Router.push('http://138.197.187.14/');
