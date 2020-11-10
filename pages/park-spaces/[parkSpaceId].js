@@ -21,12 +21,13 @@ const SingleParkSpace = ({parkSpace, parkSpaceRef}) => {
     const [transactionId, setTransactionId] = useState(randomString(20));
     const [billNumber, setBillNumber] = useState(null);
     const [stringHash, setStringHash] = useState(null);
+    const [showMulti, setShowMulti] = useState(false);
 
     const {register, errors, handleSubmit} = useForm();
     const dispatch = useDispatch();
 
     useEffect(() => {
-    dispatch(loader());
+        dispatch(loader());
 
         if (!Token()) {
             dispatch(loader());
@@ -41,7 +42,10 @@ const SingleParkSpace = ({parkSpace, parkSpaceRef}) => {
         console.log(data);
         try {
             dispatch(loader());
-            const {data:response} = await axiosInstance.post(`/park-spaces/${parkSpaceRef}/book`, {...data, amount: parkSpace.price}, {
+            const {data: response} = await axiosInstance.post(`/park-spaces/${parkSpaceRef}/book`, {
+                ...data,
+                amount: parkSpace.price
+            }, {
                 headers: {
                     Authorization: `Bearer ${Token()}`
                 }
@@ -114,7 +118,8 @@ const SingleParkSpace = ({parkSpace, parkSpaceRef}) => {
                                     <td role="cell">{parkSpace.park.name}</td>
                                 </tr>
 
-                                {(parkSpace.space !== 'Video Shoot' && parkSpace.space !== 'Photo Shoot') && <tr role="row">
+                                {(parkSpace.space !== 'Video Shoot' && parkSpace.space !== 'Photo Shoot') &&
+                                <tr role="row">
                                     <td role="cell">Space Capacity (People)</td>
                                     <td role="cell">{new Intl.NumberFormat().format(parkSpace.capacity)}</td>
                                 </tr>}
@@ -125,7 +130,17 @@ const SingleParkSpace = ({parkSpace, parkSpaceRef}) => {
                                 </tr>
 
                                 <tr role="row">
-                                    <td role="cell">Book Date</td>
+                                    <td role="cell">Book Multiple Days</td>
+                                    <td role="cell">
+                                        <label className="">
+                                            <input type="checkbox" className="mb-0" defaultChecked={showMulti}
+                                                   name="multi_days" onChange={() => setShowMulti(s => !s)}/>
+                                        </label>
+                                    </td>
+                                </tr>
+
+                                <tr role="row">
+                                    <td role="cell">{showMulti ? 'Start Date' : 'Book Date'}</td>
                                     <td role="cell">
                                         <input style={{background: 'transparent'}} type="date" name="date"
                                                placeholder="Date" required id="txtDate"
@@ -133,6 +148,18 @@ const SingleParkSpace = ({parkSpace, parkSpaceRef}) => {
                                         {errors.date && <Error>{errors.date.message}</Error>}
                                     </td>
                                 </tr>
+
+                                {
+                                    showMulti && <tr role="row">
+                                        <td role="cell">End Date</td>
+                                        <td role="cell">
+                                            <input style={{background: 'transparent'}} type="date" name="end_date"
+                                                   placeholder="Date" required id="txtEndDate"
+                                                   ref={register({required: 'This field is required'})}/>
+                                            {errors.end_date && <Error>{errors.end_date.message}</Error>}
+                                        </td>
+                                    </tr>
+                                }
 
                                 <tr role="row">
                                     <td role="cell">Nature of Event</td>
