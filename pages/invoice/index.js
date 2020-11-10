@@ -5,15 +5,27 @@ import axiosInstance from "../../config/axios";
 import {randomString} from "../../Utils/String";
 import cookies from "next-cookies";
 import Cookies from 'js-cookie';
+import Token from "../../Utils/Token";
+import {loader} from "../../store/actions/loader";
+import Router from "next/router";
+import {useDispatch} from "react-redux";
 
 const Invoice = ({billNumber, invoice}) => {
-    console.log(billNumber, 'billNumber');
+    console.log(invoice, 'billNumber');
     const [transactionId, setTransactionId] = useState(randomString(20));
     const [stringHash, setStringHash] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
 
+    const dispatch = useDispatch();
+
     useEffect(() => {
-        Cookies.set('paymentInfo', JSON.stringify({amount: invoice.amount, bookingId: invoice.park_space_booking_id, parkSpaceId: invoice.park_space_id, transactionId, billReference: billNumber}));
+        Cookies.set('paymentInfo', JSON.stringify({
+            amount: invoice.amount,
+            bookingId: invoice.park_space_booking_id,
+            parkSpaceId: invoice.park_space_id,
+            transactionId,
+            billReference: billNumber
+        }));
         const hashString = `${process.env.REVPAY_TOKEN}LASPARK${billNumber}${transactionId}${invoice.amount}` + "http://165.227.73.31/verify-payment";
         setStringHash(
             CryptoJS.MD5(hashString).toString().toUpperCase()
@@ -21,9 +33,29 @@ const Invoice = ({billNumber, invoice}) => {
     }, []);
 
 
-    const payHandler = () => {
-        document.getElementById('frm').submit();
-        setIsLoading(true);
+    const payHandler = async () => {
+        if (invoice.waiver === 1 && invoice.amount == 0) {
+            dispatch(loader());
+            try {
+                await axiosInstance.post(`payment/update-payment`, {
+                    parkSpaceId: invoice.park_space_id,
+                    bookingId: invoice.park_space_booking_id,
+                    amount: invoice.amount,
+                    waived: 1
+                }, {
+                    headers: {
+                        Authorization: `Bearer ${Token()}`
+                    }
+                });
+                dispatch(loader());
+                Router.push('/profile');
+            } catch (e) {
+                console.log(e);
+            }
+        } else {
+            document.getElementById('frm').submit();
+            setIsLoading(true);
+        }
     }
 
     return <Layout hasHeader={false}>
@@ -72,11 +104,13 @@ const Invoice = ({billNumber, invoice}) => {
                 <div className="row mt-5">
                     <div className="col text-center d-flex flex-column">
                         <div>
-                            <button type="button" disabled={isLoading} onClick={payHandler} className="btn extra-thin green-transparent">Pay
+                            <button type="button" disabled={isLoading} onClick={payHandler}
+                                    className="btn extra-thin green-transparent">Pay
                                 Now
                             </button>
                         </div>
-                        <small className="mt-2">Payment is non refundable!</small>
+                        {(invoice.waiver === 0) &&
+                        <small className="mt-2">Payment is non refundable!</small>}
                     </div>
                 </div>
             </div>
