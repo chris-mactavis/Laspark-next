@@ -21,14 +21,15 @@ const VerifyPayment = () => {
 
         async function updatePayment() {
             try {
-                // const link = `https://52.168.24.59:7071/PaymentGateway/Verify/${reference}/LASPARK/${stringHash}`;
-                const {data} = await axiosInstance.post(`payment/update-payment`, paymentInfo, {
+                const hashString = `${process.env.REVPAY_TOKEN}LASPARK${paymentInfo.billReference}${paymentInfo.transactionId}`;
+                const hash = CryptoJS.MD5(hashString).toString().toUpperCase();
+                const receiptUrl = `https://test.qpay.ng:7071/PaymentGateway/GenerateReceipt/${paymentInfo.billReference}/Webguid/${paymentInfo.transactionId}/LASPARK/${hash}`;
+                await axiosInstance.post(`payment/update-payment`, {...paymentInfo, hash, receiptUrl}, {
                     headers: {
                         Authorization: `Bearer ${Token()}`
                     }
                 });
                 dispatch(loader());
-                console.log(data);
                 // dispatch(showNotifier(data.message));
                 Router.push('/profile');
             } catch (e) {
