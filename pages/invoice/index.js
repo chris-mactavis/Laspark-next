@@ -7,12 +7,13 @@ import cookies from "next-cookies";
 import Cookies from 'js-cookie';
 
 const Invoice = ({billNumber, invoice}) => {
+    console.log(billNumber, 'billNumber');
     const [transactionId, setTransactionId] = useState(randomString(20));
     const [stringHash, setStringHash] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
-        Cookies.set('paymentInfo', JSON.stringify({amount: invoice.amount, bookingId: invoice.park_space_booking_id, parkSpaceId: invoice.park_space_id}));
+        Cookies.set('paymentInfo', JSON.stringify({amount: invoice.amount, bookingId: invoice.park_space_booking_id, parkSpaceId: invoice.park_space_id, transactionId, billReference: billNumber}));
         const hashString = `${process.env.REVPAY_TOKEN}LASPARK${billNumber}${transactionId}${invoice.amount}` + "http://165.227.73.31/verify-payment";
         setStringHash(
             CryptoJS.MD5(hashString).toString().toUpperCase()
