@@ -11,7 +11,6 @@ import Router from "next/router";
 import {useDispatch} from "react-redux";
 
 const Invoice = ({billNumber, invoice}) => {
-    console.log(invoice, 'billNumber');
     const [transactionId, setTransactionId] = useState(randomString(20));
     const [stringHash, setStringHash] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
@@ -134,11 +133,7 @@ Invoice.getInitialProps = async (ctx) => {
     const token = cookies(ctx).token;
     // const token = req.cookies.token;
     try {
-        const {data: {invoice, bill_number: billNumber}} = await axiosInstance.get(`invoices/${query.invoice}`, {
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        });
+        const {data: {invoice, bill_number: billNumber}} = await axiosInstance.get(`invoices/${query.invoice}`);
         return {
             billNumber,
             invoice
