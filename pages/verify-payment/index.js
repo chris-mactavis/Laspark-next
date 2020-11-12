@@ -26,12 +26,12 @@ const VerifyPayment = () => {
                 const receiptUrl = `https://test.qpay.ng:7071/PaymentGateway/GenerateReceipt/${paymentInfo.billReference}/Webguid/${paymentInfo.transactionId}/LASPARK/${hash}`;
                 await axiosInstance.post(`payment/update-payment`, {...paymentInfo, hash, receiptUrl}, {
                     headers: {
-                        Authorization: `Bearer ${Token()}`
+                        Authorization: `Bearer ${paymentInfo.userToken}`
                     }
                 });
                 dispatch(loader());
-                // dispatch(showNotifier(data.message));
-                Router.push('/profile');
+                dispatch(showNotifier('Payment Complete'));
+                setTimeout(() => window.location = 'http://138.197.187.14', 1000)
             } catch (e) {
                 console.log(e);
             }
