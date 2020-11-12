@@ -9,9 +9,9 @@ import Token from "../../Utils/Token";
 import {loader} from "../../store/actions/loader";
 import Router from "next/router";
 import {useDispatch} from "react-redux";
+import {showNotifier} from "../../store/actions/notifier";
 
-const Invoice = ({billNumber, invoice}) => {
-    console.log(invoice, 'billNumber');
+const Invoice = ({billNumber, invoice, token}) => {
     const [transactionId, setTransactionId] = useState(randomString(20));
     const [stringHash, setStringHash] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
@@ -24,7 +24,8 @@ const Invoice = ({billNumber, invoice}) => {
             bookingId: invoice.park_space_booking_id,
             parkSpaceId: invoice.park_space_id,
             transactionId,
-            billReference: billNumber
+            billReference: billNumber,
+            userToken: token
         }));
         const hashString = `${process.env.REVPAY_TOKEN}LASPARK${billNumber}${transactionId}${invoice.amount}` + "http://165.227.73.31/verify-payment";
         setStringHash(
@@ -44,11 +45,13 @@ const Invoice = ({billNumber, invoice}) => {
                     waived: 1
                 }, {
                     headers: {
-                        Authorization: `Bearer ${Token()}`
+                        Authorization: `Bearer ${token}`
                     }
                 });
+                dispatch(showNotifier('Payment complete'))
                 dispatch(loader());
-                Router.push('/profile');
+                setTimeout(() => window.location = 'http://138.197.187.14', 1000);
+
             } catch (e) {
                 console.log(e);
             }
@@ -134,20 +137,18 @@ Invoice.getInitialProps = async (ctx) => {
     const token = cookies(ctx).token;
     // const token = req.cookies.token;
     try {
-        const {data: {invoice, bill_number: billNumber}} = await axiosInstance.get(`invoices/${query.invoice}`, {
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        });
+        const {data: {invoice, bill_number: billNumber, token}} = await axiosInstance.get(`invoices/${query.invoice}`);
         return {
             billNumber,
-            invoice
+            invoice,
+            token
         }
     } catch (e) {
         console.log(e, 'the error');
         return {
             billNumber: null,
-            invoice: null
+            invoice: null,
+            token: null
         }
     }
 }
