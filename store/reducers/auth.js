@@ -13,6 +13,7 @@ const auth = (state = initialState, action) => {
     switch (action.type) {
         case LOGIN:
             const {user, token} = action.data;
+
             return {
                 ...state,
                 user,
