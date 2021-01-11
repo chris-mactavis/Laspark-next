@@ -6,6 +6,7 @@ import Router from "next/router";
 
 const Parks = () => {
     const goToPark = (parkUrl) => {
+        console.log(parkUrl);
         Router.push('/parks/' + parkUrl);
     }
 
@@ -24,6 +25,23 @@ const Parks = () => {
 
                 <div className="row">
                     <div className="col-md-4">
+                        <a className="park" onClick={() => goToPark('ndubuisi-kanu-park')}>
+                            <img className="img-fluid" src="/images/parks/ndubuisi-kanu.jpg" />
+
+                            <div className="content">
+                                <h5>Ndubuisi Kanu Park</h5>
+
+                                <div className="location">
+                                    <img className="pin" src="/images/icon/location-green.svg" /> Alausa, Ikeja
+                                    </div>
+
+                                <div className="view">View Park <img className="arrow-right"
+                                    src="/images/icon/arrow-right-green.svg" /></div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div className="col-md-4">
                         <a className="park" onClick={() => goToPark('johnson-jakande-tinubu-park')}>
                             <img className="img-fluid" src="/images/parks/johnson-jakande.jpg"/>
 
@@ -38,23 +56,6 @@ const Parks = () => {
                                                                      src="/images/icon/arrow-right-green.svg"/></div>
                             </div>
                         </a>
-                    </div>
-
-                    <div className="col-md-4">
-                            <a className="park" onClick={() => goToPark('ndubuisi-kanu-park')}>
-                                <img className="img-fluid" src="/images/parks/ndubuisi-kanu.jpg"/>
-
-                                <div className="content">
-                                    <h5>Ndubuisi Kanu Park</h5>
-
-                                    <div className="location">
-                                        <img className="pin" src="/images/icon/location-green.svg"/> Alausa, Ikeja
-                                    </div>
-
-                                    <div className="view">View Park <img className="arrow-right"
-                                                                         src="/images/icon/arrow-right-green.svg"/></div>
-                                </div>
-                            </a>
                     </div>
 
                     <div className="col-md-4">

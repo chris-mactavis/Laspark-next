@@ -105,7 +105,7 @@ const TreePlanting = ({localGovernment}) => {
                                    placeholder="House Number*"/>
                             {errors.house_number && <Error>{errors.house_number.message}</Error>}
 
-                            <input ref={register({required: 'This field is required'})} type="number" name="no_of_trees"
+                            <input ref={register({required: 'This field is required'})} type="number" min="0" name="no_of_trees"
                                    id="cname" placeholder="Number of trees to be planted*"/>
                             {errors.no_of_trees && <Error>{errors.no_of_trees.message}</Error>}
 

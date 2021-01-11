@@ -98,9 +98,10 @@ const Signup = () => {
                                 <input type="text" ref={register} name="address"
                                        id="address" placeholder="Address"/>
 
-                                <input type="password" ref={register({required: 'You must specify a password'})}
+                                <input type="password" ref={register({required: 'This field is required', pattern: {value: /^[A-Za-z]+[A-Za-z]/i, message: "password must have an upper case"}, minLength: { value: 8, message: "password must be more than 8 characters" }})}
                                        name="password" id="pwd"
                                        placeholder="Password*"/>
+                                 {/* {errors.password ? '' : <span className="error-span-text text-danger">password must be at least one upper case, one lower case, one digit and minimum of 8 characters</span>} */}
                                 {errors.password && <Error>{errors.password.message}</Error>}
 
                                 <input ref={register({

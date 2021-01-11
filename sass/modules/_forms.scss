@@ -32,6 +32,14 @@ form {
         font-size: 1.8rem;
       }
     }
+
+    .error-span-text {
+      font-size: 13px;
+      margin-top: -20px;
+      margin-bottom: 4px;
+      display: block;
+      text-align: left;
+    }
   }
 
   &.booking-form {

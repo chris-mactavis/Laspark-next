@@ -30,11 +30,13 @@ const Adoption = ({localGovernment}) => {
     const serviceRequestHandler = async data => {
         const formData = new FormData();
         Object.keys(data).forEach(key => {
-            if (key === 'proposed_picture') {
-                formData.append('proposed_picture', data[key][0]);
+            if (key === 'proposed_design') {
+                formData.append('proposed_design', data[key][0]);
             } else if (key === 'tree_pictures') {
                 Array.from(data[key]).forEach((tp, index) => formData.append('pictures[]', data[key][index]));
-            } else {
+            }  else if (key === 'attach_letter') {
+                formData.append('attach_letter', data[key][0]);
+            }else {
                 formData.append(key, data[key])
             }
         });
@@ -81,13 +83,16 @@ const Adoption = ({localGovernment}) => {
                                     <label><input value="Scenic Park" type="radio" ref={register({required: 'This field is required'})} name="purpose"/>Scenic Park</label>
                                     <label><input value="Green House" type="radio" ref={register({required: 'This field is required'})} name="purpose"/>Green House</label>
                                     <label><input value="Public Art" type="radio" ref={register({required: 'This field is required'})} name="purpose"/>Public Art</label>
+                                    <label><input value="Garden" type="radio" ref={register({required: 'This field is required'})} name="purpose"/>Garden</label>
+                                    <label><input value="Installation of Movement" type="radio" ref={register({required: 'This field is required'})} name="purpose"/>Installation of Movement</label>
+                                    <label><input value="Engage with Strategic" type="radio" ref={register({required: 'This field is required'})} name="purpose"/>Engage with Strategic</label>
                                     <label><input value="Other" type="radio" ref={register({required: 'This field is required'})} name="purpose"/>Other</label>
                                 </div>
                             </div>
 
-                            <input ref={register({required: 'This field is required'})} type="text" name="size"
+                            {/* <input ref={register({required: 'This field is required'})} type="text" name="size"
                                    placeholder="Size*"/>
-                            {errors.size && <Error>{errors.size.message}</Error>}
+                            {errors.size && <Error>{errors.size.message}</Error>} */}
 
                             <div className="text-left">
                                 <label className="text-left w-100">Current Picture*</label>
@@ -97,10 +102,17 @@ const Adoption = ({localGovernment}) => {
                             </div>
 
                             <div className="text-left">
-                                <label className="text-left w-100">Proposed Picture*</label>
+                                <label className="text-left w-100">Proposed Design*</label>
                                 <input ref={register({required: 'This field is required'})} type="file"
-                                       name="proposed_picture" placeholder="Proposed Picture*"/>
-                                {errors.proposed_picture && <Error>{errors.proposed_picture.message}</Error>}
+                                       name="proposed_design" placeholder="Proposed Design*"/>
+                                {errors.proposed_design && <Error>{errors.proposed_design.message}</Error>}
+                            </div>
+
+                            <div className="text-left">
+                                <label className="text-left w-100">Attach Letter*</label>
+                                <input ref={register({required: 'This field is required'})} type="file"
+                                       name="attach_letter" placeholder="Attach Letter*"/>
+                                {errors.attach_letter && <Error>{errors.attach_letter.message}</Error>}
                             </div>
 
 
@@ -119,20 +131,20 @@ const Adoption = ({localGovernment}) => {
                             {/*</div>*/}
 
                             <select ref={register({required: 'This field is required'})} name="local_government_id">
-                                <option value="">Select Local Government</option>
+                                <option value="">Select Local Govt</option>
                                 {
                                     localGovernment.map(lg => <option value={lg.id} key={lg.id}>{lg.name}</option>)
                                 }
                             </select>
                             {errors.local_government_id && <Error>{errors.local_government_id.message}</Error>}
 
-                            <input ref={register({required: 'This field is required'})} type="text" name="street_name"
+                            {/* <input ref={register({required: 'This field is required'})} type="text" name="street_name"
                                    placeholder="Street name*"/>
-                            {errors.street_name && <Error>{errors.street_name.message}</Error>}
+                            {errors.street_name && <Error>{errors.street_name.message}</Error>} */}
 
-                            <input ref={register({required: 'This field is required'})} type="text" name="house_number"
+                            {/* <input ref={register({required: 'This field is required'})} type="text" name="house_number"
                                    placeholder="House Number*"/>
-                            {errors.house_number && <Error>{errors.house_number.message}</Error>}
+                            {errors.house_number && <Error>{errors.house_number.message}</Error>} */}
 
                             <button className="btn green thin wide" type="submit">Submit Request</button>
                         </form>
