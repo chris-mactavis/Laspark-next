@@ -15,6 +15,7 @@ const Invoice = ({billNumber, invoice, token}) => {
     const [transactionId, setTransactionId] = useState(randomString(20));
     const [stringHash, setStringHash] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
+    console.log(invoice);
 
     const dispatch = useDispatch();
 
@@ -89,6 +90,10 @@ const Invoice = ({billNumber, invoice, token}) => {
                                 <td role="cell">#{invoice.ref}</td>
                             </tr>
                             <tr role="row">
+                                <td role="cell">Order Number</td>
+                                <td role="cell">{invoice.park_space_booking.order_number}</td>
+                            </tr>
+                            <tr role="row">
                                 <td role="cell">Bill To</td>
                                 <td role="cell">{invoice.user.first_name} {invoice.user.last_name}</td>
                             </tr>
@@ -135,7 +140,7 @@ const Invoice = ({billNumber, invoice, token}) => {
 Invoice.getInitialProps = async (ctx) => {
     const {query, req} = ctx;
     const token = cookies(ctx).token;
-    // const token = req.cookies.token;
+    // const token = req.cookies.token; 
     try {
         const {data: {invoice, bill_number: billNumber, token}} = await axiosInstance.get(`invoices/${query.invoice}`);
         return {

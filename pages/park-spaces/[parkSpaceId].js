@@ -17,12 +17,16 @@ import Cookies from "js-cookie";
 import Router from "next/router";
 
 const SingleParkSpace = ({parkSpace, parkSpaceRef}) => {
-    // console.log(parkSpace, parkSpaceRef);
+    console.log(parkSpace, parkSpaceRef);
     const [transactionId, setTransactionId] = useState(randomString(20));
     const [billNumber, setBillNumber] = useState(null);
     const [stringHash, setStringHash] = useState(null);
     const [showMulti, setShowMulti] = useState(false);
+    const [otherNatureEvent, setOtherNatureEvent] = useState('');
+    const [minDate, setMinDate] = useState(null);
 
+    console.log(otherNatureEvent);
+    
     const {register, errors, handleSubmit} = useForm();
     const dispatch = useDispatch();
 
@@ -36,6 +40,19 @@ const SingleParkSpace = ({parkSpace, parkSpaceRef}) => {
         } else {
             dispatch(loader());
         }
+
+        // Setting the minimum date selection
+        var dtToday = new Date();
+        var month = dtToday.getMonth() + 1;
+        var day = dtToday.getDate();
+        var year = dtToday.getFullYear();
+        if(month < 10)
+            month = '0' + month.toString();
+        if(day < 10)
+            day = '0' + day.toString();
+        
+        var maxDate = year + '-' + month + '-' + day;
+        setMinDate(maxDate);
     }, []);
 
     const bookingHandler = async data => {
@@ -52,6 +69,7 @@ const SingleParkSpace = ({parkSpace, parkSpaceRef}) => {
             });
             dispatch(loader());
             Router.push('/profile');
+            dispatch(showNotifier('We will get in touch with you soon', 'success'));
         } catch (e) {
             console.log(e);
             dispatch(showNotifier(e.response.data.message, 'danger'));
@@ -80,6 +98,13 @@ const SingleParkSpace = ({parkSpace, parkSpaceRef}) => {
         //     dispatch(loader());
         // }
     };
+
+    const handleChange = (e) => {
+        setOtherNatureEvent(e.target.value);
+    };
+
+
+
     return <Layout hasHeader={false}>
         <Head>
             <title>{parkSpace.park.name} | Laspark</title>
@@ -142,8 +167,8 @@ const SingleParkSpace = ({parkSpace, parkSpaceRef}) => {
                                 <tr role="row">
                                     <td role="cell">{showMulti ? 'Start Date' : 'Book Date'}</td>
                                     <td role="cell">
-                                        <input style={{background: 'transparent'}} type="date" name="date"
-                                               placeholder="Date" required id="txtDate"
+                                        <input style={{background: 'transparent'}} type="date" name="start_date"
+                                               placeholder="Date" required id="txtDate" min={minDate}
                                                ref={register({required: 'This field is required'})}/>
                                         {errors.date && <Error>{errors.date.message}</Error>}
                                     </td>
@@ -154,7 +179,7 @@ const SingleParkSpace = ({parkSpace, parkSpaceRef}) => {
                                         <td role="cell">End Date</td>
                                         <td role="cell">
                                             <input style={{background: 'transparent'}} type="date" name="end_date"
-                                                   placeholder="Date" required id="txtEndDate"
+                                                   placeholder="Date" required id="txtEndDate" min={minDate}
                                                    ref={register({required: 'This field is required'})}/>
                                             {errors.end_date && <Error>{errors.end_date.message}</Error>}
                                         </td>
@@ -162,10 +187,31 @@ const SingleParkSpace = ({parkSpace, parkSpaceRef}) => {
                                 }
 
                                 <tr role="row">
+                                    <td role="cell">Start Time</td>
+                                    <td role="cell">
+                                        <input style={{background: 'transparent'}} type="time" name="start_time"
+                                               placeholder="Start Time" required
+                                               ref={register({required: 'This field is required'})}/>
+                                        {errors.start_time && <Error>{errors.start_time.message}</Error>}
+                                    </td>
+                                </tr>
+
+                                <tr role="row">
+                                    <td role="cell">End Time</td>
+                                    <td role="cell">
+                                        <input style={{background: 'transparent'}} type="time" name="end_time"
+                                               placeholder="End Time" required
+                                               ref={register({required: 'This field is required'})}/>
+                                        {errors.end_time && <Error>{errors.end_time.message}</Error>}
+                                    </td>
+                                </tr>
+
+                                {(parkSpace.space !== 'Video Shoot' && parkSpace.space !== 'Photo Shoot') &&
+                                <tr role="row">
                                     <td role="cell">Nature of Event</td>
                                     <td role="cell">
-                                        <select style={{background: 'transparent'}} name="event_nature" required
-                                                ref={register({required: 'This field is required'})}>
+                                        <select onChange={handleChange} style={{ background: 'transparent' }}  name={otherNatureEvent === "Others" ? '' : "event_nature"} required
+                                            ref={register({ required: 'This field is required' })}>
                                             <option value="">Nature of Event</option>
                                             <option value="Picnic">Picnic</option>
                                             <option value="Birthday Party">Birthday Party</option>
@@ -176,17 +222,22 @@ const SingleParkSpace = ({parkSpace, parkSpaceRef}) => {
                                             <option value="Reunions">Reunions</option>
                                             <option value="Festival Gatherings">Festival Gatherings</option>
                                             <option value="Meeting">Meeting</option>
+                                            <option value="Music Concert">Music Concert</option>
+                                            <option value="Excursion">Excursion</option>
+                                            <option value="Others">Others</option>
                                         </select>
+                                        {otherNatureEvent === 'Others' && <input className="ml-2 pb-0" style={{ background: 'transparent' }} type="text" ref={register({ required: 'This field is required' })} name="event_nature" required />}
+
                                         {errors.event_nature && <Error>{errors.event_nature.message}</Error>}
                                     </td>
-                                </tr>
+                                </tr>}
 
                                 <tr role="row">
                                     <td role="cell">Expected Number of People</td>
                                     <td role="cell">
-                                        <input style={{background: 'transparent'}} type="number"
+                                        <input style={{background: 'transparent'}} type="number" min="10"
                                                placeholder="Number of People" required
-                                               defaultValue={1}
+                                               defaultValue={10}
                                                name="no_of_people"
                                                ref={register({required: 'This field is required'})}/>
                                         <span className="small d-block">Park is free for less than 10 people.</span>

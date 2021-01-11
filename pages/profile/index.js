@@ -8,6 +8,7 @@ import Link from "next/link";
 import Router from "next/router";
 
 const Profile = ({parkBookings, serviceBookings}) => {
+    console.log(serviceBookings);
 
     const goToChat = (bookingId, park = false) => {
         park
@@ -22,7 +23,7 @@ const Profile = ({parkBookings, serviceBookings}) => {
 
         <section className="profile">
             <div className="container">
-                <div className="row">
+                <div className="row"> 
                     <div className="col">
                         <h2 className="text-center mb-5">My Profile</h2>
                     </div>
@@ -51,7 +52,7 @@ const Profile = ({parkBookings, serviceBookings}) => {
                                     <td role="cell">#{booking.order_number}</td>
                                     <td role="cell">{booking.park_space.space} ({booking.park.name})</td>
                                     <td role="cell">{booking.amount_formatted}</td>
-                                    <td role="cell">{booking.date}</td>
+                                    {booking.end_date ? <td role="cell">{booking.start_date} - {booking.end_date} </td> : <td role="cell">{booking.start_date} </td>}
                                 </tr>)
                             }
                             </tbody>

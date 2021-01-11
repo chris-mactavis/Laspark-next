@@ -29,6 +29,10 @@ const Nav = ({isLoggedIn}) => {
             {/*    <Link href="/contact-us"><a className="nav-link">Contact Us</a></Link>*/}
             {/*</li>*/}
 
+            <li className="nav-item">
+                <a href="http://138.197.187.14" className="nav-link">Home</a>
+            </li>
+
             {
                 !isLoggedIn && <li className="nav-item">
                     <Link href="/login"><a className="nav-link">login</a></Link>
