@@ -31,8 +31,8 @@ const TreeFelling = ({localGovernment}) => {
 
         const formData = new FormData();
         Object.keys(data).forEach(key => {
-            if (key === 'request_letter') {
-                formData.append('request_letter_file', data[key][0]);
+            if (key === 'attach_letter') {
+                formData.append('attach_letter', data[key][0]);
             } else if (key === 'tree_pictures') {
                 Array.from(data[key]).forEach((tp, index) => formData.append('pictures[]', data[key][index]));
             } else {
@@ -108,9 +108,9 @@ const TreeFelling = ({localGovernment}) => {
                             <div className="text-left">
                                 <label className="text-left">Request Letter*</label>
                                 <input ref={register({required: 'This field is required'})} type="file"
-                                       name="request_letter"
+                                       name="attach_letter"
                                        placeholder="Request letter"/>
-                                {errors.request_letter && <Error>{errors.request_letter.message}</Error>}
+                                {errors.attach_letter && <Error>{errors.attach_letter.message}</Error>}
                             </div>
 
                             <div className="text-left">

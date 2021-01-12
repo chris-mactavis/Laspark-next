@@ -28,6 +28,7 @@ const Adoption = ({localGovernment}) => {
     }, []);
 
     const serviceRequestHandler = async data => {
+        console.log(data);
         const formData = new FormData();
         Object.keys(data).forEach(key => {
             if (key === 'proposed_design') {
