@@ -44,7 +44,7 @@ const TreePruning = ({localGovernment}) => {
             } else if (key === 'tree_pictures') {
                 Array.from(data[key]).forEach((tp, index) => formData.append('pictures[]', data[key][index]));
             } else {
-                formData.append(key, data[key])
+                formData.append(key, data[key]);
             }
         });
 

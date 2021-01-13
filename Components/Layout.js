@@ -8,17 +8,17 @@ import Nav from "./Nav";
 import Link from "next/link";
 import {useSelector} from "react-redux";
 import ParkRules from "./ParkRules";
-import NProgress from 'nprogress';
+// import NProgress from 'nprogress';
 import Router from 'next/router';
 
-Router.onRouteChangeStart = url => {
-    console.log(url);
-    NProgress.start();
-};
+// Router.onRouteChangeStart = url => {
+//     console.log(url);
+//     NProgress.start();
+// };
 
-Router.onRouteChangeComplete = ()  => NProgress.done();
+// Router.onRouteChangeComplete = ()  => NProgress.done();
 
-Router.onRouteChangeError = ()  => NProgress.done();
+// Router.onRouteChangeError = ()  => NProgress.done();
 
 
 const Layout = ({children, headerContent, page = null, mainClass = null, headerClass = null, hasHeader = true}) => {
@@ -33,9 +33,9 @@ const Layout = ({children, headerContent, page = null, mainClass = null, headerC
     return (
         <>
              <Head>
-             <title>Laspark</title>
+                <title>Laspark</title>
             </Head>
-            
+
             <Loader/>
 
             <Notifier/>

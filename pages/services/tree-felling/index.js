@@ -17,6 +17,7 @@ const TreeFelling = ({localGovernment}) => {
 
     let user = useSelector(state => state.auth.user) || {};
     user = typeof user === 'object' ? user : JSON.parse(user);
+    console.log(user);
 
     useEffect(() => {
         document.body.scrollTop = 0; // For Safari

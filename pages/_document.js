@@ -45,10 +45,10 @@ class document extends Document  {
                 <script src="/js/main.js"/>
             </Head>
     
-                <body>
-                    <Main />
-                    <NextScript />
-                </body>
+            <body>
+                <Main />
+                <NextScript />
+            </body>
             </Html>
         );
     }
