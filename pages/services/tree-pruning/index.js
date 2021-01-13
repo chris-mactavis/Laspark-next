@@ -108,7 +108,7 @@ const TreePruning = ({localGovernment}) => {
 
                             <div className="text-left">
                                 <label className="text-left">Request Letter*</label>
-                                <input ref={register({required: 'This field is required'})} type="file"
+                                <input ref={register({required: 'This field is required'})} type="file" accept=".pdf,.docx,.doc"
                                        name="attach_letter"
                                        placeholder="Request letter"/>
                                 {errors.attach_letter && <Error>{errors.attach_letter.message}</Error>}

@@ -385,9 +385,11 @@ main.bg {
   position: relative;
   height: 100vh; }
   main.bg.login {
-    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(/images/bgs/bg-1.jpg); }
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(/images/bgs/bg-1.jpg);
+    height: 120vh; }
   main.bg.signup {
-    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(/images/bgs/bg-2.jpg); }
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(/images/bgs/bg-2.jpg);
+    height: 120vh; }
   main.bg.contact {
     background-image: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(/images/bgs/bg-3.jpg); }
   main.bg h1 {
@@ -505,6 +507,13 @@ section.login {
   left: 50%;
   transform: translate(-50%, -50%);
   width: 100%; }
+  @media only screen and (max-width: 992px) {
+    section.login {
+      position: unset;
+      top: 0;
+      left: 0;
+      transform: none;
+      margin-top: 50px; } }
   section.login .login-form {
     padding: 30px; }
   section.login a {

@@ -8,6 +8,18 @@ import Nav from "./Nav";
 import Link from "next/link";
 import {useSelector} from "react-redux";
 import ParkRules from "./ParkRules";
+import NProgress from 'nprogress';
+import Router from 'next/router';
+
+Router.onRouteChangeStart = url => {
+    console.log(url);
+    NProgress.start();
+};
+
+Router.onRouteChangeComplete = ()  => NProgress.done();
+
+Router.onRouteChangeError = ()  => NProgress.done();
+
 
 const Layout = ({children, headerContent, page = null, mainClass = null, headerClass = null, hasHeader = true}) => {
     const isLoggedIn = useSelector(state => state.auth.loggedIn);
@@ -35,6 +47,9 @@ const Layout = ({children, headerContent, page = null, mainClass = null, headerC
                 <link rel="stylesheet"
                       href="/css/bootstrap.min.css"/>
 
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.css" integrity="sha512-42kB9yDlYiCEfx2xVwq0q7hT4uf26FUgSIZBK8uiaEnTdShXjwr8Ip1V4xGJMg3mHkUt9nNuTDxunHF0/EgxLQ==" crossorigin="anonymous" />
+
+
                 <link rel="stylesheet" type="text/css" href="/slick/slick.css"/>
                 <link rel="stylesheet" type="text/css" href="/slick/slick-theme.css"/>
 
@@ -59,6 +74,8 @@ const Layout = ({children, headerContent, page = null, mainClass = null, headerC
                 <script src="/js/crypto-js.min.js"/>
                 <script src="/js/main.js"/>
             </Head>
+
+            
 
             <Loader/>
 
