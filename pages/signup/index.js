@@ -25,6 +25,7 @@ const Signup = () => {
             dispatch(loader());
             dispatch(showNotifier('Registered successfully!'))
             Router.push('/');
+            // window.location = 'http://138.197.187.14'
         } catch (e) {
             console.log(e);
             dispatch(loader());

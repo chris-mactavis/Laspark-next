@@ -53,6 +53,11 @@ const SingleParkSpace = ({parkSpace, parkSpaceRef}) => {
         
         var maxDate = year + '-' + month + '-' + day;
         setMinDate(maxDate);
+
+        if ( $('[type="date"]').prop('type') != 'date' ) {
+            $('[type="date"]').datepicker();
+        }
+        
     }, []);
 
     const bookingHandler = async data => {

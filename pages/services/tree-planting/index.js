@@ -36,6 +36,10 @@ const TreePlanting = ({localGovernment}) => {
         
         var maxDate = year + '-' + month + '-' + day;
         setMinDate(maxDate);
+
+        if ( $('[type="date"]').prop('type') != 'date' ) {
+            $('[type="date"]').datepicker();
+        }
     }, []);
 
     useEffect(() => {

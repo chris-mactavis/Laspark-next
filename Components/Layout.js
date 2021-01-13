@@ -32,10 +32,10 @@ const Layout = ({children, headerContent, page = null, mainClass = null, headerC
 
     return (
         <>
+             <Head>
+             <title>Laspark</title>
+            </Head>
             
-
-            
-
             <Loader/>
 
             <Notifier/>
