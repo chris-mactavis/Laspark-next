@@ -853,7 +853,8 @@ input, select {
   border-right: none;
   border-left: none;
   outline: none;
-  color: #686868; }
+  color: #686868;
+  border-color: #686868 !important; }
 
 select {
   border-bottom-width: 2px; }

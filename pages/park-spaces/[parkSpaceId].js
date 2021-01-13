@@ -226,7 +226,7 @@ const SingleParkSpace = ({parkSpace, parkSpaceRef}) => {
                                             <option value="Excursion">Excursion</option>
                                             <option value="Others">Others</option>
                                         </select>
-                                        {otherNatureEvent === 'Others' && <input className="ml-2 pb-0" style={{ background: 'transparent' }} type="text" ref={register({ required: 'This field is required' })} name="event_nature" required />}
+                                        {otherNatureEvent === 'Others' && <input className="ml-2 pb-0" style={{ background: 'transparent' }} type="text" placeholder="Please fill in" ref={register({ required: 'This field is required' })} name="event_nature" required />}
 
                                         {errors.event_nature && <Error>{errors.event_nature.message}</Error>}
                                     </td>
