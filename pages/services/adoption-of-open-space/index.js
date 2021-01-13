@@ -2,7 +2,7 @@ import Layout from "../../../Components/Layout";
 import Head from "next/head";
 import React, {useEffect} from "react";
 import {useForm} from "react-hook-form";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {loader} from "../../../store/actions/loader";
 import {showNotifier} from "../../../store/actions/notifier";
 import Error from "../../../Components/Error";
@@ -14,6 +14,14 @@ import Cookies from "js-cookie";
 const Adoption = ({localGovernment}) => {
     const dispatch = useDispatch();
     const {errors, register, handleSubmit} = useForm();
+
+    let user = useSelector(state => state.auth.user) || {};
+    user = typeof user === 'object' ? user : JSON.parse(user);
+
+    useEffect(() => {
+        document.body.scrollTop = 0; // For Safari
+        document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+    }, []);
 
     useEffect(() => {
         dispatch(loader());
@@ -41,6 +49,8 @@ const Adoption = ({localGovernment}) => {
                 formData.append(key, data[key])
             }
         });
+
+        formData.append('user_id', user.id);
 
         dispatch(loader());
 
@@ -118,7 +128,7 @@ const Adoption = ({localGovernment}) => {
 
 
                             <select ref={register({required: 'This field is required'})} name="institution_type">
-                                <option value="">Composition</option>
+                                <option value="">Customer</option>
                                 <option value="individual">Individual</option>
                                 <option value="organization">Organization</option>
                             </select>
