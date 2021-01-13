@@ -30,15 +30,12 @@ const TopBar = ({isLoggedIn, page, headerContent}) => {
             </nav>
         </div>
 
-        <div className="sidebar">
+        {/* <div className="sidebar">
             <button id="close-btn">
                 <img src="/images/icon/return-button.svg" alt="" className="img-fluid"/>
             </button>
 
             <ul className="profile-list">
-                {/*<li>*/}
-                {/*    <a href="profile.html">Profile <img src="/images/icon/profile.svg" alt=""/></a>*/}
-                {/*</li>*/}
                 <li>
                     <a href="booking-history.html">Booking History <img src="/images/icon/booking-history.svg"
                                                                         alt=""/></a>
@@ -66,7 +63,7 @@ const TopBar = ({isLoggedIn, page, headerContent}) => {
                     <a href="#">Logout</a>
                 </li>
             </ul>
-        </div>
+        </div> */}
 
         {headerContent}
     </>

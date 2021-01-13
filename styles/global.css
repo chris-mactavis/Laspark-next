@@ -910,7 +910,7 @@ main {
     cursor: pointer; }
 
 nav.navbar {
-  padding: 0; }
+  padding: 0 15px; }
   nav.navbar .logo-container {
     background: #fff;
     padding: 10px;
@@ -918,11 +918,14 @@ nav.navbar {
     border-bottom-right-radius: 70px; }
     nav.navbar .logo-container img {
       max-height: 80px; }
+      @media only screen and (max-width: 992px) {
+        nav.navbar .logo-container img {
+          max-height: 64px; } }
   nav.navbar .navbar-collapse {
     flex-grow: 0; }
     @media only screen and (max-width: 992px) {
       nav.navbar .navbar-collapse {
-        display: none; } }
+        padding: 10px 0; } }
   nav.navbar .move-right {
     margin-right: 50px;
     padding-right: 50px; }
@@ -930,7 +933,8 @@ nav.navbar {
     flex-direction: row;
     flex-wrap: inherit;
     align-items: center;
-    padding-left: 1rem; }
+    padding-left: 1rem;
+    flex-wrap: wrap; }
     nav.navbar ul.navbar-nav li.nav-item {
       margin-right: 5rem; }
       nav.navbar ul.navbar-nav li.nav-item .nav-link {
