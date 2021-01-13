@@ -4,7 +4,7 @@ import thunkMiddleware from "redux-thunk";
 import {applyMiddleware, combineReducers, createStore} from "redux";
 import {composeWithDevTools} from "redux-devtools-extension";
 
-import '../styles/global.css';
+import '../styles/sass/main.scss';
 import toggleLoading from "../store/reducers/loader";
 import notifier from "../store/reducers/notifier";
 import auth from "../store/reducers/auth";
