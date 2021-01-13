@@ -8,6 +8,9 @@ import Nav from "./Nav";
 import Link from "next/link";
 import {useSelector} from "react-redux";
 import ParkRules from "./ParkRules";
+import $ from 'jquery'; 
+import bootstrap from 'bootstrap'
+
 // import NProgress from 'nprogress';
 import Router from 'next/router';
 
