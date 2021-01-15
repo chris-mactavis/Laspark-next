@@ -74,7 +74,7 @@ const SingleParkSpace = ({parkSpace, parkSpaceRef}) => {
             });
             dispatch(loader());
             Router.push('/profile');
-            dispatch(showNotifier('We will get in touch with you soon', 'success'));
+            dispatch(showNotifier('We will get in touch with you via mail in the next 48 hours.', 'success'));
         } catch (e) {
             console.log(e);
             dispatch(showNotifier(e.response.data.message, 'danger'));

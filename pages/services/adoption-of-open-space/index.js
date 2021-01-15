@@ -96,7 +96,7 @@ const Adoption = ({localGovernment}) => {
                                     <label><input value="Public Art" type="radio" ref={register({required: 'This field is required'})} name="purpose"/>Public Art</label>
                                     <label><input value="Garden" type="radio" ref={register({required: 'This field is required'})} name="purpose"/>Garden</label>
                                     <label><input value="Installation of Movement" type="radio" ref={register({required: 'This field is required'})} name="purpose"/>Installation of Movement</label>
-                                    <label><input value="Engage with Strategic" type="radio" ref={register({required: 'This field is required'})} name="purpose"/>Engage with Strategic</label>
+                                    {/* <label><input value="Engage with Strategic" type="radio" ref={register({required: 'This field is required'})} name="purpose"/>Engage with Strategic</label> */}
                                     <label><input value="Other" type="radio" ref={register({required: 'This field is required'})} name="purpose"/>Other</label>
                                 </div>
                             </div>
