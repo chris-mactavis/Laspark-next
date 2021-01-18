@@ -87,7 +87,7 @@ const Invoice = ({billNumber, invoice, token}) => {
                             <tbody role="rowgroup">
                             <tr role="row">
                                 <td role="cell">Invoice Number</td>
-                                <td role="cell">#{invoice.ref}</td>
+                                <td role="cell">{invoice.invoice_number}</td>
                             </tr>
                             <tr role="row">
                                 <td role="cell">Order Number</td>
