@@ -13,7 +13,7 @@ import NProgress from 'nprogress';
 import Router from 'next/router';
 
 Router.onRouteChangeStart = url => {
-    console.log(url);
+    // console.log(url);
     NProgress.start();
 };
 
@@ -35,6 +35,7 @@ const Layout = ({children, headerContent, page = null, mainClass = null, headerC
         <>
              <Head>
                 <title>Laspark</title>
+                 <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
             </Head>
             
 
