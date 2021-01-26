@@ -94,7 +94,7 @@ export default function ServiceBookingDetail({booking, messages: parkMessages, s
                                                 message.attachments_decoded.map((attachment, i) => <span key={i}
                                                                                                          className="d-block mb-2">
                                                 <a target="_blank" className="text-dark"
-                                                   href={attachment}>{attachment}</a>
+                                                   href={`http://159.203.67.70${attachment}`}>{attachment}</a>
                                             </span>)
                                             }
                                         </div>
