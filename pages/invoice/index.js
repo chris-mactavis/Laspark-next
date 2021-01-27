@@ -15,11 +15,11 @@ const Invoice = ({billNumber, invoice, token}) => {
     const [transactionId, setTransactionId] = useState(randomString(20));
     const [stringHash, setStringHash] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
-    console.log(invoice);
 
     const dispatch = useDispatch();
 
     useEffect(() => {
+        const md5 = require('md5');
         Cookies.set('paymentInfo', JSON.stringify({
             amount: invoice.amount,
             bookingId: invoice.park_space_booking_id,
@@ -30,7 +30,7 @@ const Invoice = ({billNumber, invoice, token}) => {
         }));
         const hashString = `${process.env.REVPAY_TOKEN}LASPARK${billNumber}${transactionId}${invoice.amount}` + "http://165.227.73.31/verify-payment";
         setStringHash(
-            CryptoJS.MD5(hashString).toString().toUpperCase()
+            md5(hashString).toString().toUpperCase()
         )
     }, []);
 
