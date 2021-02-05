@@ -88,12 +88,12 @@ export default function ServiceBookingDetail({booking, messages: parkMessages, s
                                 {(message.message && message.message !== 'undefined') && <div dangerouslySetInnerHTML={createMarkup(message.message)}/>}
                                 {
                                     message.attachments_decoded.length > 0 && <div className="attachment-section">
-                                        <div className="d-flex flex-column mt-3">
+                                        <div className="d-flex flex-wrap flex-column mt-3">
                                             <a href="#" className="mb-1 text-dark">Attachment</a>
                                             {
                                                 message.attachments_decoded.map((attachment, i) => <span key={i}
                                                                                                          className="d-block mb-2">
-                                                <a target="_blank" className="text-dark"
+                                                <a target="_blank" className="attachment text-dark"
                                                    href={`http://159.203.67.70${attachment}`}>{attachment}</a>
                                             </span>)
                                             }
