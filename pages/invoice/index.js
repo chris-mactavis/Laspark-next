@@ -11,63 +11,75 @@ import Router from "next/router";
 import {useDispatch} from "react-redux";
 import {showNotifier} from "../../store/actions/notifier";
 
+import ParkInvoice from '../../Components/ParkInvoice';
+import ServiceInvoice from '../../Components/ServiceInvoice';
+
 const Invoice = ({billNumber, invoice, token}) => {
-    const [transactionId, setTransactionId] = useState(randomString(20));
-    const [stringHash, setStringHash] = useState(null);
-    const [isLoading, setIsLoading] = useState(false);
+    // const [transactionId, setTransactionId] = useState(randomString(20));
+    // const [stringHash, setStringHash] = useState(null);
+    // const [isLoading, setIsLoading] = useState(false);
 
-    const dispatch = useDispatch();
+    // const dispatch = useDispatch();
 
-    useEffect(() => {
-        const md5 = require('md5');
-        Cookies.set('paymentInfo', JSON.stringify({
-            amount: invoice.amount,
-            bookingId: invoice.park_space_booking_id,
-            parkSpaceId: invoice.park_space_id,
-            transactionId,
-            billReference: billNumber,
-            userToken: token
-        }));
-        const hashString = `${process.env.REVPAY_TOKEN}LASPARK${billNumber}${transactionId}${invoice.amount}` + "http://165.227.73.31/verify-payment";
-        setStringHash(
-            md5(hashString).toString().toUpperCase()
-        )
-    }, []);
+    // useEffect(() => {
+    //     const md5 = require('md5');
+    //     Cookies.set('paymentInfo', JSON.stringify({
+    //         amount: invoice.amount,
+    //         bookingId: invoice.park_space_booking_id, 
+    //         parkSpaceId: invoice.park_space_id,
+    //         transactionId,
+    //         billReference: billNumber,
+    //         userToken: token
+    //     }));
+    //     const hashString = `${process.env.REVPAY_TOKEN}LASPARK${billNumber}${transactionId}${invoice.amount}` + "http://165.227.73.31/verify-payment";
+    //     setStringHash(
+    //         md5(hashString).toString().toUpperCase()
+    //     )
+    // }, []);
 
 
-    const payHandler = async () => {
-        if (invoice.waiver === 1 && invoice.amount == 0) {
-            dispatch(loader());
-            try {
-                await axiosInstance.post(`payment/update-payment`, {
-                    parkSpaceId: invoice.park_space_id,
-                    bookingId: invoice.park_space_booking_id,
-                    amount: invoice.amount,
-                    waived: 1
-                }, {
-                    headers: {
-                        Authorization: `Bearer ${token}`
-                    }
-                });
-                dispatch(showNotifier('Payment complete'))
-                dispatch(loader());
-                setTimeout(() => window.location = 'http://138.197.187.14', 1000);
+    // const payHandler = async () => {
+    //     if (invoice.waiver === 1 && invoice.amount == 0) {
+    //         dispatch(loader());
+    //         try {
+    //             await axiosInstance.post(`payment/update-payment`, {
+    //                 parkSpaceId: invoice.park_space_id,
+    //                 bookingId: invoice.park_space_booking_id,
+    //                 amount: invoice.amount,
+    //                 waived: 1
+    //             }, {
+    //                 headers: {
+    //                     Authorization: `Bearer ${token}`
+    //                 }
+    //             });
+    //             dispatch(showNotifier('Payment complete'))
+    //             dispatch(loader());
+    //             setTimeout(() => window.location = 'http://138.197.187.14', 1000);
 
-            } catch (e) {
-                console.log(e);
-            }
-        } else {
-            document.getElementById('frm').submit();
-            setIsLoading(true);
-        }
-    }
+    //         } catch (e) {
+    //             console.log(e);
+    //         }
+    //     } else {
+    //         document.getElementById('frm').submit();
+    //         setIsLoading(true);
+    //     }
+    // }
 
     return <Layout hasHeader={false}>
         <Head>
             <title>Payment Invoice | Laspark</title>
         </Head>
 
-        <section className="profile">
+        {invoice.is_service 
+        ?
+            <ServiceInvoice invoice={invoice} billNumber={billNumber} token={token} /> 
+        : 
+            <ParkInvoice invoice={invoice} billNumber={billNumber} token={token}  /> 
+        }
+        
+        
+
+        {/* <section className="profile">
             <div className="container">
                 <div className="row">
                     <div className="col">
@@ -133,7 +145,7 @@ const Invoice = ({billNumber, invoice, token}) => {
             <input type="hidden" name="returnUrl" value="http://165.227.73.31/verify-payment"/>
             <input type="hidden" name="clientCode" value="LASPARK"/>
             <input type="hidden" name="Hash" value={stringHash}/>
-        </form>
+        </form> */}
     </Layout>
 }
 
