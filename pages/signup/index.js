@@ -11,6 +11,7 @@ import axiosInstance from "../../config/axios";
 import {showNotifier} from "../../store/actions/notifier";
 import {withoutAuth} from "../../Components/hoc/auth";
 import {storeAuth} from "../../store/actions/auth";
+import Cookies from "js-cookie";
 
 const Signup = () => {
     const {register, errors, handleSubmit, watch} = useForm();
@@ -24,8 +25,9 @@ const Signup = () => {
             dispatch(storeAuth(data))
             dispatch(loader());
             dispatch(showNotifier('Registered successfully!'))
-            Router.push('/');
-            // window.location = 'http://138.197.187.14'
+            // Router.push('/');
+            Cookies.get('redirectIntended') ? Router.push(Cookies.get('redirectIntended')) : window.location = 'http://138.197.187.14';
+            Cookies.remove('redirectIntended');
         } catch (e) {
             console.log(e);
             dispatch(loader());
