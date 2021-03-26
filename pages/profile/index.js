@@ -8,7 +8,8 @@ import Link from "next/link";
 import Router from "next/router";
 
 const Profile = ({parkBookings, serviceBookings}) => {
-    console.log(serviceBookings);
+    console.log(serviceBookings, "services");
+    console.log(parkBookings, "bookings");
 
     const goToChat = (bookingId, park = false) => {
         park

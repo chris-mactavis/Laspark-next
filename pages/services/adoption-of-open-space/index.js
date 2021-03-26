@@ -2,7 +2,7 @@ import Layout from "../../../Components/Layout";
 import Head from "next/head";
 import React, {useEffect} from "react";
 import {useForm} from "react-hook-form";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {loader} from "../../../store/actions/loader";
 import {showNotifier} from "../../../store/actions/notifier";
 import Error from "../../../Components/Error";
@@ -14,6 +14,14 @@ import Cookies from "js-cookie";
 const Adoption = ({localGovernment}) => {
     const dispatch = useDispatch();
     const {errors, register, handleSubmit} = useForm();
+
+    let user = useSelector(state => state.auth.user) || {};
+    user = typeof user === 'object' ? user : JSON.parse(user);
+
+    useEffect(() => {
+        document.body.scrollTop = 0; // For Safari
+        document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+    }, []);
 
     useEffect(() => {
         dispatch(loader());
@@ -28,6 +36,7 @@ const Adoption = ({localGovernment}) => {
     }, []);
 
     const serviceRequestHandler = async data => {
+        console.log(data);
         const formData = new FormData();
         Object.keys(data).forEach(key => {
             if (key === 'proposed_design') {
@@ -40,6 +49,8 @@ const Adoption = ({localGovernment}) => {
                 formData.append(key, data[key])
             }
         });
+
+        formData.append('user_id', user.id);
 
         dispatch(loader());
 
@@ -85,7 +96,7 @@ const Adoption = ({localGovernment}) => {
                                     <label><input value="Public Art" type="radio" ref={register({required: 'This field is required'})} name="purpose"/>Public Art</label>
                                     <label><input value="Garden" type="radio" ref={register({required: 'This field is required'})} name="purpose"/>Garden</label>
                                     <label><input value="Installation of Movement" type="radio" ref={register({required: 'This field is required'})} name="purpose"/>Installation of Movement</label>
-                                    <label><input value="Engage with Strategic" type="radio" ref={register({required: 'This field is required'})} name="purpose"/>Engage with Strategic</label>
+                                    {/* <label><input value="Engage with Strategic" type="radio" ref={register({required: 'This field is required'})} name="purpose"/>Engage with Strategic</label> */}
                                     <label><input value="Other" type="radio" ref={register({required: 'This field is required'})} name="purpose"/>Other</label>
                                 </div>
                             </div>
@@ -110,14 +121,14 @@ const Adoption = ({localGovernment}) => {
 
                             <div className="text-left">
                                 <label className="text-left w-100">Attach Letter*</label>
-                                <input ref={register({required: 'This field is required'})} type="file"
+                                <input ref={register({required: 'This field is required'})} type="file" accept=".pdf,.docx,.doc"
                                        name="attach_letter" placeholder="Attach Letter*"/>
                                 {errors.attach_letter && <Error>{errors.attach_letter.message}</Error>}
                             </div>
 
 
                             <select ref={register({required: 'This field is required'})} name="institution_type">
-                                <option value="">Composition</option>
+                                <option value="">Customer</option>
                                 <option value="individual">Individual</option>
                                 <option value="organization">Organization</option>
                             </select>

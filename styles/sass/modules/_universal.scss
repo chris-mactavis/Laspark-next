@@ -17,6 +17,7 @@ input, select {
   border-left: none;
   outline: none;
   color: $dim-grey;
+  border-color: $dim-grey !important;
 }
 
 select {

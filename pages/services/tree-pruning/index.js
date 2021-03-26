@@ -2,7 +2,7 @@ import Layout from "../../../Components/Layout";
 import Head from "next/head";
 import React, {useEffect} from "react";
 import {useForm} from "react-hook-form";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {loader} from "../../../store/actions/loader";
 import {showNotifier} from "../../../store/actions/notifier";
 import Error from "../../../Components/Error";
@@ -14,6 +14,14 @@ import Cookies from "js-cookie";
 const TreePruning = ({localGovernment}) => {
     const dispatch = useDispatch();
     const {errors, register, handleSubmit} = useForm();
+
+    let user = useSelector(state => state.auth.user) || {};
+    user = typeof user === 'object' ? user : JSON.parse(user);
+
+    useEffect(() => {
+        document.body.scrollTop = 0; // For Safari
+        document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+    }, []);
 
 
     useEffect(() => {
@@ -29,17 +37,18 @@ const TreePruning = ({localGovernment}) => {
     }, []);
 
     const serviceRequestHandler = async data => {
-
         const formData = new FormData();
         Object.keys(data).forEach(key => {
-            if (key === 'request_letter') {
-                formData.append('request_letter_file', data[key][0]);
+            if (key === 'attach_letter') {
+                formData.append('attach_letter', data[key][0]);
             } else if (key === 'tree_pictures') {
                 Array.from(data[key]).forEach((tp, index) => formData.append('pictures[]', data[key][index]));
             } else {
-                formData.append(key, data[key])
+                formData.append(key, data[key]);
             }
         });
+
+        formData.append('user_id', user.id);
 
         dispatch(loader());
 
@@ -99,10 +108,10 @@ const TreePruning = ({localGovernment}) => {
 
                             <div className="text-left">
                                 <label className="text-left">Request Letter*</label>
-                                <input ref={register({required: 'This field is required'})} type="file"
-                                       name="request_letter"
+                                <input ref={register({required: 'This field is required'})} type="file" accept=".pdf,.docx,.doc"
+                                       name="attach_letter"
                                        placeholder="Request letter"/>
-                                {errors.request_letter && <Error>{errors.request_letter.message}</Error>}
+                                {errors.attach_letter && <Error>{errors.attach_letter.message}</Error>}
                             </div>
 
                             <div className="text-left">

@@ -53,6 +53,11 @@ const SingleParkSpace = ({parkSpace, parkSpaceRef}) => {
         
         var maxDate = year + '-' + month + '-' + day;
         setMinDate(maxDate);
+
+        if ( $('[type="date"]').prop('type') != 'date' ) {
+            $('[type="date"]').datepicker();
+        }
+        
     }, []);
 
     const bookingHandler = async data => {
@@ -69,7 +74,7 @@ const SingleParkSpace = ({parkSpace, parkSpaceRef}) => {
             });
             dispatch(loader());
             Router.push('/profile');
-            dispatch(showNotifier('We will get in touch with you soon', 'success'));
+            dispatch(showNotifier('We will get in touch with you via mail in the next 48 hours.', 'success'));
         } catch (e) {
             console.log(e);
             dispatch(showNotifier(e.response.data.message, 'danger'));
@@ -226,7 +231,7 @@ const SingleParkSpace = ({parkSpace, parkSpaceRef}) => {
                                             <option value="Excursion">Excursion</option>
                                             <option value="Others">Others</option>
                                         </select>
-                                        {otherNatureEvent === 'Others' && <input className="ml-2 pb-0" style={{ background: 'transparent' }} type="text" ref={register({ required: 'This field is required' })} name="event_nature" required />}
+                                        {otherNatureEvent === 'Others' && <input className="ml-2 pb-0" style={{ background: 'transparent' }} type="text" placeholder="Please fill in" ref={register({ required: 'This field is required' })} name="event_nature" required />}
 
                                         {errors.event_nature && <Error>{errors.event_nature.message}</Error>}
                                     </td>

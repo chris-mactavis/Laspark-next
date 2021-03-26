@@ -24,11 +24,20 @@ const VerifyPayment = () => {
                 const hashString = `${process.env.REVPAY_TOKEN}LASPARK${paymentInfo.billReference}${paymentInfo.transactionId}`;
                 const hash = CryptoJS.MD5(hashString).toString().toUpperCase();
                 const receiptUrl = `https://test.qpay.ng:7071/PaymentGateway/GenerateReceipt/${paymentInfo.billReference}/Webguid/${paymentInfo.transactionId}/LASPARK/${hash}`;
-                await axiosInstance.post(`payment/update-payment`, {...paymentInfo, hash, receiptUrl}, {
-                    headers: {
-                        Authorization: `Bearer ${paymentInfo.userToken}`
-                    }
-                });
+                if (paymentInfo.is_service) {
+                    await axiosInstance.post(`payment/update-payment-service`, {...paymentInfo, hash, receiptUrl}, {
+                        headers: {
+                            Authorization: `Bearer ${paymentInfo.userToken}`
+                        }
+                    });
+                } else {
+                    await axiosInstance.post(`payment/update-payment-park`, {...paymentInfo, hash, receiptUrl}, {
+                        headers: {
+                            Authorization: `Bearer ${paymentInfo.userToken}`
+                        }
+                    });
+                }
+                
                 dispatch(loader());
                 dispatch(showNotifier('Payment Complete'));
                 setTimeout(() => window.location = 'http://138.197.187.14', 1000)

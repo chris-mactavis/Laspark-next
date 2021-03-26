@@ -188,7 +188,8 @@ th {
 
 html, body {
   overflow-x: hidden;
-  font-size: 62.5%; }
+  font-size: 62.5%;
+  scroll-behavior: smooth; }
 
 body {
   font-family: "DDIN", sans-serif;
@@ -384,9 +385,11 @@ main.bg {
   position: relative;
   height: 100vh; }
   main.bg.login {
-    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(/images/bgs/bg-1.jpg); }
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(/images/bgs/bg-1.jpg);
+    height: 120vh; }
   main.bg.signup {
-    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(/images/bgs/bg-2.jpg); }
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(/images/bgs/bg-2.jpg);
+    height: 120vh; }
   main.bg.contact {
     background-image: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(/images/bgs/bg-3.jpg); }
   main.bg h1 {
@@ -504,6 +507,13 @@ section.login {
   left: 50%;
   transform: translate(-50%, -50%);
   width: 100%; }
+  @media only screen and (max-width: 992px) {
+    section.login {
+      position: unset;
+      top: 0;
+      left: 0;
+      transform: none;
+      margin-top: 50px; } }
   section.login .login-form {
     padding: 30px; }
   section.login a {
@@ -852,7 +862,8 @@ input, select {
   border-right: none;
   border-left: none;
   outline: none;
-  color: #686868; }
+  color: #686868;
+  border-color: #686868 !important; }
 
 select {
   border-bottom-width: 2px; }
@@ -908,7 +919,7 @@ main {
     cursor: pointer; }
 
 nav.navbar {
-  padding: 0; }
+  padding: 0 15px; }
   nav.navbar .logo-container {
     background: #fff;
     padding: 10px;
@@ -916,11 +927,14 @@ nav.navbar {
     border-bottom-right-radius: 70px; }
     nav.navbar .logo-container img {
       max-height: 80px; }
+      @media only screen and (max-width: 992px) {
+        nav.navbar .logo-container img {
+          max-height: 64px; } }
   nav.navbar .navbar-collapse {
     flex-grow: 0; }
     @media only screen and (max-width: 992px) {
       nav.navbar .navbar-collapse {
-        display: none; } }
+        padding: 10px 0; } }
   nav.navbar .move-right {
     margin-right: 50px;
     padding-right: 50px; }
@@ -928,7 +942,8 @@ nav.navbar {
     flex-direction: row;
     flex-wrap: inherit;
     align-items: center;
-    padding-left: 1rem; }
+    padding-left: 1rem;
+    flex-wrap: wrap; }
     nav.navbar ul.navbar-nav li.nav-item {
       margin-right: 5rem; }
       nav.navbar ul.navbar-nav li.nav-item .nav-link {

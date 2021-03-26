@@ -1,8 +1,8 @@
 import Layout from "../../../Components/Layout";
 import Head from "next/head";
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import {useForm} from "react-hook-form";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {loader} from "../../../store/actions/loader";
 import {showNotifier} from "../../../store/actions/notifier";
 import Error from "../../../Components/Error";
@@ -12,8 +12,35 @@ import Token from "../../../Utils/Token";
 import Cookies from "js-cookie";
 
 const TreePlanting = ({localGovernment}) => {
+
+    const [minDate, setMinDate] = useState(null);
+
     const dispatch = useDispatch();
     const {errors, register, handleSubmit} = useForm();
+    let user = useSelector(state => state.auth.user) || {};
+    user = typeof user === 'object' ? user : JSON.parse(user);
+
+    useEffect(() => {
+        document.body.scrollTop = 0; // For Safari
+        document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+
+        // Setting the minimum date selection
+        var dtToday = new Date();
+        var month = dtToday.getMonth() + 1;
+        var day = dtToday.getDate();
+        var year = dtToday.getFullYear();
+        if(month < 10)
+            month = '0' + month.toString();
+        if(day < 10)
+            day = '0' + day.toString();
+        
+        var maxDate = year + '-' + month + '-' + day;
+        setMinDate(maxDate);
+
+        if ( $('[type="date"]').prop('type') != 'date' ) {
+            $('[type="date"]').datepicker();
+        }
+    }, []);
 
     useEffect(() => {
         dispatch(loader());
@@ -37,6 +64,8 @@ const TreePlanting = ({localGovernment}) => {
                 formData.append(key, data[key])
             }
         });
+
+        formData.append('user_id', user.id);
 
         dispatch(loader());
 
@@ -85,7 +114,7 @@ const TreePlanting = ({localGovernment}) => {
                             <div className="d-flex inline-form">
                                 <label>Date for Planting</label>
                                 <input ref={register({required: 'This field is required'})} type="date"
-                                       name="date_for_planting"
+                                       name="date_for_planting" min={minDate}
                                        placeholder="Proposed date for planting*"/>
                             </div>
 
@@ -113,9 +142,9 @@ const TreePlanting = ({localGovernment}) => {
                                    placeholder="Purpose for Planting*"/>
                             {errors.purpose && <Error>{errors.purpose.message}</Error>}
 
-                            <textarea ref={register} rows="3" name="request_letter"
+                            <textarea ref={register} rows="3" name="attach_letter"
                                       placeholder="Request letter (minimum of 250 words)"/>
-                            {errors.request_letter && <Error>{errors.request_letter.message}</Error>}
+                            {errors.attach_letter && <Error>{errors.attach_letter.message}</Error>}
 
                             <button className="btn green thin wide" type="submit">Submit Request</button>
                         </form>

@@ -15,7 +15,7 @@ const Nav = ({isLoggedIn}) => {
         // Router.push('http://138.197.187.14/');
     }
 
-    return <div className="navbar-collapse ml-auto" id="navbarSupportedContent">
+    return <div className="navbar-collapse collapse ml-auto" id="navbarSupportedContent">
         <ul className="navbar-nav">
             {/*<li className="nav-item">*/}
             {/*    <Link href="/parks"><a className="nav-link">Parks</a></Link>*/}

@@ -9,10 +9,12 @@ main{
 
     &.login{
       background-image: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(/images/bgs/bg-1.jpg);
+      height: 120vh;
     }
 
     &.signup{
       background-image: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(/images/bgs/bg-2.jpg);
+      height: 120vh;
     }
 
     &.contact{
@@ -210,6 +212,14 @@ section {
   &.login{
     @include abs-center;
     width: 100%;
+
+    @media only screen and (max-width: $desktop_width) {
+      position: unset;
+      top: 0;
+      left: 0;
+      transform: none;
+      margin-top: 50px;
+    }
 
     .login-form{
       padding: 30px;
@@ -785,6 +795,10 @@ section {
       .attachment-section {
         margin: 10px 0;
         border-top: 1px solid $dark-green;
+
+        a.attachment {
+          line-break: anywhere;
+        }
       }
     }
   }
