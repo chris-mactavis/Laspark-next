@@ -24,4 +24,4 @@ jobs:
             npm install
             npm run build
             sudo kill -9 `sudo lsof -t -i:3000`
-            pm2 start npm -- start
+            pm2 start laspark -- start
