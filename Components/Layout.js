@@ -34,7 +34,7 @@ const Layout = ({children, headerContent, page = null, mainClass = null, headerC
     return (
         <>
              <Head>
-                <title>Laspark</title>
+                <title>Lasparks</title>
                  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
             </Head>
             
