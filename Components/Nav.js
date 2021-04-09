@@ -9,10 +9,9 @@ const Nav = ({isLoggedIn}) => {
     const dispatch = useDispatch();
 
     const logoutHandler = () => {
-        window.location = 'http://138.197.187.14/';
         dispatch(logout());
         dispatch(showNotifier('Logged Out'));
-        // Router.push('http://138.197.187.14/');
+        window.location = 'http://157.230.237.165/';
     }
 
     return <div className="navbar-collapse collapse ml-auto" id="navbarSupportedContent">
@@ -30,7 +29,7 @@ const Nav = ({isLoggedIn}) => {
             {/*</li>*/}
 
             <li className="nav-item">
-                <a href="http://138.197.187.14" className="nav-link">Home</a>
+                <a href="http://157.230.237.165" className="nav-link">Home</a>
             </li>
 
             {

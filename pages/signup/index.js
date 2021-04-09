@@ -26,7 +26,7 @@ const Signup = () => {
             dispatch(loader());
             dispatch(showNotifier('Registered successfully!'))
             // Router.push('/');
-            Cookies.get('redirectIntended') ? Router.push(Cookies.get('redirectIntended')) : window.location = 'http://138.197.187.14';
+            Cookies.get('redirectIntended') ? Router.push(Cookies.get('redirectIntended')) : window.location = 'http://157.230.237.165';
             Cookies.remove('redirectIntended');
         } catch (e) {
             console.log(e);
