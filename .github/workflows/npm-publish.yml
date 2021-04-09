@@ -21,6 +21,8 @@ jobs:
             ls -al
             cd /var/www/html
             git pull origin master
+            export NVM_DIR=~/.nvm
+            source ~/.nvm/nvm.sh
             npm install
             npm run build
             sudo kill -9 `sudo lsof -t -i:3000`
