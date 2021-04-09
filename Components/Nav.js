@@ -29,7 +29,7 @@ const Nav = ({isLoggedIn}) => {
             {/*</li>*/}
 
             <li className="nav-item">
-                <a href="http://157.230.237.165" className="nav-link">Home</a>
+                <a href="http://157.230.237.165" className="nav-link">Homes</a>
             </li>
 
             {
