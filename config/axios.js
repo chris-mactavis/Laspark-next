@@ -5,6 +5,8 @@ const axiosInstance = axios.create({
     baseURL: 'http://159.203.67.70/api/v1/',
     headers: {
         'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Access-Control-Allow-Origin': true
     }
 });
 
