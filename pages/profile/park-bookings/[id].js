@@ -71,7 +71,7 @@ export default function ServiceBookingDetail({booking, messages: parkMessages, s
 
                                 <input ref={register} name="attachments" type="file" multiple/>
 
-                                <button className="btn green thin wide mx-auto" type="submit">Reply</button>
+                                <button className="btn green thin wide mx-auto" type="submit">Send</button>
                             </form>
                         </div>
                     </div>

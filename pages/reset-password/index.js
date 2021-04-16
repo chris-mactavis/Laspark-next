@@ -20,7 +20,6 @@ const ResetPassword = ({tokenIsValid, reason, token}) => {
 
     const resetPasswordHandler = async data => {
         dispatch(loader());
-
         try {
             const {data: res} = await axiosInstance.post(`change-password`, {password: data.password, token});
             console.log(res);
@@ -28,9 +27,10 @@ const ResetPassword = ({tokenIsValid, reason, token}) => {
             dispatch(showNotifier('Password updated!'));
             Router.push('/login');
         } catch (e) {
-            dispatch(showNotifier(e.response.data.message, 'danger'));
             dispatch(loader());
+            dispatch(showNotifier(e.response.data.message, 'danger'));
             console.log(e);
+            
         }
     }
 

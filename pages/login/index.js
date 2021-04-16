@@ -27,7 +27,7 @@ const Login = () => {
         try {
             await dispatch(loginAsync(data));
             dispatch(showNotifier('Logged In'));
-            Cookies.get('redirectIntended') ? Router.push(Cookies.get('redirectIntended')) : window.location = 'http://138.197.187.14';
+            Cookies.get('redirectIntended') ? Router.push(Cookies.get('redirectIntended')) : window.location = 'http://157.230.237.165';
             Cookies.remove('redirectIntended');
         } catch (e) {
             console.log(e);
@@ -42,7 +42,9 @@ const Login = () => {
             dispatch(showNotifier(res.message));
             reset();
         } catch (e) {
-            console.log(e);
+            dispatch(loader());
+            // dispatch(showNotifier(e.response.data.errors.email[0], 'danger'));  
+            console.log(e.response);
         }
     }
 

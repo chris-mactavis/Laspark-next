@@ -181,6 +181,7 @@ section {
         .request{
           font-size: 14px;
           position: relative;
+          color: #212529;
 
           img{
             display: inline;
@@ -770,10 +771,30 @@ section {
 
           td{
             padding: 20px 0 !important;
+
+            @media only screen and (max-width: $mobile_width) {
+              padding: 0 !important;
+              padding-left: calc(50% + 10px) !important
+            }
           }
         }
       }
     }
+
+    @media only screen and (max-width: $mobile_width) {
+      .responsiveTable td .tdBefore {
+        width: calc(50% - 10px);
+      }
+
+      .responsiveTable tbody tr {
+        margin-bottom: 15px;
+      }
+
+      .responsiveTable tbody td button.btn {
+        font-size: 14px;
+      }
+    }
+   
   }
 
   &.single-service-booking {

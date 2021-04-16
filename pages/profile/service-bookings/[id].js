@@ -52,17 +52,20 @@ export default function ServiceBookingDetail({booking, serviceMessages, serviceB
         <Head>
             <title>Service Booking Detail | Laspark</title>
         </Head>
-
+  
         <section className="profile single-service-booking">
             <div className="container">
                 <div className="row">
-                    <div className="col">
+                    <div className="col">  
                         <h2 className="text-center mb-5">#{booking.order_number} ({booking.service.service})</h2>
                     </div>
                 </div>
 
                 <div className="row">
-                    <div className="col-8 mx-auto reply-container">
+                    <div className="col-8 mx-auto">
+                        <h4>Send us a message for {booking.service.service}</h4>
+                    </div>
+                    <div className="col-8 mx-auto reply-container">   
                         <div>
                             <h5>Reply</h5>
                         </div>
@@ -73,10 +76,10 @@ export default function ServiceBookingDetail({booking, serviceMessages, serviceB
 
                                 <input ref={register} name="attachments" type="file" multiple/>
 
-                                <button className="btn green thin wide mx-auto" type="submit">Reply</button>
+                                <button className="btn green thin wide mx-auto" type="submit">Send</button>
                             </form>
                         </div>
-                    </div>
+                    </div> 
                 </div>
 
                 {

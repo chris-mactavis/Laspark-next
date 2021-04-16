@@ -50,7 +50,7 @@ const ParkInvoice = ({invoice, billNumber, token }) => {
                 });
                 dispatch(showNotifier('Payment complete'))
                 dispatch(loader());
-                setTimeout(() => window.location = 'http://138.197.187.14', 1000);
+                setTimeout(() => window.location = 'http://157.230.237.165', 1000);
 
             } catch (e) {
                 console.log(e);

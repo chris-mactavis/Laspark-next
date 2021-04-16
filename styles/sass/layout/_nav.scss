@@ -36,13 +36,82 @@ nav.navbar {
     padding-left: 1rem;
     flex-wrap: wrap;
 
+    @media only screen and (max-width: $mobile_width) {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
     li.nav-item {
       margin-right: 5rem;
+
+      @media only screen and (max-width: $mobile_width) {
+       width: 100%;
+      }
 
       .nav-link {
         font-family: $ffn;
         font-size: 15px;
         text-transform: uppercase;
+        color: #fff;
+      }
+    }
+
+    li.dropdown {
+
+      .dropdown-toggle {
+        position: relative;
+
+        .notification-number {
+          position: absolute;
+          top: 0;
+          right: -8px;
+          text-align: center;
+          width: 20px;
+          height: 20px;
+          padding: 0;
+          background: #0f6b2d;
+          font-size: 11px;
+          border-radius: 50%;
+          line-height: 2;
+          color: #fff;
+
+          @media only screen and (max-width: $mobile_width) {
+            left: 16px;
+          }
+        }
+        &::after {
+          display: none;
+        }
+      }
+
+      ul.dropdown-menu {
+        width: 240px;
+
+        @media only screen and (max-width: $mobile_width) {
+          width: 100%;
+         }
+
+        .notification-bar {
+          border-bottom: 1px solid rgba(0,0,0,.15);
+          padding: 7px 0;
+
+          span {
+            background: #0f6b2d;
+            color: #fff;
+            padding: 4px 5px 2px;
+          }
+        }
+
+        .scroll-container {
+          max-height: 18rem;
+          overflow-x: hidden;
+          overflow: scroll;
+        }
+
+        p.head-text {
+          margin-bottom: 0;
+          font-size: 16px;
+        }
       }
     }
   }
@@ -91,5 +160,15 @@ nav.navbar {
     }
   }
 }
+
+// Css for the dropdown hover link
+  /* ============ desktop view ============ */
+  // @media all and (min-width: 992px) {
+  //   .navbar .nav-item .dropdown-menu{ display: none; }
+  //   .navbar .nav-item:hover .nav-link{   }
+  //   .navbar .nav-item:hover .dropdown-menu{ display: block; }
+  //   .navbar .nav-item .dropdown-menu{ margin-top:0; }
+  // }	
+  /* ============ desktop view .end// ============ */
 
 

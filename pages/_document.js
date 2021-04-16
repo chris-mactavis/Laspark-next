@@ -14,8 +14,10 @@ class document extends Document  {
                 <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon/favicon-32x32.png"/>
                 <link rel="icon" type="image/png" sizes="16x16"
                       href="/images/favicon/favicon-16x16.png"/>
-                <link rel="stylesheet"
-                      href="/css/bootstrap.min.css"/>
+                {/* <link rel="stylesheet"
+                      href="/css/bootstrap.min.css"/> */}
+                <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous" />
+
 
                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.css" integrity="sha512-42kB9yDlYiCEfx2xVwq0q7hT4uf26FUgSIZBK8uiaEnTdShXjwr8Ip1V4xGJMg3mHkUt9nNuTDxunHF0/EgxLQ==" crossorigin="anonymous" />
 
@@ -43,7 +45,9 @@ class document extends Document  {
                     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
 
                     <script type="text/javascript" src="/slick/slick.min.js" />
-                    <script src="/js/bootstrap.min.js" />
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+                    {/* <script src="/js/bootstrap.min.js" /> */}
                     <script src="/js/main.js" />
                 </Head>
     

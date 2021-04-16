@@ -83,7 +83,7 @@ const TreePruning = ({localGovernment}) => {
                             <h1>Tree Pruning</h1>
 
                             <select ref={register({required: 'This field is required'})} name="local_government_id">
-                                <option value="">Select Local Government</option>
+                                <option value="">Select Local Government for Pruning Exercise</option>
                                 {
                                     localGovernment.map(lg => <option value={lg.id} key={lg.id}>{lg.name}</option>)
                                 }
@@ -91,7 +91,7 @@ const TreePruning = ({localGovernment}) => {
                             {errors.local_government_id && <Error>{errors.local_government_id.message}</Error>}
 
                             <input ref={register({required: 'This field is required'})} type="text" name="street_name"
-                                   placeholder="Street name*"/>
+                                   placeholder="Street name for pruning exercise*"/>
                             {errors.street_name && <Error>{errors.street_name.message}</Error>}
 
                             <input ref={register({required: 'This field is required'})} type="text" name="house_number"
@@ -107,11 +107,11 @@ const TreePruning = ({localGovernment}) => {
                             {errors.purpose && <Error>{errors.purpose.message}</Error>}
 
                             <div className="text-left">
-                                <label className="text-left">Request Letter*</label>
-                                <input ref={register({required: 'This field is required'})} type="file" accept=".pdf,.docx,.doc"
+                                <label className="text-left">Request Letter</label>
+                                <input ref={register()} type="file" accept=".pdf,.docx,.doc"
                                        name="attach_letter"
                                        placeholder="Request letter"/>
-                                {errors.attach_letter && <Error>{errors.attach_letter.message}</Error>}
+                                {/* {errors.attach_letter && <Error>{errors.attach_letter.message}</Error>} */}
                             </div>
 
                             <div className="text-left">

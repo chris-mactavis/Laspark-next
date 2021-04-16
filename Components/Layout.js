@@ -31,6 +31,15 @@ const Layout = ({children, headerContent, page = null, mainClass = null, headerC
         $('#parkRules').modal(showRules ? 'show' : 'hide');
     }, [showRules])
 
+    const [showNav, setShowNav] = React.useState(false);
+    useEffect(() => {
+        async function timer() {
+            await setTimeout(() => setShowNav(true) , 300);
+        }
+
+        timer();
+    } , [isLoggedIn]);
+
     return (
         <>
              <Head>
@@ -53,7 +62,7 @@ const Layout = ({children, headerContent, page = null, mainClass = null, headerC
                 {
                     !hasHeader && <nav className="navbar navbar-expand-lg white-nav">
                         <div className="container">
-                            <a href="http://138.197.187.14" className="navbar-brand logo-container">
+                            <a href="http://157.230.237.165" className="navbar-brand logo-container">
                                 <img src="/images/laspark-logo.png" alt=""/>
                             </a>
 
@@ -64,7 +73,9 @@ const Layout = ({children, headerContent, page = null, mainClass = null, headerC
                                 <img className="navbar-toggler-icon" src="/images/icon/button.svg" alt=""/>
                             </button>
 
-                            <Nav isLoggedIn={isLoggedIn}/>
+                            {
+                                showNav && <Nav hasHeader={hasHeader} isLoggedIn={isLoggedIn}/>
+                            }
                         </div>
                     </nav>
                 }

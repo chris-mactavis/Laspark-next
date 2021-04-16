@@ -5,6 +5,8 @@ import {applyMiddleware, combineReducers, createStore} from "redux";
 import {composeWithDevTools} from "redux-devtools-extension";
 
 import '../styles/sass/main.scss';
+import 'react-super-responsive-table/dist/SuperResponsiveTableStyle.css';
+
 import toggleLoading from "../store/reducers/loader";
 import notifier from "../store/reducers/notifier";
 import auth from "../store/reducers/auth";

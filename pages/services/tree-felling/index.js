@@ -85,7 +85,7 @@ const TreeFelling = ({localGovernment}) => {
                             <h1>Tree Felling</h1>
 
                             <select ref={register({required: 'This field is required'})} name="local_government_id">
-                                <option value="">Select Local Government</option>
+                                <option value="">Select Local Government for Felling Exercise*</option>
                                 {
                                     localGovernment.map(lg => <option value={lg.id} key={lg.id}>{lg.name}</option>)
                                 }
@@ -93,7 +93,7 @@ const TreeFelling = ({localGovernment}) => {
                             {errors.local_government_id && <Error>{errors.local_government_id.message}</Error>}
 
                             <input ref={register({required: 'This field is required'})} type="text" name="street_name"
-                                   placeholder="Street name*"/>
+                                   placeholder="Street name for felling exercise*"/>
                             {errors.street_name && <Error>{errors.street_name.message}</Error>}
 
                             <input ref={register({required: 'This field is required'})} type="text" name="house_number"
@@ -117,8 +117,8 @@ const TreeFelling = ({localGovernment}) => {
                             {errors.purpose && <Error>{errors.purpose.message}</Error>}
 
                             <div className="text-left">
-                                <label className="text-left">Request Letter*</label>
-                                <input ref={register({required: 'This field is required'})} type="file"
+                                <label className="text-left">Request Letter</label>
+                                <input ref={register()} type="file"
                                        name="attach_letter"
                                        placeholder="Request letter"/>
                                 {errors.attach_letter && <Error>{errors.attach_letter.message}</Error>}

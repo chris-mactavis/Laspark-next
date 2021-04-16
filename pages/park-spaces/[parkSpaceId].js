@@ -74,7 +74,7 @@ const SingleParkSpace = ({parkSpace, parkSpaceRef}) => {
             });
             dispatch(loader());
             Router.push('/profile');
-            dispatch(showNotifier('We will get in touch with you via mail in the next 48 hours.', 'success'));
+            dispatch(showNotifier('You will be contacted through call/email within 48 hours.', 'success'));
         } catch (e) {
             console.log(e);
             dispatch(showNotifier(e.response.data.message, 'danger'));
@@ -170,7 +170,7 @@ const SingleParkSpace = ({parkSpace, parkSpaceRef}) => {
                                 </tr>
 
                                 <tr role="row">
-                                    <td role="cell">{showMulti ? 'Start Date' : 'Book Date'}</td>
+                                    <td role="cell">{showMulti ? 'Start Date' : 'Event Date'}</td>
                                     <td role="cell">
                                         <input style={{background: 'transparent'}} type="date" name="start_date"
                                                placeholder="Date" required id="txtDate" min={minDate}
@@ -260,7 +260,7 @@ const SingleParkSpace = ({parkSpace, parkSpaceRef}) => {
                         <div className="col text-center d-flex flex-column">
                             <label className="">
                                 <input type="checkbox" className="mb-0" name="tandc" required/> &nbsp;
-                                I agree to the <a href="#" style={{color: '#0056b3'}}
+                                I agree to the <a href="#" style={{color: '#0bb503'}}
                                                   onClick={() => dispatch(toggleParkRules())}>park
                                 rules </a>
                             </label>
