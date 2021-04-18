@@ -8,8 +8,6 @@ import Link from "next/link";
 import Router from "next/router";
 
 const Profile = ({parkBookings, serviceBookings}) => {
-    console.log(serviceBookings, "services");
-    console.log(parkBookings, "bookings");
 
     const goToChat = (bookingId, park = false) => {
         park
@@ -114,8 +112,8 @@ Profile.getInitialProps = async (context) => {
     });
 
     return {
-        parkBookings,
-        serviceBookings
+        parkBookings: parkBookings.data,
+        serviceBookings: serviceBookings.data
     }
 }
 
