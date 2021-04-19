@@ -10,8 +10,6 @@ import { Table, Thead, Tbody, Tr, Th, Td } from 'react-super-responsive-table';
 
 
 const Profile = ({parkBookings, serviceBookings}) => {
-    console.log(serviceBookings, "services");
-    console.log(parkBookings, "bookings");
 
     const goToChat = (bookingId, park = false) => {
         park
@@ -128,8 +126,8 @@ Profile.getInitialProps = async (context) => {
     const {park_space_booking: parkBookings, service_booking: serviceBookings} = data;
 
     return {
-        parkBookings,
-        serviceBookings
+        parkBookings: parkBookings.data,
+        serviceBookings: serviceBookings.data
     }
 }
 
