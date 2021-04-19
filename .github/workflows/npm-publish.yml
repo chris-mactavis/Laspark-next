@@ -1,0 +1,32 @@
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches:
+      - master
+
+
+jobs:
+  Build:
+    name: Deploy
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: login and deploy
+      uses: appleboy/ssh-action@v0.1.4
+      with:
+        host: ${{ secrets.SSH_HOST }}
+        password: ${{ secrets.SSH_PASSWORD }}
+        username: ${{ secrets.SSH_USERNAME }}
+        script: | 
+            ls -al
+            cd /var/www/html
+            git pull origin master
+            export NVM_DIR=~/.nvm
+            source ~/.nvm/nvm.sh
+            npm install
+            npm run build
+            sudo kill -9 `sudo lsof -t -i:3000`
+            pm2 start laspark -- start

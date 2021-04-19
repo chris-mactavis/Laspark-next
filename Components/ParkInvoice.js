@@ -27,7 +27,7 @@ const ParkInvoice = ({invoice, billNumber, token }) => {
             userToken: token,
             is_service: invoice.is_service
         }));
-        const hashString = `${process.env.REVPAY_TOKEN}LASPARK${billNumber}${transactionId}${invoice.amount}` + "http://165.227.73.31/verify-payment";
+        const hashString = `${process.env.REVPAY_TOKEN}LASPARK${billNumber}${transactionId}${invoice.amount}` + "http://67.207.88.128/verify-payment";
         setStringHash(
             md5(hashString).toString().toUpperCase()
         )
@@ -50,7 +50,7 @@ const ParkInvoice = ({invoice, billNumber, token }) => {
                 });
                 dispatch(showNotifier('Payment complete'))
                 dispatch(loader());
-                setTimeout(() => window.location = 'http://138.197.187.14', 1000);
+                setTimeout(() => window.location = 'http://157.230.237.165', 1000);
 
             } catch (e) {
                 console.log(e);
@@ -125,7 +125,7 @@ const ParkInvoice = ({invoice, billNumber, token }) => {
                 <input type="hidden" name="transactionId" value={transactionId} />
                 <input type="hidden" name="billReference" value={billNumber} />
                 <input type="hidden" name="amount" value={invoice.amount} />
-                <input type="hidden" name="returnUrl" value="http://165.227.73.31/verify-payment" />
+                <input type="hidden" name="returnUrl" value="http://67.207.88.128/verify-payment" />
                 <input type="hidden" name="clientCode" value="LASPARK" />
                 <input type="hidden" name="Hash" value={stringHash} />
             </form>

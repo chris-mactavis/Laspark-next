@@ -25,8 +25,6 @@ const SingleParkSpace = ({parkSpace, parkSpaceRef}) => {
     const [otherNatureEvent, setOtherNatureEvent] = useState('');
     const [minDate, setMinDate] = useState(null);
 
-    console.log(otherNatureEvent);
-    
     const {register, errors, handleSubmit} = useForm();
     const dispatch = useDispatch();
 
@@ -89,7 +87,7 @@ const SingleParkSpace = ({parkSpace, parkSpaceRef}) => {
         //         }
         //     });
         //     setBillNumber(bill_number);
-        //     const hashString = `${process.env.REVPAY_TOKEN}LASPARK${bill_number}${transactionId}${parkSpace.price}` + "http://165.227.73.31/verify-payment";
+        //     const hashString = `${process.env.REVPAY_TOKEN}LASPARK${bill_number}${transactionId}${parkSpace.price}` + "http://67.207.88.128/verify-payment";
         //     setStringHash(
         //         CryptoJS.MD5(hashString).toString().toUpperCase()
         //     )
@@ -123,7 +121,7 @@ const SingleParkSpace = ({parkSpace, parkSpaceRef}) => {
                     <input type="hidden" name="transactionId" value={transactionId}/>
                     <input type="hidden" name="billReference" value={billNumber}/>
                     <input type="hidden" name="amount" value={parkSpace.price}/>
-                    <input type="hidden" name="returnUrl" value="http://165.227.73.31/verify-payment"/>
+                    <input type="hidden" name="returnUrl" value="http://67.207.88.128/verify-payment"/>
                     <input type="hidden" name="clientCode" value="LASPARK"/>
                     <input type="hidden" name="Hash" value={stringHash}/>
                 </form>
