@@ -190,7 +190,7 @@ const Profile = ({
 }
 
 Profile.getInitialProps = async (context) => {
-    const perPage = 10;
+    const perPage = 5;
     const {
         data: {
             park_space_booking: parkBookings,
