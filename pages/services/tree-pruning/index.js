@@ -155,8 +155,11 @@ const TreePruning = ({localGovernment}) => {
                             </div>
 
                             <div className="text-left">
-                                <label className="text-left">Total Amount: ₦{totalAmount().toLocaleString()}</label>
+                                <label
+                                    className="text-left d-flex justify-content-between"><span>Total Amount: </span><span
+                                    className="total">₦{totalAmount().toLocaleString()}</span></label>
                             </div>
+
                             <button className="btn green thin wide" type="submit">Submit Request</button>
                         </form>
                     </div>
