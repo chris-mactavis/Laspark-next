@@ -15,7 +15,6 @@ import ParkInvoice from '../../Components/ParkInvoice';
 import ServiceInvoice from '../../Components/ServiceInvoice';
 
 const Invoice = ({billNumber, invoice, token}) => {
-    console.log(invoice, 'invoice');
     // const [transactionId, setTransactionId] = useState(randomString(20));
     // const [stringHash, setStringHash] = useState(null);
     // const [isLoading, setIsLoading] = useState(false);
