@@ -1,6 +1,6 @@
 import Layout from "../../../Components/Layout";
 import Head from "next/head";
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import {useForm} from "react-hook-form";
 import {useDispatch, useSelector} from "react-redux";
 import {loader} from "../../../store/actions/loader";
@@ -17,6 +17,9 @@ const TreePruning = ({localGovernment}) => {
 
     let user = useSelector(state => state.auth.user) || {};
     user = typeof user === 'object' ? user : JSON.parse(user);
+
+    const [selectedAgeRange, setSelectedAgeRange] = useState('young');
+    const [quantity, setQuantity] = useState(null);
 
     useEffect(() => {
         document.body.scrollTop = 0; // For Safari
@@ -49,6 +52,7 @@ const TreePruning = ({localGovernment}) => {
         });
 
         formData.append('user_id', user.id);
+        formData.append('amount', totalAmount());
 
         dispatch(loader());
 
@@ -64,6 +68,35 @@ const TreePruning = ({localGovernment}) => {
             dispatch(loader());
             dispatch(showNotifier(e.response.data.message, 'danger'));
         }
+    }
+
+    const adminCharge = () => {
+        switch (true) {
+            case +quantity === 1:
+                return 15000;
+            case quantity >= 2 && quantity <= 5:
+                return 30000;
+            case quantity >= 6 && quantity <= 10:
+                return 45000;
+            case quantity >= 11 && quantity <= 20:
+                return 60000;
+            case quantity >= 21 && quantity <= 30:
+                return 75000;
+            case quantity >= 31 && quantity <= 40:
+                return 85000;
+            case quantity >= 41 && quantity <= 50:
+                return 100000;
+            case quantity >= 51 && quantity <= 100:
+                return 120000;
+            case quantity >= 101:
+                return 150000;
+            default:
+                return 500000;
+        }
+    }
+
+    const totalAmount = () => {
+        return quantity ? adminCharge() : '0';
     }
 
     return <Layout hasHeader={false}>
@@ -98,7 +131,7 @@ const TreePruning = ({localGovernment}) => {
                                    placeholder="House Number*"/>
                             {errors.house_number && <Error>{errors.house_number.message}</Error>}
 
-                            <input ref={register({required: 'This field is required'})} type="number" min="0" name="no_of_trees"
+                            <input ref={register({required: 'This field is required'})} type="number" min="0" name="no_of_trees" onKeyUp={(e) => setQuantity(e.target.value)}
                                    id="cname" placeholder="Number of trees to be pruned*"/>
                             {errors.no_of_trees && <Error>{errors.no_of_trees.message}</Error>}
 
@@ -121,6 +154,9 @@ const TreePruning = ({localGovernment}) => {
                                 {errors.purpose && <Error>{errors.tree_pictures.message}</Error>}
                             </div>
 
+                            <div className="text-left">
+                                <label className="text-left">Total Amount: ₦{totalAmount().toLocaleString()}</label>
+                            </div>
                             <button className="btn green thin wide" type="submit">Submit Request</button>
                         </form>
                     </div>
