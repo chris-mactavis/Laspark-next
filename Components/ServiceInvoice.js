@@ -11,6 +11,7 @@ import axiosInstance from '../config/axios';
 
 
 const ServiceInvoice = ({invoice, billNumber, token}) => {
+        const serviceType = invoice.service_booking.service.service;
 
      const [transactionId, setTransactionId] = useState(randomString(20));
      const [stringHash, setStringHash] = useState(null);
@@ -65,6 +66,20 @@ const ServiceInvoice = ({invoice, billNumber, token}) => {
         document.getElementById('frm').submit();
         setIsLoading(true);
     }
+
+    const prefix = () => {
+        switch (serviceType) {
+            case 'Tree Felling':
+                return 'TFL';
+            case 'Tree Pruning':
+                return 'TPR';
+            case 'Tree Planting':
+                return 'TPL';
+            default:
+                return '';
+        }
+    }
+
     return (
         <>
             <section className="profile">
@@ -87,21 +102,21 @@ const ServiceInvoice = ({invoice, billNumber, token}) => {
                                 <tbody role="rowgroup">
                                     <tr role="row">
                                         <td role="cell">Invoice Number</td>
-                                        <td role="cell">{invoice.invoice_number}</td>
+                                        <td role="cell">{prefix() + invoice.invoice_number}</td>
                                     </tr>
                                     <tr role="row">
                                         <td role="cell">Order Number</td>
-                                        <td role="cell">{invoice.service_booking.order_number}</td>
+                                        <td role="cell">{prefix() + invoice.service_booking.order_number}</td>
                                     </tr>
                                     <tr role="row">
-                                        <td role="cell">Bill To</td>
+                                        <td role="cell">Customer</td>
                                         <td role="cell">{invoice.user.first_name} {invoice.user.last_name}</td>
                                     </tr>
                                     <tr role="row">
-                                        <td role="cell">Item Description</td>
-                                        <td role="cell">{invoice.service_booking.service.service}</td>
+                                        <td role="cell">{(serviceType === 'Tree Pruning' || serviceType === 'Tree Felling') ? 'Item/Service Description' : 'Item Description'}</td>
+                                        <td role="cell">{serviceType}</td>
                                     </tr>
-                                    {(invoice.service_booking.street_name && invoice.service_booking.house_number) && <tr role="row">
+                                    {(serviceType !== 'Tree Planting' && invoice.service_booking.street_name && invoice.service_booking.house_number) && <tr role="row">
                                         <td role="cell">Location</td>
                                         <td role="cell">{invoice.service_booking.house_number} {invoice.service_booking.street_name}</td>
                                     </tr>}
