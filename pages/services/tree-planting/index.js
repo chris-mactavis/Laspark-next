@@ -123,6 +123,8 @@ const TreePlanting = ({localGovernment}) => {
                                       placeholder="Request letter (minimum of 250 words)"/>
                             {errors.request_letter && <Error>{errors.request_letter.message}</Error>}
 
+
+
                             <button className="btn green thin wide" type="submit">Submit Request</button>
                         </form>
                     </div>
