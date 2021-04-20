@@ -53,7 +53,7 @@ const TreeFelling = ({localGovernment}) => {
 
         formData.append('user_id', user.id);
         formData.append('amount', totalAmount());
-        
+
         dispatch(loader());
 
         try {
@@ -129,11 +129,13 @@ const TreeFelling = ({localGovernment}) => {
                                    placeholder="House Number*"/>
                             {errors.house_number && <Error>{errors.house_number.message}</Error>}
 
-                            <input ref={register({required: 'This field is required'})} min="0" type="number" name="no_of_trees" onKeyUp={(e) => setQuantity(e.target.value)}
+                            <input ref={register({required: 'This field is required'})} min="0" type="number"
+                                   name="no_of_trees" onKeyUp={(e) => setQuantity(e.target.value)}
                                    id="cname" placeholder="Number of trees to be felled*"/>
                             {errors.no_of_trees && <Error>{errors.no_of_trees.message}</Error>}
 
-                            <select ref={register({required: 'This field is required'})} defaultValue={"young"} name="age_range" onChange={(e) => setSelectedAgeRange(e.target.value)}>
+                            <select ref={register({required: 'This field is required'})} defaultValue={"young"}
+                                    name="age_range" onChange={(e) => setSelectedAgeRange(e.target.value)}>
                                 <option value="">Select Age Range</option>
                                 <option value="young">Young</option>
                                 <option value="matured">Matured</option>
@@ -168,8 +170,11 @@ const TreeFelling = ({localGovernment}) => {
                             </div>
 
                             <div className="text-left">
-                                <label className="text-left">Total Amount: ₦{totalAmount().toLocaleString()}</label>
+                                <label
+                                    className="text-left d-flex justify-content-between"><span>Total Amount: </span><span
+                                    className="total">₦{totalAmount().toLocaleString()}</span></label>
                             </div>
+
 
                             <button className="btn green thin wide" type="submit">Submit Request</button>
                         </form>
