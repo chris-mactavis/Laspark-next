@@ -52,7 +52,7 @@ const Profile = ({parkBookings, serviceBookings}) => {
                             </Thead>
                             <Tbody role="rowgroup">
                             {
-                                parkBookings.data.map(booking => <Tr role="row" key={booking.id} className="cursor-pointer" onClick={() => goToChat(booking.id, true)} >
+                                parkBookings.map(booking => <Tr role="row" key={booking.id} className="cursor-pointer" onClick={() => goToChat(booking.id, true)} >
                                     <Td role="cell">#{booking.order_number}</Td>
                                     <Td role="cell">{booking.park_space.space} ({booking.park.name})</Td>
                                     <Td role="cell">{booking.amount_formatted}</Td>
@@ -88,7 +88,7 @@ const Profile = ({parkBookings, serviceBookings}) => {
                             </Thead>
                             <Tbody role="rowgroup">
                             {
-                                serviceBookings.data.map(booking => <Tr role="row" key={booking.id} className="cursor-pointer" onClick={() => goToChat(booking.id)}>
+                                serviceBookings.map(booking => <Tr role="row" key={booking.id} className="cursor-pointer" onClick={() => goToChat(booking.id)}>
                                     <Td role="cell">#{booking.order_number}</Td>
                                     <Td role="cell">{booking.service.service}</Td>
                                     <Td role="cell">{booking.purpose}</Td>
