@@ -1,16 +1,13 @@
-import {PARK_BOOKING_MESSAGE ,SERVICE_BOOKING_MESSAGE} from '../actions/liveEvents';
+import { UPDATE_MESSAGE } from '../actions/liveEvents';
 
 const initialState = {
-    parkBookingMessage: false,
-    serviceBookingMessage : false
+    updatedMessage: false,
 };
 
 const liveEvent = (state = initialState, action) => {
     switch(action.type) {
-        case PARK_BOOKING_MESSAGE: 
-            return {...state, parkBookingMessage: data};
-        case SERVICE_BOOKING_MESSAGE:
-            return {...state, serviceBookingMessage: data};
+        case UPDATE_MESSAGE: 
+            return {...state, updatedMessage: action.data};
         default:
             return state;
     }

@@ -12,6 +12,7 @@ import notifier from "../store/reducers/notifier";
 import auth from "../store/reducers/auth";
 import bookings from "../store/reducers/booking";
 import liveEvent from "../store/reducers/liveEvents";
+import notifications from "../store/reducers/notifications";
 import ComponentWrapper from "../Components/hoc/ComponentsWrapper";
 
 
@@ -20,7 +21,8 @@ const reducers = combineReducers({
     notifier: notifier,
     auth: auth,
     bookings: bookings,
-    liveEvent: liveEvent
+    liveEvent: liveEvent,
+    notifications: notifications
 });
 const store = process.env.environment === 'dev' ? createStore(reducers, composeWithDevTools(applyMiddleware(thunkMiddleware))) : createStore(reducers, applyMiddleware(thunkMiddleware));
 

@@ -746,6 +746,16 @@ section {
     background: $light-green;
     padding: 75px 0;
 
+    @media only screen and (max-width: $mobile_width) {
+      h2 {
+        font-size: 30px;
+      }
+
+      h4 {
+        font-size: 15px;
+      }
+    }
+
     .booking-history{
       table{
         width: 100%;

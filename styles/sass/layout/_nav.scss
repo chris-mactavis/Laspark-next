@@ -86,6 +86,7 @@ nav.navbar {
 
       ul.dropdown-menu {
         width: 240px;
+        padding: 0;
 
         @media only screen and (max-width: $mobile_width) {
           width: 100%;
@@ -102,10 +103,43 @@ nav.navbar {
           }
         }
 
+        .notification-bottom {
+          border-top: 1px solid rgba(0,0,0,.15);
+        }
+
         .scroll-container {
           max-height: 18rem;
           overflow-x: hidden;
           overflow: scroll;
+        }
+
+        .message-container {
+          margin: 7px 0;
+        }
+
+        .message-link {
+          font-size: 13px;
+          color: #212529;
+          cursor: pointer;
+
+          &:hover {
+            color: #0f6b2d;
+          }
+        }
+
+        .active {
+          position: relative;
+
+          &::before {
+            content: '';
+            position: absolute;
+            background: #0f6b2d;
+            width: 10px;
+            height: 10px;
+            left: 45%;
+            top: 6px;
+            border-radius: 50%;
+          }
         }
 
         p.head-text {

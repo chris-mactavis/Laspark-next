@@ -62,10 +62,10 @@ export default function ServiceBookingDetail({booking, serviceMessages, serviceB
                 </div>
 
                 <div className="row">
-                    <div className="col-8 mx-auto">
+                    <div className="col-md-8 text-sm-left text-center mx-auto">
                         <h4>Send us a message for {booking.service.service}</h4>
                     </div>
-                    <div className="col-8 mx-auto reply-container">   
+                    <div className="col-md-8 col-10 mx-auto reply-container">   
                         <div>
                             <h5>Reply</h5>
                         </div>
@@ -83,7 +83,7 @@ export default function ServiceBookingDetail({booking, serviceMessages, serviceB
 
                 {
                     messages.map(message => <div key={message.id} className="row">
-                        <div className="col-8 mx-auto chats">
+                        <div className="col-md-8 col-10 mx-auto chats">
                             <div className="header d-flex flex-column">
                                 <p className="mb-0">{message.user ? message.user.full_name : 'N/A'}</p>
                                 <span>{message.user ? (message.user.role === 'admin' ? 'Staff' : 'Me') : 'N/A'}</span>
@@ -95,7 +95,7 @@ export default function ServiceBookingDetail({booking, serviceMessages, serviceB
                                         <a href="#" className="mb-1 text-dark">Attachments</a>
                                         {
                                             message.attachments_decoded.map((attachment, i) => <span key={i} className="d-block mb-2">
-                                                <a target="_blank" className="text-dark" href={attachment}>{attachment}</a>
+                                                <a target="_blank" className="text-dark" href={`http://104.131.93.134${attachment}`}>{attachment}</a>
                                             </span>)
                                         }
                             </div>
