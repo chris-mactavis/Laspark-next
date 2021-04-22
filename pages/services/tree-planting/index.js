@@ -75,7 +75,7 @@ const TreePlanting = ({localGovernment}) => {
             })
             console.log(response);
             dispatch(loader());
-            dispatch(showNotifier('Request sent!'));
+            dispatch(showNotifier('You will be contacted through call/email within  48hrs.'));
             Router.push('/profile');
         } catch (e) {
             console.log(e);
