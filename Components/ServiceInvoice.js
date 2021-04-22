@@ -86,6 +86,7 @@ const ServiceInvoice = ({invoice, billNumber, token}) => {
             default:
                 return '';
         }
+    }
 
     return (
         <>
