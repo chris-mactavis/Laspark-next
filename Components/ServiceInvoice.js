@@ -7,6 +7,8 @@ import {showNotifier} from '../store/actions/notifier';
 import {loader} from '../store/actions/loader';
 import axiosInstance from '../config/axios';
 
+import BankList from '../Components/BankList';
+
 
 
 
@@ -15,7 +17,8 @@ const ServiceInvoice = ({invoice, billNumber, token}) => {
 
      const [transactionId, setTransactionId] = useState(randomString(20));
      const [stringHash, setStringHash] = useState(null);
-     const [isLoading, setIsLoading] = useState(false);
+     const [isLoading, setIsLoading] = useState(true);
+     const [paymentOption, setPaymentOption] = useState('');
  
      const dispatch = useDispatch();
 
@@ -65,6 +68,11 @@ const ServiceInvoice = ({invoice, billNumber, token}) => {
         // }
         document.getElementById('frm').submit();
         setIsLoading(true);
+    }
+
+
+    const changePaymentHandler = (e) => {
+        setPaymentOption(e.target.value);
     }
 
     const prefix = () => {
@@ -136,7 +144,23 @@ const ServiceInvoice = ({invoice, billNumber, token}) => {
                             </table>
                         </div>
                     </div>
-                    <div className="row mt-5">
+
+                    <div className="row">
+                        <div className="col text-center">
+                            <div class="form-check form-check-inline mr-5">
+                                <input class="form-check-input" type="radio" name="payment" id="inlineRadio1" onChange={changePaymentHandler} value="pay-online" />
+                                <label class="form-check-label" for="inlineRadio1">Pay Online</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="payment" id="inlineRadio2" onChange={changePaymentHandler} value="pay-to-bank" />
+                                <label class="form-check-label" for="inlineRadio2">Pay to Bank</label>
+                            </div>  
+                        </div>
+                    </div>
+
+                    {paymentOption === 'pay-to-bank' && <BankList />}
+
+                    {paymentOption === 'pay-online' && <div className="row mt-5">
                         <div className="col text-center d-flex flex-column">
                             <div>
                                 <button type="button" disabled={isLoading} onClick={payHandler}
@@ -147,7 +171,7 @@ const ServiceInvoice = ({invoice, billNumber, token}) => {
                             {(invoice.waiver === 0) &&
                                 <small className="mt-2">Payment is non refundable!</small>}
                         </div>
-                    </div>
+                    </div>}
                 </div>
             </section>
 

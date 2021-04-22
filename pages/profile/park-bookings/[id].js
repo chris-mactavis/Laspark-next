@@ -68,10 +68,9 @@ export default function ServiceBookingDetail({booking, messages: parkMessages, s
                         <div className="form">
                             <form className="account-create p-0" onSubmit={handleSubmit(replyHandler)}>
                                 <textarea ref={register} name="message" placeholder="Compose your message..."/>
-
+                                <label>Attach receipt here</label>
                                 <input ref={register} name="attachments" type="file" multiple/>
-
-                                <button className="btn green thin wide mx-auto" type="submit">Reply</button>
+                                <button className="btn green thin wide mx-auto" type="submit">Send</button>
                             </form>
                         </div>
                     </div>
@@ -94,7 +93,7 @@ export default function ServiceBookingDetail({booking, messages: parkMessages, s
                                                 message.attachments_decoded.map((attachment, i) => <span key={i}
                                                                                                          className="d-block mb-2">
                                                 <a target="_blank" className="attachment text-dark"
-                                                   href={`http://159.203.67.70${attachment}`}>{attachment}</a>
+                                                   href={`http://104.131.93.134${attachment}`}>{attachment}</a>
                                             </span>)
                                             }
                                         </div>
