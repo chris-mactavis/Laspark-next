@@ -75,31 +75,21 @@ const Nav = ({isLoggedIn, hasHeader}) => {
     };
 
     const gotoUrl = async (message, id) => {
-
+       
         try {
             const token = Cookies.get('token');
             const {data} = await axiosInstance.post(`${id}/mark-as-read`, [], { headers: { Authorization: `Bearer ${token}` }
             });
 
-            // Cookies.set('notificatons', JSON.stringify(data.data));
-            // setNotification(data.data);
-            // dispatch(setNotifications(data.data));
-            // console.log(message);
-            // return;
-            // console.log(data, 'new data');
-            // return;
-            if (message.park_space_booking_id) {
-                console.log('true');
-                Router.push(`/profile/park-bookings/${message.park_space_booking_id}`);
+            const objKey = message.data;
+            const newObjKeys = Object.keys(objKey)[0];
+
+            if (newObjKeys === "park_space_booking_id") {
+                Router.push(`/profile/park-bookings/${message.data.park_space_booking_id}`);
             } else {
-                console.log('not-true');
-                Router.push(`/profile/service-bookings/${message.service_booking_id}`);
+                Router.push(`/profile/service-bookings/${message.data.service_booking_id}`);
             }
 
-            
-            // Cookies.set('notificatons', JSON.stringify(data.data));
-            // setNotification(data.data);
-            // dispatch(setNotifications(data.data));
         } catch (e) {     
             console.log(e.response)
         }
@@ -113,10 +103,6 @@ const Nav = ({isLoggedIn, hasHeader}) => {
             Cookies.remove('notificatons');
             setNotification([]);
             dispatch(setNotifications([]));
-            console.log(data);
-            // Cookies.set('notificatons', JSON.stringify(data.data));
-            // setNotification(data.data);
-            // dispatch(setNotifications(data.data));
         } catch (e) {     
             console.log(e.response)
         }
@@ -186,7 +172,7 @@ const Nav = ({isLoggedIn, hasHeader}) => {
                             // }
                             // const time = formatAMPM(new Date(message.created_at));
                             
-                            return <div onClick={() => gotoUrl(message.data, message.id)} key={message.id} className="message-container">
+                            return <div onClick={() => gotoUrl(message, message.id)} key={message.id} className="message-container">
                                         <div className="message-link">
                                             <p className="head-text">New message</p>
                                             <li>Laspark sent a message</li>

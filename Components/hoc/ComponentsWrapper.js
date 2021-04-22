@@ -18,14 +18,12 @@ const ComponentWrapper = ({Component, pageProps}) => {
         // Live park message Update
         const parkBookingChannel = pusher.subscribe('new-park-space-booking-message');
         parkBookingChannel.bind('App\\Events\\NewUserParkSpaceBookingMessage', eventData => {
-            console.log(eventData, 'parkBookingChannel');
             dispatch(updateMessage(true));
         });
 
         // Live service message update
         const serviceBookingChannel = pusher.subscribe('new-service-booking-message');
         serviceBookingChannel.bind('App\\Events\\NewUserServiceBookingMessage', eventData => {
-            console.log(eventData, 'serviceBookingChannel');
             dispatch(updateMessage(true));
         });
 
