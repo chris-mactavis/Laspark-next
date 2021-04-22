@@ -99,7 +99,8 @@ const Signup = () => {
                                 {errors.phone && <Error>{errors.phone.message}</Error>}
 
                                 <input type="text" ref={register({required: 'This field is required'})} name="address"
-                                       id="address" placeholder="Address"/>
+                                       id="address" placeholder="Address*"/>
+                                {errors.address && <Error>{errors.address.message}</Error>}
 
                                 <input type="password" ref={register({required: 'This field is required', pattern: {value: /^[A-Za-z]+[A-Za-z]/i, message: "password must have an upper case"}, minLength: { value: 8, message: "password must be more than 8 characters" }})}
                                        name="password" id="pwd"
