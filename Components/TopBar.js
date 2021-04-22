@@ -1,7 +1,17 @@
 import Link from "next/link";
+import { useEffect, useState } from "react";
 import Nav from "./Nav";
 
 const TopBar = ({isLoggedIn, page, headerContent}) => {
+    const [showNav, setShowNav] = useState(false);
+    useEffect(() => {
+        async function timer() {
+            await setTimeout(() => setShowNav(true) , 300);
+        }
+
+        timer();
+    } , [isLoggedIn]);
+
     return <>
         {
             page === 'home' && <div className="banner-slide">
@@ -26,7 +36,10 @@ const TopBar = ({isLoggedIn, page, headerContent}) => {
                     <img className="navbar-toggler-icon" src="/images/icon/button.svg" alt=""/>
                 </button>
 
-                <Nav isLoggedIn={isLoggedIn}/>
+                {
+                    showNav && <Nav isLoggedIn={isLoggedIn}/>
+                }
+                
             </nav>
         </div>
 

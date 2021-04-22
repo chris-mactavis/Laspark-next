@@ -6,6 +6,8 @@ import axiosInstance from "../../config/axios";
 import Token from "../../Utils/Token";
 import Link from "next/link";
 import Router from "next/router";
+import { Table, Thead, Tbody, Tr, Th, Td } from 'react-super-responsive-table';
+
 import Pagination from "../../Components/Pagination";
 import Cookies from "js-cookie";
 
@@ -99,30 +101,32 @@ const Profile = ({
 
                 <div className="row booking-history">
                     <div className="col">
-                        <table role="table">
-                            <thead role="rowgroup">
-                            <tr role="row">
-                                <th role="columnheader">Order #</th>
-                                <th role="columnheader">Park Space(Park)</th>
-                                <th role="columnheader">Amount Paid(₦)</th>
-                                <th role="columnheader">Date Booked</th>
-                            </tr>
-                            </thead>
-                            <tbody role="rowgroup">
+                        <Table role="table">
+                            <Thead role="rowgroup">
+                            <Tr role="row">
+                                <Th role="columnheader">Order #</Th>
+                                <Th role="columnheader">Park Space(Park)</Th>
+                                <Th role="columnheader">Amount(₦)</Th>
+                                <Th role="columnheader">Event Date</Th>
+                                <Th role="columnheader">Booking Date</Th>
+                                <Th role="columnheader">Booking Status</Th>
+                                <Th role="columnheader">Action</Th>
+                            </Tr>
+                            </Thead>
+                            <Tbody role="rowgroup">
                             {
-                                parkBookingsData.map(booking => <tr role="row" key={booking.id}
-                                                                    className="cursor-pointer"
-                                                                    onClick={() => goToChat(booking.id, true)}>
-                                    <td role="cell">#{booking.order_number}</td>
-                                    <td role="cell">{booking.park_space.space} ({booking.park.name})</td>
-                                    <td role="cell">{booking.amount_formatted}</td>
-                                    {booking.end_date ?
-                                        <td role="cell">{booking.start_date} - {booking.end_date} </td> :
-                                        <td role="cell">{booking.start_date} </td>}
-                                </tr>)
+                                parkBookings.map(booking => <Tr role="row" key={booking.id} className="cursor-pointer" onClick={() => goToChat(booking.id, true)} >
+                                    <Td role="cell">#{booking.order_number}</Td>
+                                    <Td role="cell">{booking.park_space.space} ({booking.park.name})</Td>
+                                    <Td role="cell">{booking.amount_formatted}</Td>
+                                    {booking.end_date ? <Td role="cell">{booking.start_date} - {booking.end_date} </Td> : <Td role="cell">{booking.start_date} </Td>}
+                                    <Td role="cell">{booking.date_added}</Td>
+                                    <Td role="cell">{booking.booking_status}</Td>
+                                    <Td role="cell"><button onClick={() => goToChat(booking.id, true)} className="btn extra-thin green-transparent">Send Message</button></Td>
+                                </Tr>)
                             }
-                            </tbody>
-                        </table>
+                            </Tbody>
+                        </Table>
 
                         <Pagination currentPage={currentPage}
                                     prevPageHandler={() => paginationHandler('parkSpace', false, false, false)}
@@ -143,28 +147,28 @@ const Profile = ({
 
                 <div className="row booking-history">
                     <div className="col">
-                        <table role="table">
-                            <thead role="rowgroup">
-                            <tr role="row">
-                                <th role="columnheader">Order #</th>
-                                <th role="columnheader">Service</th>
-                                <th role="columnheader">Purpose</th>
-                                <th role="columnheader">Location</th>
-                            </tr>
-                            </thead>
-                            <tbody role="rowgroup">
+                        <Table role="table">
+                            <Thead role="rowgroup">
+                            <Tr role="row">
+                                <Th role="columnheader">Order #</Th>
+                                <Th role="columnheader">Service</Th>
+                                <Th role="columnheader">Purpose</Th>
+                                <Th role="columnheader">Location</Th>
+                                <Th role="columnheader">Action</Th>
+                            </Tr>
+                            </Thead>
+                            <Tbody role="rowgroup">
                             {
-                                serviceBookingData.map(booking => <tr role="row" key={booking.id}
-                                                                      className="cursor-pointer"
-                                                                      onClick={() => goToChat(booking.id)}>
-                                    <td role="cell">#{booking.order_number}</td>
-                                    <td role="cell">{booking.service.service}</td>
-                                    <td role="cell">{booking.purpose}</td>
-                                    <td role="cell">{booking.local_government}</td>
-                                </tr>)
+                                serviceBookings.map(booking => <Tr role="row" key={booking.id} className="cursor-pointer" onClick={() => goToChat(booking.id)}>
+                                    <Td role="cell">#{booking.order_number}</Td>
+                                    <Td role="cell">{booking.service.service}</Td>
+                                    <Td role="cell">{booking.purpose}</Td>
+                                    <Td role="cell">{booking.local_government}</Td>
+                                    <Td role="cell"><button onClick={() => goToChat(booking.id)} className="btn extra-thin green-transparent">Send Message</button></Td>
+                                </Tr>)
                             }
-                            </tbody>
-                        </table>
+                            </Tbody>
+                        </Table>
 
                         <Pagination currentPage={serviceCurrentPage}
                                     prevPageHandler={() => paginationHandler('serviceBooking', false, false, false)}
@@ -190,6 +194,7 @@ const Profile = ({
 }
 
 Profile.getInitialProps = async (context) => {
+
     const perPage = 5;
     const {
         data: {
@@ -201,6 +206,7 @@ Profile.getInitialProps = async (context) => {
             Authorization: `Bearer ${Token(context)}`
         }
     });
+
 
     return {
         parkBookings: parkBookings,

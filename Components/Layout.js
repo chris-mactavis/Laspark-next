@@ -31,6 +31,15 @@ const Layout = ({children, headerContent, page = null, mainClass = null, headerC
         $('#parkRules').modal(showRules ? 'show' : 'hide');
     }, [showRules])
 
+    const [showNav, setShowNav] = React.useState(false);
+    useEffect(() => {
+        async function timer() {
+            await setTimeout(() => setShowNav(true) , 300);
+        }
+
+        timer();
+    } , [isLoggedIn]);
+
     return (
         <>
              <Head>
@@ -64,7 +73,9 @@ const Layout = ({children, headerContent, page = null, mainClass = null, headerC
                                 <img className="navbar-toggler-icon" src="/images/icon/button.svg" alt=""/>
                             </button>
 
-                            <Nav isLoggedIn={isLoggedIn}/>
+                            {
+                                showNav && <Nav hasHeader={hasHeader} isLoggedIn={isLoggedIn}/>
+                            }
                         </div>
                     </nav>
                 }

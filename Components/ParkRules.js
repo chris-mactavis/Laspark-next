@@ -15,7 +15,7 @@ const ParkRules = () => {
             <div className="modal-content">
                 <div className="modal-header">
                     <h5 className="modal-title">Park Rules</h5>
-                    <button type="button" className="close" onClick={closeRulesHandler}>
+                    <button type="button" style={{fontSize : '2.5rem'}} className="close" onClick={closeRulesHandler}>
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>

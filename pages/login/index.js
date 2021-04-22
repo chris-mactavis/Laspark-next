@@ -42,7 +42,9 @@ const Login = () => {
             dispatch(showNotifier(res.message));
             reset();
         } catch (e) {
-            console.log(e);
+            dispatch(loader());
+            // dispatch(showNotifier(e.response.data.errors.email[0], 'danger'));  
+            console.log(e.response);
         }
     }
 

@@ -1,10 +1,10 @@
-import {LOGIN, LOGOUT, STORE_USER} from "../actions/auth";
+import {LOGIN, LOGOUT, STORE_USER, UPDATE_TOKEN} from "../actions/auth";
 import Cookies from 'js-cookie';
 
 const token = Cookies.get('token'), user = Cookies.get('user');
 
 const initialState = {
-    loggedIn: !!token && !!user,
+    loggedIn: token && user,
     user: user || null,
     token: token || null
 };
