@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import {auth} from "../../Components/hoc/auth";
 import Head from "next/head";
 import Layout from "../../Components/Layout";
@@ -8,13 +8,76 @@ import Link from "next/link";
 import Router from "next/router";
 import { Table, Thead, Tbody, Tr, Th, Td } from 'react-super-responsive-table';
 
+import Pagination from "../../Components/Pagination";
+import Cookies from "js-cookie";
 
-const Profile = ({parkBookings, serviceBookings}) => {
+const Profile = ({
+                     parkBookings: {
+                         data,
+                         current_page,
+                         last_page: lastPage,
+                     },
+                     serviceBookings: {
+                         data: service_data,
+                         current_page: service_current_page,
+                         last_page: serviceLastPage,
+                     },
+                     perPage
+                 }) => {
+
+    const [parkBookingsData, setParkBookingsData] = useState(data);
+    const [currentPage, setCurrentPage] = useState(current_page);
+
+    const [serviceBookingData, setServiceBookingData] = useState(service_data);
+    const [serviceCurrentPage, setServiceCurrentPage] = useState(service_current_page);
 
     const goToChat = (bookingId, park = false) => {
         park
             ? Router.push('/profile/park-bookings/[id]', '/profile/park-bookings/' + bookingId)
             : Router.push('/profile/service-bookings/[id]', '/profile/service-bookings/' + bookingId);
+    }
+
+    const paginationHandler = async (type = 'parkSpace', first = false, last = false, inc = true) => {
+        try {
+            if (type === 'parkSpace') {
+                let page = first ? 1 : (last ? lastPage : (inc ? currentPage + 1 : currentPage - 1));
+                const {data: {park_space_booking}} = await axiosInstance.get(`my-profile-content?per_page=${perPage}&page=${page}`, {
+                    headers: {
+                        Authorization: `Bearer ${Cookies.get('token')}`
+                    }
+                });
+
+                let parkSpaceBooking = park_space_booking.data;
+
+                if (!Array.isArray(parkSpaceBooking)) {
+                    parkSpaceBooking = Object.keys(parkSpaceBooking).map(x => parkSpaceBooking[x]);
+                }
+
+                setCurrentPage(park_space_booking.current_page);
+                setParkBookingsData(parkSpaceBooking);
+            } else {
+                let page = first ? 1 : (last ? serviceLastPage : (inc ? serviceCurrentPage + 1 : serviceCurrentPage - 1));
+                const {data: {service_booking}} = await axiosInstance.get(`my-profile-content?per_page=${perPage}&page=${page}`, {
+                    headers: {
+                        Authorization: `Bearer ${Cookies.get('token')}`
+                    }
+                });
+
+                let serviceBooking = service_booking.data;
+
+                if (!Array.isArray(serviceBooking)) {
+                    serviceBooking = Object.keys(serviceBooking).map(x => serviceBooking[x]);
+                }
+
+                setServiceCurrentPage(service_booking.current_page);
+                setServiceBookingData(serviceBooking);
+            }
+
+
+        } catch (e) {
+            console.log(e);
+        }
+
     }
 
     return <Layout hasHeader={false}>
@@ -24,7 +87,7 @@ const Profile = ({parkBookings, serviceBookings}) => {
 
         <section className="profile">
             <div className="container">
-                <div className="row"> 
+                <div className="row">
                     <div className="col">
                         <h2 className="text-center mb-5">My Profile</h2>
                     </div>
@@ -64,6 +127,14 @@ const Profile = ({parkBookings, serviceBookings}) => {
                             }
                             </Tbody>
                         </Table>
+
+                        <Pagination currentPage={currentPage}
+                                    prevPageHandler={() => paginationHandler('parkSpace', false, false, false)}
+                                    nextPageHandler={() => paginationHandler('parkSpace', false, false)}
+                                    firstPageHandler={() => paginationHandler('parkSpace', true)}
+                                    lastPageHandler={() => paginationHandler('parkSpace', false, true)}
+                                    lastPage={lastPage}
+                        />
                     </div>
                 </div>
 
@@ -98,6 +169,14 @@ const Profile = ({parkBookings, serviceBookings}) => {
                             }
                             </Tbody>
                         </Table>
+
+                        <Pagination currentPage={serviceCurrentPage}
+                                    prevPageHandler={() => paginationHandler('serviceBooking', false, false, false)}
+                                    nextPageHandler={() => paginationHandler('serviceBooking', false, false)}
+                                    firstPageHandler={() => paginationHandler('serviceBooking', true)}
+                                    lastPageHandler={() => paginationHandler('serviceBooking', false, true)}
+                                    lastPage={serviceLastPage}
+                        />
                     </div>
                 </div>
 
@@ -115,19 +194,24 @@ const Profile = ({parkBookings, serviceBookings}) => {
 }
 
 Profile.getInitialProps = async (context) => {
-    const {data} = await axiosInstance.get('my-profile-content', {
+
+    const perPage = 5;
+    const {
+        data: {
+            park_space_booking: parkBookings,
+            service_booking: serviceBookings
+        }
+    } = await axiosInstance.get(`my-profile-content?per_page=${perPage}`, {
         headers: {
             Authorization: `Bearer ${Token(context)}`
         }
     });
 
-    console.log('profile', data);
-
-    const {park_space_booking: parkBookings, service_booking: serviceBookings} = data;
 
     return {
-        parkBookings: parkBookings.data,
-        serviceBookings: serviceBookings.data
+        parkBookings: parkBookings,
+        serviceBookings: serviceBookings,
+        perPage
     }
 }
 

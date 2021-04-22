@@ -1,6 +1,6 @@
 import Layout from "../../../Components/Layout";
 import Head from "next/head";
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import {useForm} from "react-hook-form";
 import {useDispatch, useSelector} from "react-redux";
 import {loader} from "../../../store/actions/loader";
@@ -17,7 +17,9 @@ const TreeFelling = ({localGovernment}) => {
 
     let user = useSelector(state => state.auth.user) || {};
     user = typeof user === 'object' ? user : JSON.parse(user);
-    console.log(user);
+
+    const [selectedAgeRange, setSelectedAgeRange] = useState('young');
+    const [quantity, setQuantity] = useState(null);
 
     useEffect(() => {
         document.body.scrollTop = 0; // For Safari
@@ -50,14 +52,14 @@ const TreeFelling = ({localGovernment}) => {
         });
 
         formData.append('user_id', user.id);
-        
+        formData.append('amount', totalAmount());
+
         dispatch(loader());
 
         try {
             const {data: response} = await axiosInstance.post(`services/1/book`, formData, {
                 headers: {Authorization: `Bearer ${Token()}`}
             })
-            console.log(response);
             dispatch(loader());
             dispatch(showNotifier('Request sent!'));
             Router.push('/profile');
@@ -66,6 +68,33 @@ const TreeFelling = ({localGovernment}) => {
             dispatch(loader());
             dispatch(showNotifier(e.response.data.message, 'danger'));
         }
+    }
+
+    const adminCharge = () => {
+        switch (true) {
+            case +quantity === 1:
+                return 35000;
+            case quantity >= 2 && quantity <= 10:
+                return 50000;
+            case quantity >= 11 && quantity <= 20:
+                return 100000;
+            case quantity >= 21 && quantity <= 50:
+                return 150000;
+            case quantity >= 51 && quantity <= 100:
+                return 250000;
+            case quantity >= 101:
+                return 500000;
+            default:
+                return 500000;
+        }
+    }
+
+    const maturityPrice = () => selectedAgeRange === 'young' ? 3000 : 5000;
+
+    const greenRestoration = () => quantity * 5 * maturityPrice();
+
+    const totalAmount = () => {
+        return quantity ? adminCharge() + greenRestoration() : '0';
     }
 
     return <Layout hasHeader={false}>
@@ -100,9 +129,18 @@ const TreeFelling = ({localGovernment}) => {
                                    placeholder="House Number*"/>
                             {errors.house_number && <Error>{errors.house_number.message}</Error>}
 
-                            <input ref={register({required: 'This field is required'})} min="0" type="number" name="no_of_trees"
+                            <input ref={register({required: 'This field is required'})} min="0" type="number"
+                                   name="no_of_trees" onKeyUp={(e) => setQuantity(e.target.value)}
                                    id="cname" placeholder="Number of trees to be felled*"/>
                             {errors.no_of_trees && <Error>{errors.no_of_trees.message}</Error>}
+
+                            <select ref={register({required: 'This field is required'})} defaultValue={"young"}
+                                    name="age_range" onChange={(e) => setSelectedAgeRange(e.target.value)}>
+                                <option value="">Select Age Range</option>
+                                <option value="young">Young</option>
+                                <option value="matured">Matured</option>
+                            </select>
+                            {errors.age_range && <Error>{errors.age_range.message}</Error>}
 
                             <select ref={register({required: 'This field is required'})} name="purpose">
                                 <option value="">Purpose for Felling*</option>
@@ -130,6 +168,13 @@ const TreeFelling = ({localGovernment}) => {
                                        name="tree_pictures" placeholder="Tree Pictures*"/>
                                 {errors.purpose && <Error>{errors.tree_pictures.message}</Error>}
                             </div>
+
+                            <div className="text-left">
+                                <label
+                                    className="text-left d-flex justify-content-between"><span>Total Amount: </span><span
+                                    className="total">₦{totalAmount().toLocaleString()}</span></label>
+                            </div>
+
 
                             <button className="btn green thin wide" type="submit">Submit Request</button>
                         </form>
