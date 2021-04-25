@@ -7,8 +7,10 @@ import {useDispatch} from "react-redux";
 import {loader} from "../../../store/actions/loader";
 import Token from "../../../Utils/Token";
 import {showNotifier} from "../../../store/actions/notifier";
+import Cookies from "js-cookie";
+import Router from "next/router";
 
-export default function ServiceBookingDetail({booking, serviceMessages, serviceBookingId}) {
+export default function ({booking, serviceMessages, serviceBookingId}) {
 
     const createMarkup = (content) => ({__html: content});
 
@@ -18,11 +20,22 @@ export default function ServiceBookingDetail({booking, serviceMessages, serviceB
     const [messages, setMessages] = useState(serviceMessages || []);
 
     useEffect(() => {
-        async function fetchData() {
-            const {data: {messages}} = await axiosInstance.get(`my-booked-services/${serviceBookingId}`);
-            setMessages(messages);
+        dispatch(loader());
+
+        if (!Token()) {
+            dispatch(loader());
+            Cookies.set('redirectIntended', `/profile/service-bookings/${serviceBookingId}`)
+            Router.push('/login');
+        } else {
+            dispatch(loader());
+
+            async function fetchData() {
+                const {data: {messages}} = await axiosInstance.get(`my-booked-services/${serviceBookingId}`);
+                setMessages(messages);
+            }
+
+            fetchData();
         }
-        fetchData();
     }, [])
 
     const replyHandler = async data => {
