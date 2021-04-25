@@ -7,20 +7,33 @@ import {useDispatch} from "react-redux";
 import {loader} from "../../../store/actions/loader";
 import Token from "../../../Utils/Token";
 import {showNotifier} from "../../../store/actions/notifier";
+import Cookies from "js-cookie";
+import Router from "next/router";
 
-export default function ServiceBookingDetail({booking, messages: parkMessages, spaceBookingId}) {
+export default function ({booking, messages: parkMessages, spaceBookingId}) {
 
     const createMarkup = (content) => ({__html: content});
     const {register, handleSubmit, reset} = useForm();
     const dispatch = useDispatch();
     const [messages, setMessages] = useState(parkMessages || []);
-    console.log(booking);
+
     useEffect(() => {
-        async function fetchData() {
-            const {data: {messages}} = await axiosInstance.get(`my-booked-spaces/${spaceBookingId}`);
-            setMessages(messages);
+        dispatch(loader());
+
+        if (!Token()) {
+            dispatch(loader());
+            Cookies.set('redirectIntended', `/profile/park-bookings/${spaceBookingId}`)
+            Router.push('/login');
+        } else {
+            dispatch(loader());
+
+            async function fetchData() {
+                const {data: {messages}} = await axiosInstance.get(`my-booked-spaces/${spaceBookingId}`);
+                setMessages(messages);
+            }
+
+            fetchData();
         }
-        fetchData();
     }, [])
 
     const replyHandler = async data => {
@@ -84,7 +97,8 @@ export default function ServiceBookingDetail({booking, messages: parkMessages, s
                                 <span>{message.user ? (message.user.role === 'admin' ? 'Staff' : 'Me') : 'N/A'}</span>
                             </div>
                             <div className="body">
-                                {(message.message && message.message !== 'undefined') && <div dangerouslySetInnerHTML={createMarkup(message.message)}/>}
+                                {(message.message && message.message !== 'undefined') &&
+                                <div dangerouslySetInnerHTML={createMarkup(message.message)}/>}
                                 {
                                     message.attachments_decoded.length > 0 && <div className="attachment-section">
                                         <div className="d-flex flex-wrap flex-column mt-3">
