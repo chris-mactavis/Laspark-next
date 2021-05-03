@@ -34,8 +34,6 @@ const Nav = ({isLoggedIn, hasHeader}) => {
                 const {data} = await axiosInstance.get('fetch-my-notifications', { headers: { Authorization: `Bearer ${token}` }
                 });
 
-                console.log(data, 'all notify');
-                // console.log(data.data, 'dta');
                 Cookies.set('notificatons', JSON.stringify(data.data));
                 setNotification(data.data);
                 dispatch(setNotifications(data.data));

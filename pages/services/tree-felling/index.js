@@ -38,38 +38,6 @@ const TreeFelling = ({localGovernment}) => {
         }
     }, []);
 
-    const serviceRequestHandler = async data => {
-
-        const formData = new FormData();
-        Object.keys(data).forEach(key => {
-            if (key === 'attach_letter') {
-                formData.append('attach_letter', data[key][0]);
-            } else if (key === 'tree_pictures') {
-                Array.from(data[key]).forEach((tp, index) => formData.append('pictures[]', data[key][index]));
-            } else {
-                formData.append(key, data[key])
-            }
-        });
-
-        formData.append('user_id', user.id);
-        formData.append('amount', totalAmount());
-
-        dispatch(loader());
-
-        try {
-            const {data: response} = await axiosInstance.post(`services/1/book`, formData, {
-                headers: {Authorization: `Bearer ${Token()}`}
-            })
-            dispatch(loader());
-            dispatch(showNotifier('You will be contacted through call/email within  48hrs.'));
-            Router.push('/profile');
-        } catch (e) {
-            console.log(e);
-            dispatch(loader());
-            dispatch(showNotifier(e.response.data.message, 'danger'));
-        }
-    }
-
     const adminCharge = () => {
         switch (true) {
             case +quantity === 1:
@@ -95,6 +63,40 @@ const TreeFelling = ({localGovernment}) => {
 
     const totalAmount = () => {
         return quantity ? adminCharge() + greenRestoration() : '0';
+    }
+
+    const serviceRequestHandler = async data => {
+
+        const formData = new FormData();
+        Object.keys(data).forEach(key => {
+            if (key === 'attach_letter') {
+                formData.append('attach_letter', data[key][0]);
+            } else if (key === 'tree_pictures') {
+                Array.from(data[key]).forEach((tp, index) => formData.append('pictures[]', data[key][index]));
+            } else {
+                formData.append(key, data[key])
+            }
+        });
+
+        formData.append('user_id', user.id);
+        formData.append('green_restoration', greenRestoration());
+        formData.append('admin_charge', adminCharge());
+        formData.append('amount', totalAmount());
+
+        dispatch(loader());
+
+        try {
+            const {data: response} = await axiosInstance.post(`services/1/book`, formData, {
+                headers: {Authorization: `Bearer ${Token()}`}
+            })
+            dispatch(loader());
+            dispatch(showNotifier('You will be contacted through call/email within  48hrs.'));
+            Router.push('/profile');
+        } catch (e) {
+            console.log(e);
+            dispatch(loader());
+            dispatch(showNotifier(e.response.data.message, 'danger'));
+        }
     }
 
     return <Layout hasHeader={false}>
