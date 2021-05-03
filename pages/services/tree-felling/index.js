@@ -66,7 +66,6 @@ const TreeFelling = ({localGovernment}) => {
     }
 
     const serviceRequestHandler = async data => {
-
         const formData = new FormData();
         Object.keys(data).forEach(key => {
             if (key === 'attach_letter') {
@@ -166,9 +165,9 @@ const TreeFelling = ({localGovernment}) => {
 
                             <div className="text-left">
                                 <label className="text-left">Tree Pictures*</label>
-                                <input ref={register({required: 'This field is required'})} type="file" multiple
+                                <input id="picture_upload-input" ref={register({required: 'This field is required'})} type="file" multiple
                                        name="tree_pictures" placeholder="Tree Pictures*"/>
-                                {errors.purpose && <Error>{errors.tree_pictures.message}</Error>}
+                                {errors.tree_pictures && <Error>{errors.tree_pictures.message}</Error>}
                             </div>
 
                             <div className="text-left">
