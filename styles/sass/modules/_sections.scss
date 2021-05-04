@@ -783,8 +783,8 @@ section {
             padding: 20px 0 !important;
 
             @media only screen and (max-width: $mobile_width) {
-              padding: 0 !important;
-              padding-left: calc(50% + 10px) !important
+              padding: 10px 0 !important;
+              // padding-left: calc(50% + 10px) !important
             }
           }
         }

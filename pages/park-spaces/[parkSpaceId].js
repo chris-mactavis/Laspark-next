@@ -11,13 +11,14 @@ import {showNotifier} from "../../store/actions/notifier";
 import {useDispatch} from "react-redux";
 import {randomString} from "../../Utils/String";
 import {toggleParkRules} from "../../store/actions/booking";
+import { Table, Thead, Tbody, Tr, Th, Td } from 'react-super-responsive-table';
 import {auth} from "../../Components/hoc/auth";
 
 import Cookies from "js-cookie";
 import Router from "next/router";
 
 const SingleParkSpace = ({parkSpace, parkSpaceRef}) => {
-    console.log(parkSpace, parkSpaceRef);
+    // console.log(parkSpace, parkSpaceRef);
     const [transactionId, setTransactionId] = useState(randomString(20));
     const [billNumber, setBillNumber] = useState(null);
     const [stringHash, setStringHash] = useState(null);
@@ -59,7 +60,7 @@ const SingleParkSpace = ({parkSpace, parkSpaceRef}) => {
     }, []);
 
     const bookingHandler = async data => {
-        console.log(data);
+        // console.log(data);
         try {
             dispatch(loader());
             const {data: response} = await axiosInstance.post(`/park-spaces/${parkSpaceRef}/book`, {
@@ -293,7 +294,7 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps(context) {
-    console.log(context);
+    // console.log(context);
     const ref = context.params.parkSpaceId;
     const {data: {data: parkSpace}} = await axiosInstance.get(`park-spaces/${ref}/by-ref`);
 
