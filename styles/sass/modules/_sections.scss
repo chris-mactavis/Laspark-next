@@ -761,7 +761,7 @@ section {
         width: 100%;
 
         th, td{
-          text-align: center;
+          text-align: center !important;
         }
 
         th{
@@ -781,10 +781,36 @@ section {
 
           td{
             padding: 20px 0 !important;
+            @media only screen and (max-width: $mobile_width) {
+              padding: 10px 0 10px calc(50% + 10px) !important;
+              // padding: 10px 0 !important;
+              // padding-left: calc(50% + 10px) !important
+            }
+          }
+        }
+      }
+    }
 
+    .instructions {
+      ul {
+        list-style: unset;
+        padding-left: 40px;
+
+        li {
+          margin-bottom: 10px;
+          a {
+            color: $dark-green;
+          }
+        }
+      }
+    }
+
+    .book-park-page {
+      table{
+        tr{
+          td{
             @media only screen and (max-width: $mobile_width) {
               padding: 10px 0 !important;
-              // padding-left: calc(50% + 10px) !important
             }
           }
         }

@@ -133,7 +133,7 @@ const SingleParkSpace = ({parkSpace, parkSpaceRef}) => {
                         </div>
                     </div>
 
-                    <div className="row booking-history">
+                    <div className="row booking-history book-park-page">
                         <div className="col">
                             <table role="table">
                                 <thead role="rowgroup">

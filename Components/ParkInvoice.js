@@ -17,8 +17,6 @@ const ParkInvoice = ({invoice, billNumber, token }) => {
     const [isLoading, setIsLoading] = useState(true);
     const [paymentOption, setPaymentOption] = useState('');
 
-    console.log(paymentOption, 'the payment opt');
-
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -115,20 +113,20 @@ const ParkInvoice = ({invoice, billNumber, token }) => {
                             </Table>
                         </div>
                     </div>
-                    <div className="row">
+                    <div className="row mt-3 mb-5">
                         <div className="col text-center">
-                            <div class="form-check form-check-inline mr-5">
-                                <input class="form-check-input" type="radio" name="payment" id="inlineRadio1" onChange={changePaymentHandler} value="pay-online" />
-                                <label class="form-check-label" for="inlineRadio1">Pay Online</label>
+                            <div className="form-check form-check-inline mr-5">
+                                <input className="form-check-input" type="radio" name="payment" id="inlineRadio1" onChange={changePaymentHandler} value={"pay-online" || ""} />
+                                <label className="form-check-label" htmlFor="inlineRadio1">Pay Online</label>
                             </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="payment" id="inlineRadio2" onChange={changePaymentHandler} value="pay-to-bank" />
-                                <label class="form-check-label" for="inlineRadio2">Pay to Bank</label>
+                            <div className="form-check form-check-inline">
+                                <input className="form-check-input" type="radio" name="payment" id="inlineRadio2" onChange={changePaymentHandler} value={"pay-to-bank" || ""} />
+                                <label className="form-check-label" htmlFor="inlineRadio2">Pay to Bank</label>
                             </div>  
                         </div>
                     </div>
 
-                    {paymentOption === 'pay-to-bank' && <BankList />}
+                    {paymentOption === 'pay-to-bank' && <BankList invoice = {invoice} />}
                     
                     {paymentOption === 'pay-online' && <div className="row mt-5">
                         <div className="col text-center d-flex flex-column">

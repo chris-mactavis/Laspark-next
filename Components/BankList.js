@@ -1,6 +1,10 @@
 import { Table, Thead, Tbody, Tr, Th, Td } from 'react-super-responsive-table';
 
-const BankList = () => {
+const BankList = ({invoice}) => {
+
+    const isService = invoice.is_service;
+
+    console.log({invoice});
 
     const bankList = [
         {name: 'ACCESS', accountNumber: '0697051813', sn: '1'},
@@ -23,10 +27,65 @@ const BankList = () => {
         {name: 'WEMA', accountNumber: '0122514218', sn: '18'},
         {name: 'ZENITH', accountNumber: '1014361774', sn: '19'},
         {name: 'LBIC', accountNumber: '0001709719', sn: '20'},
-    ]
+    ];
 
     return (
         <>
+            {isService === 0 && <div className="row instructions">
+                <div className="col">
+                    <h2 className="text-center mb-2">Park Management</h2>
+                    <h4 className="text-center">Instruction on payment across the counter</h4>
+                    <div className="row">
+                        <div className="col-12 mx-auto">
+                            <ul>
+                                <li>Go to any of the desired bank listed.</li>
+                                <li>Obtain Lagos State Revenue deposit slip and fill with the revenue code and agency code below: <br/>
+                                    <strong>(REVENUE CODE: 4050016)</strong><br/>
+                                    <strong>(AGENCY CODE: 7760000)</strong>
+                                </li>
+                                <li>Obtain the Lasg Revenue receipt from the Bank and upload to your users' profile on the Laspark Portal or send as attachment to <a href="mailto:laspark@lagosstate.gov.ng">laspark@lagosstate.gov.ng</a> </li>
+                                <li>Ensure the order number is included in the subject when sending the attached revenue receipt to <a href="mailto:laspark@lagosstate.gov.ng">laspark@lagosstate.gov.ng</a> </li>
+                                <li>Await final approval letter in your mail within 72 hrs. after sending receipt of payment</li>
+                                <li>Print out final approval and bring to the park prior to/on your event day. </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div> }
+            {isService === 1 && 
+            <div>
+                {(invoice.service_booking.service.service === 'Tree Felling' || invoice.service_booking.service.service === 'Tree Pruning' || invoice.service_booking.service.service === 'Adoption of Open Space') &&
+                <div className="row instructions">
+                    <div className="col">
+                        <h2 className="text-center mb-2">{invoice.service_booking.service.service === 'Tree Felling' || invoice.service_booking.service.service === 'Tree Pruning' ? "Tree Felling and Tree Pruning" : "Adoption of Open Space "}</h2>
+                        <h4 className="text-center">Instruction on payment across the counter</h4>
+                        <div className="row">
+                            <div className="col-12 mx-auto">
+                                <ul>
+                                    <li>Go to any of the desired bank listed.</li>
+                                    {(invoice.service_booking.service.service === 'Tree Felling' || invoice.service_booking.service.service === 'Tree Pruning') &&
+                                    <li>Obtain Lagos State Revenue deposit slip and fill with the revenue code and agency code below: <br/>
+                                        <strong>(REVENUE CODE: 4080022)</strong><br/>
+                                        <strong>(AGENCY CODE: 77600000)</strong>
+                                    </li>}
+                                    {invoice.service_booking.service.service === 'Adoption of Open Space' &&
+                                    <li>Obtain Lagos State Revenue deposit slip and fill with the with the ground/ revenue code and agency code below: <br/>
+                                        <strong>(GROUND RENT/REVENUE CODE: 4080022)</strong><br/>
+                                        <strong>(AGENCY CODE: 77600000)</strong>
+                                    </li>}
+                                    <li>Obtain the Lasg Revenue receipt from the Bank and upload to your users' profile on the Laspark Portal or send as attachment to <a href="mailto:laspark@lagosstate.gov.ng">laspark@lagosstate.gov.ng</a> </li>
+                                    <li>Ensure the order number is included in the subject when sending the attached revenue receipt to <a href="mailto:laspark@lagosstate.gov.ng">laspark@lagosstate.gov.ng</a> </li>
+                                    {(invoice.service_booking.service.service === 'Tree Felling' || invoice.service_booking.service.service === 'Tree Pruning') && <li>Await final approval letter in your mail within 48 hrs. after sending receipt of payment.</li>}
+                                    {invoice.service_booking.service.service === 'Adoption of Open Space' && <li>Await final approval letter in your mail and use accordingly.</li>}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div> 
+                }
+            </div> }
+
+            
             <div className="row mt-5">
                 <div className="col">
                     <h2 className="text-center mb-5">All Banks</h2>
@@ -53,22 +112,6 @@ const BankList = () => {
                                     <Td role="cell">{bank.accountNumber}</Td>
                                 </Tr>
                             })}
-                            {/* <Tr role="row">
-                                <Td role="cell">CITI</Td>
-                                <Td role="cell">0011305964</Td>
-                            </Tr>
-                            <Tr role="row">
-                                <Td role="cell">DIAMOND</Td>
-                                <Td role="cell">0068779079</Td>
-                            </Tr>
-                            <Tr role="row">
-                                <Td role="cell">Item Description</Td>
-                                <Td role="cell"></Td>
-                            </Tr>
-                            <Tr role="row">
-                                <Td role="cell">Amount</Td>
-                                <Td role="cell"></Td>
-                            </Tr> */}
                         </Tbody>
                     </Table>
                 </div>
