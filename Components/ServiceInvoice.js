@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from "react";
 import {useDispatch} from "react-redux";
 import Cookies from 'js-cookie';
+import { Table, Thead, Tbody, Tr, Th, Td } from 'react-super-responsive-table';
 
 import {randomString} from '../Utils/String';
 import {showNotifier} from '../store/actions/notifier';
@@ -12,8 +13,6 @@ import BankList from '../Components/BankList';
 
 const ServiceInvoice = ({invoice, billNumber, token}) => {
     const serviceType = invoice.service_booking.service.service;
-
-    console.log({invoice})
 
     const [transactionId, setTransactionId] = useState(randomString(20));
     const [stringHash, setStringHash] = useState(null);
@@ -99,82 +98,82 @@ const ServiceInvoice = ({invoice, billNumber, token}) => {
 
                     <div className="row booking-history">
                         <div className="col">
-                            <table role="table">
-                                <thead role="rowgroup">
-                                <tr role="row">
-                                    <th role="columnheader">Item</th>
-                                    <th role="columnheader">Value</th>
-                                </tr>
-                                </thead>
-                                <tbody role="rowgroup">
-                                <tr role="row">
-                                    <td role="cell">Invoice Number</td>
-                                    <td role="cell">{prefix() + invoice.invoice_number}</td>
-                                </tr>
-                                <tr role="row">
-                                    <td role="cell">Order Number</td>
-                                    <td role="cell">{prefix() + invoice.service_booking.order_number}</td>
-                                </tr>
-                                <tr role="row">
-                                    <td role="cell">Customer</td>
-                                    <td role="cell">{invoice.user.first_name} {invoice.user.last_name}</td>
-                                </tr>
-                                <tr role="row">
-                                    <td role="cell">{(serviceType === 'Tree Pruning' || serviceType === 'Tree Felling') ? 'Item/Service Description' : 'Item Description'}</td>
-                                    <td role="cell">{serviceType}</td>
-                                </tr>
+                            <Table role="table">
+                                <Thead role="rowgroup">
+                                <Tr role="row">
+                                    <Th role="columnheader">Item</Th>
+                                    <Th role="columnheader">Value</Th>
+                                </Tr>
+                                </Thead>
+                                <Tbody role="rowgroup">
+                                <Tr role="row">
+                                    <Td role="cell">Invoice Number</Td>
+                                    <Td role="cell">{prefix() + invoice.invoice_number}</Td>
+                                </Tr>
+                                <Tr role="row">
+                                    <Td role="cell">Order Number</Td>
+                                    <Td role="cell">{prefix() + invoice.service_booking.order_number}</Td>
+                                </Tr>
+                                <Tr role="row">
+                                    <Td role="cell">Customer</Td>
+                                    <Td role="cell">{invoice.user.first_name} {invoice.user.last_name}</Td>
+                                </Tr>
+                                <Tr role="row">
+                                    <Td role="cell">{(serviceType === 'Tree Pruning' || serviceType === 'Tree Felling') ? 'Item/Service Description' : 'Item Description'}</Td>
+                                    <Td role="cell">{serviceType}</Td>
+                                </Tr>
                                 {(serviceType !== 'Tree Planting' && invoice.service_booking.street_name && invoice.service_booking.house_number) &&
-                                <tr role="row">
-                                    <td role="cell">Location</td>
-                                    <td role="cell">{invoice.service_booking.house_number} {invoice.service_booking.street_name}</td>
-                                </tr>}
-                                <tr role="row">
-                                    <td role="cell">Purpose</td>
-                                    <td role="cell">{invoice.service_booking.purpose}</td>
-                                </tr>
-                                {invoice.service_booking.no_of_trees && <tr role="row">
-                                    <td role="cell">No of Trees</td>
-                                    <td role="cell">{invoice.service_booking.no_of_trees}</td>
-                                </tr>}
+                                <Tr role="row">
+                                    <Td role="cell">Location</Td>
+                                    <Td role="cell">{invoice.service_booking.house_number} {invoice.service_booking.street_name}</Td>
+                                </Tr>}
+                                <Tr role="row">
+                                    <Td role="cell">Purpose</Td>
+                                    <Td role="cell">{invoice.service_booking.purpose}</Td>
+                                </Tr>
+                                {invoice.service_booking.no_of_trees && <Tr role="row">
+                                    <Td role="cell">No of Trees</Td>
+                                    <Td role="cell">{invoice.service_booking.no_of_trees}</Td>
+                                </Tr>}
                                 {
                                     invoice.waiver !== 1 && invoice.amount > 0 && (serviceType === 'Tree Felling' || serviceType === 'Tree Pruning') && <>
                                     {
-                                        serviceType === 'Tree Felling' && <tr role="row">
-                                            <td role="cell">Green Restoration</td>
-                                            <td role="cell">₦{Intl.NumberFormat().format(invoice.service_booking.green_restoration)}</td>
-                                        </tr>
+                                        serviceType === 'Tree Felling' && <Tr role="row">
+                                            <Td role="cell">Green Restoration</Td>
+                                            <Td role="cell">₦{Intl.NumberFormat().format(invoice.service_booking.green_restoration)}</Td>
+                                        </Tr>
                                     }
-                                        <tr role="row">
-                                            <td role="cell">Admin Charge</td>
-                                            <td role="cell">₦{Intl.NumberFormat().format(invoice.service_booking.admin_charge)}</td>
-                                        </tr>
+                                        <Tr role="row">
+                                            <Td role="cell">Admin Charge</Td>
+                                            <Td role="cell">₦{Intl.NumberFormat().format(invoice.service_booking.admin_charge)}</Td>
+                                        </Tr>
                                     </>
                                 }
-                                <tr role="row">
-                                    <td role="cell">Total Amount</td>
-                                    <td role="cell">₦{Intl.NumberFormat().format(invoice.amount)}</td>
-                                </tr>
-                                </tbody>
-                            </table>
+                                <Tr role="row">
+                                    <Td role="cell">Total Amount</Td>
+                                    <Td role="cell">₦{Intl.NumberFormat().format(invoice.amount)}</Td>
+                                </Tr>
+                                </Tbody>
+                            </Table>
                         </div>
                     </div>
 
-                    <div className="row mt-3">
+                    <div className="row mt-3 mb-5">
                         <div className="col text-center">
-                            <div class="form-check form-check-inline mr-5">
-                                <input class="form-check-input" type="radio" name="payment" id="inlineRadio1"
-                                       onChange={changePaymentHandler} value="pay-online"/>
-                                <label class="form-check-label" for="inlineRadio1">Pay Online</label>
+                            <div className="form-check form-check-inline mr-5">
+                                <input className="form-check-input" type="radio" name="payment" id="inlineRadio1"
+                                       onChange={changePaymentHandler} value={"pay-online" || ""}/>
+                                <label className="form-check-label" htmlFor="inlineRadio1">Pay Online</label>
                             </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="payment" id="inlineRadio2"
-                                       onChange={changePaymentHandler} value="pay-to-bank"/>
-                                <label class="form-check-label" for="inlineRadio2">Pay to Bank</label>
+                            <div className="form-check form-check-inline">
+                                <input className="form-check-input" type="radio" name="payment" id="inlineRadio2"
+                                       onChange={changePaymentHandler} value={"pay-to-bank" || ""}/>
+                                <label className="form-check-label" htmlFor="inlineRadio2">Pay to Bank</label>
                             </div>
                         </div>
                     </div>
 
-                    {paymentOption === 'pay-to-bank' && <BankList/>}
+                    {paymentOption === 'pay-to-bank' && <BankList invoice = {invoice} />}
 
                     {paymentOption === 'pay-online' && <div className="row mt-5">
                         <div className="col text-center d-flex flex-column">
